@@ -1,0 +1,2225 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MamaVerdient — Bijverdienen jouw business bestie</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #fdf8f3;
+  --white: #ffffff;
+  --black: #1a1714;
+  --rose: #e8735a;
+  --rose-light: #fde8e3;
+  --sage: #7a9e87;
+  --sage-light: #e8f2eb;
+  --warm: #f0c987;
+  --warm-light: #fdf3e0;
+  --plum: #7a5c7a;
+  --plum-light: #efe8ef;
+  --muted: #8a8178;
+  --border: rgba(26,23,20,0.09);
+  --radius: 16px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--black);min-height:100vh}
+h1,h2,h3,.serif{font-family:'Playfair Display',serif}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px solid var(--border);padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:58px}
+.nav-logo{font-family:'Playfair Display',serif;font-weight:800;font-size:1.15rem;color:var(--black);display:flex;align-items:center;gap:8px}
+.nav-logo .dot{width:8px;height:8px;border-radius:50%;background:var(--rose)}
+.nav-logo .sub{font-family:'Plus Jakarta Sans',sans-serif;font-size:.7rem;font-weight:400;color:var(--muted);margin-left:2px;letter-spacing:.02em}
+.nav-tabs{display:flex;gap:4px}
+.nav-tab{padding:7px 16px;border-radius:8px;cursor:pointer;font-size:.82rem;font-weight:500;color:var(--muted);border:none;background:transparent;font-family:'Plus Jakarta Sans',sans-serif;transition:all .15s}
+.nav-tab:hover{color:var(--black);background:var(--bg)}
+.nav-tab.active{color:var(--white);background:var(--rose)}
+
+/* VIEWS */
+.view{display:none;animation:fadeUp .22s ease}
+.view.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* ===== WEBSITE ===== */
+.site-hero{background:var(--white);padding:4rem 2rem 3.5rem;text-align:center;position:relative;overflow:hidden;border-bottom:1px solid var(--border)}
+.hero-blob{position:absolute;width:500px;height:500px;border-radius:50%;background:var(--rose-light);top:-200px;right:-150px;opacity:.5}
+.hero-blob2{position:absolute;width:300px;height:300px;border-radius:50%;background:var(--sage-light);bottom:-120px;left:-80px;opacity:.6}
+.site-hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;line-height:1.1;letter-spacing:-.02em;margin-bottom:.9rem;position:relative;z-index:1}
+.site-hero h1 em{font-style:italic;color:var(--rose)}
+.site-hero p{color:var(--muted);font-size:1rem;max-width:500px;margin:0 auto 1.75rem;line-height:1.65;position:relative;z-index:1}
+.hero-tags{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:2rem;position:relative;z-index:1}
+.hero-tag{padding:6px 14px;border-radius:99px;font-size:.78rem;font-weight:500;border:1.5px solid var(--border);background:var(--white);color:var(--muted)}
+.hero-search{display:flex;gap:8px;max-width:440px;margin:0 auto;position:relative;z-index:1}
+.hero-search input{flex:1;padding:13px 18px;border-radius:12px;border:1.5px solid var(--border);background:var(--bg);color:var(--black);font-size:.9rem;font-family:'Plus Jakarta Sans',sans-serif;outline:none;transition:border .15s}
+.hero-search input:focus{border-color:var(--rose)}
+.hero-search input::placeholder{color:var(--muted)}
+.btn-rose{background:var(--rose);color:var(--white);border:none;padding:13px 20px;border-radius:12px;font-weight:600;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-size:.88rem;transition:opacity .15s;white-space:nowrap}
+.btn-rose:hover{opacity:.88}
+
+.site-content{max-width:1100px;margin:0 auto;padding:2.5rem 1.5rem}
+
+/* CATEGORIES */
+.cat-pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:2rem}
+.cat-pill{padding:7px 16px;border-radius:99px;font-size:.78rem;font-weight:500;border:1.5px solid var(--border);background:var(--white);color:var(--muted);cursor:pointer;transition:all .15s}
+.cat-pill:hover,.cat-pill.active{border-color:var(--rose);color:var(--rose);background:var(--rose-light)}
+
+.section-label{font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
+.section-label::after{content:'';flex:1;height:1px;background:var(--border)}
+
+.articles-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-bottom:3rem}
+.article-card{background:var(--white);border-radius:var(--radius);border:1px solid var(--border);overflow:hidden;cursor:pointer;transition:transform .18s,box-shadow .18s}
+.article-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,0.07)}
+.card-top{padding:1.1rem 1.25rem .75rem;border-bottom:1px solid var(--border)}
+.card-cat-dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:6px}
+.card-cat{font-size:.72rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem;display:flex;align-items:center}
+.card-title{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;line-height:1.3;margin-bottom:.4rem}
+.card-excerpt{font-size:.82rem;color:var(--muted);line-height:1.55}
+.card-footer{padding:.75rem 1.25rem;display:flex;align-items:center;justify-content:space-between;font-size:.72rem;color:var(--muted)}
+.card-read{font-size:.72rem;font-weight:600;color:var(--rose)}
+
+/* INSPIRE STRIP */
+.inspire-strip{background:var(--rose);color:var(--white);padding:2.5rem;border-radius:var(--radius);margin-bottom:2.5rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap}
+.inspire-strip h2{font-size:1.5rem;font-weight:800;line-height:1.2}
+.inspire-strip p{font-size:.88rem;opacity:.85;margin-top:.4rem;line-height:1.5}
+.btn-white{background:var(--white);color:var(--rose);border:none;padding:11px 22px;border-radius:10px;font-weight:600;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-size:.85rem;white-space:nowrap}
+
+/* CHAT FAB */
+.chat-fab{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--rose);color:var(--white);border:none;border-radius:50px;padding:12px 18px;cursor:pointer;display:flex;align-items:center;gap:8px;font-size:.85rem;font-weight:600;font-family:'Plus Jakarta Sans',sans-serif;z-index:200;box-shadow:0 4px 20px rgba(232,115,90,0.35);transition:transform .15s}
+.chat-fab:hover{transform:translateY(-2px)}
+.chat-panel{position:fixed;bottom:5.5rem;right:1.5rem;width:340px;background:var(--white);border-radius:20px;border:1px solid var(--border);display:none;flex-direction:column;z-index:200;box-shadow:0 16px 56px rgba(0,0,0,0.12);overflow:hidden}
+.chat-panel.open{display:flex}
+.chat-ph{padding:14px 16px;background:var(--rose);color:var(--white);display:flex;align-items:center;gap:10px}
+.chat-ph .av{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.25);display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0}
+.chat-ph-info{flex:1}
+.chat-ph-name{font-family:'Playfair Display',serif;font-weight:700;font-size:.95rem}
+.chat-ph-sub{font-size:.72rem;opacity:.8}
+.chat-close{background:none;border:none;color:rgba(255,255,255,.7);cursor:pointer;font-size:1.1rem;padding:2px}
+.chat-msgs{flex:1;overflow-y:auto;padding:14px 12px;display:flex;flex-direction:column;gap:8px;min-height:220px;max-height:300px}
+.cmsg{padding:9px 13px;border-radius:14px;font-size:.82rem;line-height:1.55;max-width:88%}
+.cmsg.bot{background:var(--bg);color:var(--black);align-self:flex-start;border-radius:4px 14px 14px 14px}
+.cmsg.user{background:var(--rose);color:var(--white);align-self:flex-end;border-radius:14px 4px 14px 14px}
+.chat-suggestions{padding:8px 10px;display:flex;gap:6px;flex-wrap:wrap;border-top:1px solid var(--border)}
+.chat-sug{font-size:.72rem;background:var(--rose-light);color:var(--rose);border:1px solid rgba(232,115,90,0.2);border-radius:99px;padding:4px 10px;cursor:pointer;white-space:nowrap;transition:all .12s}
+.chat-sug:hover{background:var(--rose);color:var(--white)}
+.chat-typing{display:flex;gap:4px;padding:9px 13px;background:var(--bg);border-radius:4px 14px 14px 14px;align-self:flex-start}
+.chat-typing span{width:5px;height:5px;border-radius:50%;background:var(--muted);animation:blink .9s infinite}
+.chat-typing span:nth-child(2){animation-delay:.15s}
+.chat-typing span:nth-child(3){animation-delay:.3s}
+@keyframes blink{0%,60%,100%{opacity:.25}30%{opacity:1}}
+.chat-input-row{padding:10px;border-top:1px solid var(--border);display:flex;gap:6px}
+.chat-input-row input{flex:1;border:1.5px solid var(--border);border-radius:10px;padding:9px 12px;font-size:.82rem;font-family:'Plus Jakarta Sans',sans-serif;outline:none;background:var(--bg);transition:border .15s}
+.chat-input-row input:focus{border-color:var(--rose)}
+.chat-send{background:var(--rose);color:var(--white);border:none;border-radius:10px;width:34px;height:34px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.9rem}
+
+/* ===== ARTICLE DETAIL ===== */
+#view-article{max-width:700px;margin:0 auto;padding:2.5rem 1.5rem}
+.art-back{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;color:var(--muted);cursor:pointer;margin-bottom:1.75rem;border:none;background:none;font-family:'Plus Jakarta Sans',sans-serif;transition:color .15s;padding:0}
+.art-back:hover{color:var(--rose)}
+.art-detail-cat{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:.6rem;display:flex;align-items:center;gap:6px}
+.art-detail h1{font-size:clamp(1.7rem,4vw,2.4rem);font-weight:800;line-height:1.15;margin-bottom:.8rem;letter-spacing:-.02em}
+.art-detail-meta{color:var(--muted);font-size:.82rem;margin-bottom:2rem;display:flex;gap:.75rem;flex-wrap:wrap;align-items:center}
+.art-badge{padding:3px 10px;border-radius:99px;font-size:.7rem;font-weight:600}
+.art-detail-body{font-size:.97rem;line-height:1.8;color:#2d2a27}
+.art-detail-body p{margin-bottom:1.1rem}
+.art-detail-body h2{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;margin:2rem 0 .65rem;color:var(--black)}
+.art-detail-body ul{padding-left:1.25rem;margin-bottom:1.1rem}
+.art-detail-body li{margin-bottom:.45rem}
+.art-detail-body strong{font-weight:600}
+.art-link{color:var(--rose);font-weight:600;text-decoration:none}.art-link:hover{text-decoration:underline}
+
+/* ===== ADMIN ===== */
+#view-admin{max-width:1100px;margin:0 auto;padding:2rem 1.5rem}
+.admin-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1.75rem;flex-wrap:wrap;gap:1rem}
+.admin-top h2{font-size:1.4rem;font-weight:800;letter-spacing:-.02em}
+.admin-top p{font-size:.83rem;color:var(--muted);margin-top:.25rem}
+.admin-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:1.75rem}
+.stat-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:1rem 1.25rem}
+.stat-lbl{font-size:.72rem;color:var(--muted);font-weight:500;margin-bottom:.3rem}
+.stat-val{font-size:1.75rem;font-weight:800;font-family:'Playfair Display',serif;letter-spacing:-.03em}
+.stat-val.rose{color:var(--rose)}
+.stat-val.sage{color:var(--sage)}
+.admin-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.admin-panel{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1.35rem}
+.panel-hd{display:flex;align-items:center;gap:10px;margin-bottom:1.1rem}
+.panel-icon{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0}
+.panel-hd h3{font-size:.95rem;font-weight:700}
+.field{margin-bottom:.8rem}
+.field label{font-size:.75rem;font-weight:600;color:var(--muted);display:block;margin-bottom:.3rem;letter-spacing:.02em}
+.field input,.field select,.field textarea{width:100%;border:1.5px solid var(--border);border-radius:10px;padding:9px 13px;font-size:.85rem;font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);outline:none;transition:border .15s;color:var(--black)}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--rose)}
+.field textarea{resize:vertical;min-height:72px}
+.btn-full{width:100%;padding:11px;border-radius:10px;border:none;font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:.88rem;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:opacity .15s}
+.btn-full:hover{opacity:.85}
+.btn-full:disabled{opacity:.35;cursor:default}
+.btn-rose-full{background:var(--rose);color:var(--white)}
+.btn-plum-full{background:var(--plum);color:var(--white)}
+.btn-sage-full{background:var(--sage);color:var(--white)}
+.btn-warm-full{background:var(--warm);color:var(--black)}
+.gen-preview{border:1.5px dashed var(--border);border-radius:10px;padding:.9rem;background:var(--bg);font-size:.82rem;line-height:1.6;color:var(--muted);display:none;margin-top:.75rem}
+.gen-preview.show{display:block}
+.gen-actions{display:flex;gap:8px;margin-top:.75rem}
+.btn-sm{padding:7px 14px;border-radius:8px;border:1.5px solid var(--border);background:transparent;font-size:.78rem;font-family:'Plus Jakarta Sans',sans-serif;font-weight:500;cursor:pointer;transition:all .15s}
+.btn-sm:hover{background:var(--black);color:var(--white);border-color:var(--black)}
+.btn-sm.primary{background:var(--rose);color:var(--white);border-color:var(--rose)}
+.btn-sm.primary:hover{opacity:.85}
+.art-list{display:flex;flex-direction:column;gap:6px;max-height:280px;overflow-y:auto}
+.art-row{display:flex;align-items:center;gap:10px;padding:9px 12px;background:var(--bg);border-radius:10px;font-size:.82rem;transition:background .12s}
+.art-row:hover{background:var(--rose-light)}
+.art-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.art-title{flex:1;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.art-date{color:var(--muted);font-size:.72rem;white-space:nowrap}
+.art-src{font-size:.68rem;font-weight:600;padding:2px 7px;border-radius:99px}
+.art-src.ai{background:var(--rose-light);color:var(--rose)}
+.art-src.man{background:var(--sage-light);color:var(--sage)}
+.icon-btn{width:24px;height:24px;border-radius:6px;border:none;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.8rem;transition:background .12s;flex-shrink:0}
+.icon-btn:hover{background:rgba(0,0,0,0.07)}
+.sched-row{display:flex;align-items:center;justify-content:space-between;padding:10px 13px;background:var(--bg);border-radius:10px;margin-bottom:7px}
+.sched-lbl{font-size:.83rem;font-weight:500}
+.sched-sub{font-size:.72rem;color:var(--muted);margin-top:1px}
+.toggle{width:38px;height:21px;background:var(--border);border-radius:99px;position:relative;cursor:pointer;transition:background .2s;border:none;flex-shrink:0}
+.toggle.on{background:var(--rose)}
+.toggle::after{content:'';position:absolute;width:15px;height:15px;background:var(--white);border-radius:50%;top:3px;left:3px;transition:transform .2s;box-shadow:0 1px 3px rgba(0,0,0,.15)}
+.toggle.on::after{transform:translateX(17px)}
+.toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(80px);background:var(--black);color:var(--white);padding:10px 22px;border-radius:10px;font-size:.85rem;z-index:9999;transition:transform .25s;pointer-events:none;white-space:nowrap}
+.toast.show{transform:translateX(-50%) translateY(0)}
+@media(max-width:680px){
+  .admin-grid{grid-template-columns:1fr}
+  .admin-stats{grid-template-columns:repeat(2,1fr)}
+  .chat-panel{width:calc(100vw - 2rem);right:1rem}
+  .inspire-strip{flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    <span class="dot"></span>
+    MamaVerdient
+    <span class="sub">jouw business bestie</span>
+  </div>
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="showView('site')">Website</button>
+    <button class="nav-tab" onclick="showView('budget')">💶 Budget Tool</button>
+    <button class="nav-tab" onclick="showView('admin')">Beheer / CMS</button>
+  </div>
+</nav>
+
+<!-- WEBSITE -->
+<div id="view-site" class="view active">
+  <div class="site-hero">
+    <div class="hero-blob"></div>
+    <div class="hero-blob2"></div>
+    <h1>Verdienen op <em>jouw</em> moment.</h1>
+    <p>Jouw praktische gids speciaal voor drukke moeders met kinderen die slim willen bijverdienen - thuis, online, in de gaatjes van de dag.</p>
+    <div class="hero-tags">
+      <span class="hero-tag">💻 Vanuit huis</span>
+      <span class="hero-tag">🕐 In je eigen tijd</span>
+      <span class="hero-tag">✅ 100% zelf getest en betrouwbaar</span>
+      <span class="hero-tag">👶 Combineerbaar met kinderen</span>
+    </div>
+    <div style="position:relative;z-index:1;max-width:600px;margin:0 auto;background:var(--rose);border-radius:16px;padding:1.75rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;text-align:left">
+      <div>
+        <h2 style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:800;color:#fff;line-height:1.2">Welke side hustle past bij jou?</h2>
+        <p style="font-size:.85rem;color:rgba(255,255,255,0.85);margin-top:.35rem;line-height:1.5">Vertel je situatie en ontvang persoonlijk advies van onze AI-coach.</p>
+      </div>
+      <button class="btn-white" onclick="toggleChat()">Chat met de adviseur →</button>
+    </div>
+  </div>
+
+  <div class="site-content">
+    <input type="text" id="search-input" style="display:none" oninput="filterArticles()">
+    <div class="cat-pills" id="cat-pills">
+      <span class="cat-pill active" onclick="filterCat('')" data-cat="">Alles</span>
+      <span class="cat-pill" onclick="filterCat('naptime')" data-cat="naptime">☕ Naptime business</span>
+      <span class="cat-pill" onclick="filterCat('freelance')" data-cat="freelance">💻 Freelancen</span>
+      <span class="cat-pill" onclick="filterCat('creatief')" data-cat="creatief">🎨 Creatief verkopen</span>
+      <span class="cat-pill" onclick="filterCat('online')" data-cat="online">📱 Online business</span>
+      <span class="cat-pill" onclick="filterCat('zzp')" data-cat="zzp">📋 ZZP & belasting</span>
+      <span class="cat-pill" onclick="filterCat('mindset')" data-cat="mindset">✨ Mindset & balans</span>
+      <span class="cat-pill" onclick="filterCat('crypto')" data-cat="crypto">₿ Investeren & crypto</span>
+    </div>
+
+<!-- DATABASE SECTION -->
+<style>
+.db-wrap{margin-bottom:2.5rem}
+.db-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;flex-wrap:wrap;gap:.5rem}
+.db-search{border:1.5px solid var(--border);border-radius:10px;padding:8px 14px;font-size:.83rem;font-family:'Plus Jakarta Sans',sans-serif;outline:none;background:var(--white);width:220px;transition:border .15s;color:var(--black)}
+.db-search:focus{border-color:var(--rose)}
+.db-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.db-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:transform .18s,box-shadow .18s}
+.db-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.07)}
+.db-card-top{padding:.9rem 1.1rem;border-bottom:1px solid var(--border)}
+.db-cat-row{display:flex;align-items:center;gap:6px;margin-bottom:.4rem}
+.db-cat-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.db-cat-lbl{font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.db-title{font-family:'Playfair Display',serif;font-size:.97rem;font-weight:700;line-height:1.3;margin-bottom:.3rem;cursor:pointer;transition:color .15s}
+.db-title:hover{color:var(--rose)}
+.db-excerpt{font-size:.78rem;color:var(--muted);line-height:1.5}
+.db-courses{padding:.75rem 1.1rem;background:var(--white);border-top:1px solid var(--border)}
+.db-courses-lbl{font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem}
+.db-course-item{display:flex;align-items:center;gap:7px;margin-bottom:.4rem;font-size:.78rem}
+.db-course-dot{width:5px;height:5px;border-radius:50%;background:var(--rose);flex-shrink:0}
+.db-course-link{color:var(--rose);text-decoration:none;font-weight:500;transition:opacity .15s}
+.db-course-link:hover{opacity:.75;text-decoration:underline}
+.db-course-tag{font-size:.65rem;background:var(--rose-light);color:var(--rose);padding:2px 7px;border-radius:99px;font-weight:600;white-space:nowrap}
+.db-empty{grid-column:1/-1;text-align:center;padding:2.5rem;color:var(--muted);font-size:.88rem;background:var(--white);border-radius:var(--radius);border:1px solid var(--border)}
+.db-count{font-size:.75rem;color:var(--muted)}
+@media(max-width:500px){.db-search{width:100%}.db-header{flex-direction:column;align-items:flex-start}}
+</style>
+
+<div class="db-wrap">
+  <div class="db-header">
+    <div class="section-label" style="margin-bottom:0;flex:1">Artikelen & Aanbevolen cursussen <span id="db-count" class="db-count"></span></div>
+    <input type="text" class="db-search" id="db-search" placeholder="🔍 Zoek in artikelen..." oninput="renderDB()" autocomplete="off">
+  </div>
+  <span id="article-count" style="display:none"></span>
+  <div class="db-grid" id="db-grid"></div>
+</div>
+
+  </div>
+</div>
+
+<!-- ARTICLE DETAIL -->
+<div id="view-article" class="view">
+  <button class="art-back" onclick="showView('site')">← Terug naar overzicht</button>
+  <div class="art-detail" id="art-detail-content"></div>
+</div>
+
+
+<!-- BUDGET VIEW -->
+<div id="view-budget" class="view">
+<style>
+#view-budget{max-width:900px;margin:0 auto;padding:2rem 1.5rem}
+.budget-hero{background:var(--white);border-radius:var(--radius);border:1px solid var(--border);padding:1.75rem 2rem;margin-bottom:1.5rem;display:flex;align-items:flex-start;justify-content:space-between;gap:1.5rem;flex-wrap:wrap}
+.budget-hero h2{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:800;margin-bottom:.3rem}
+.budget-hero p{font-size:.85rem;color:var(--muted);line-height:1.55;max-width:420px}
+.budget-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1.5rem}
+.sum-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:1rem 1.25rem;text-align:center}
+.sum-lbl{font-size:.72rem;color:var(--muted);font-weight:500;text-transform:uppercase;letter-spacing:.04em;margin-bottom:.3rem}
+.sum-val{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700}
+.sum-val.green{color:#2a7a3a}
+.sum-val.red{color:#c0392b}
+.sum-val.neutral{color:var(--rose)}
+.budget-sections{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:1.5rem}
+.budget-section{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+.bs-header{padding:.9rem 1.1rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border)}
+.bs-title{font-size:.9rem;font-weight:700;display:flex;align-items:center;gap:7px}
+.bs-total{font-size:.85rem;font-weight:600}
+.bs-rows{padding:.6rem}
+.bs-row{display:flex;align-items:center;gap:8px;padding:.45rem .5rem;border-radius:8px;margin-bottom:3px;transition:background .1s}
+.bs-row:hover{background:var(--bg)}
+.bs-row-label{flex:1;font-size:.82rem;border:none;background:transparent;outline:none;font-family:'Plus Jakarta Sans',sans-serif;color:var(--black)}
+.bs-row-label::placeholder{color:var(--muted)}
+.bs-row-amount{width:90px;border:1.5px solid var(--border);border-radius:8px;padding:5px 8px;font-size:.82rem;font-family:'Plus Jakarta Sans',sans-serif;text-align:right;outline:none;background:var(--bg);transition:border .15s;color:var(--black)}
+.bs-row-amount:focus{border-color:var(--rose)}
+.bs-row-del{width:22px;height:22px;border:none;background:transparent;cursor:pointer;color:var(--muted);font-size:.9rem;display:flex;align-items:center;justify-content:center;border-radius:5px;flex-shrink:0;transition:all .12s}
+.bs-row-del:hover{background:var(--rose-light);color:var(--rose)}
+.bs-add{width:100%;padding:7px;border:1.5px dashed var(--border);background:transparent;border-radius:8px;font-size:.78rem;color:var(--muted);cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:all .15s;margin-top:4px}
+.bs-add:hover{border-color:var(--rose);color:var(--rose);background:var(--rose-light)}
+.budget-bar-wrap{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;margin-bottom:1.5rem}
+.budget-bar-title{font-size:.85rem;font-weight:600;margin-bottom:.9rem;display:flex;align-items:center;gap:6px}
+.bar-item{display:flex;align-items:center;gap:10px;margin-bottom:.6rem}
+.bar-label{font-size:.78rem;width:130px;flex-shrink:0;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-track{flex:1;height:8px;background:var(--bg);border-radius:99px;overflow:hidden;border:1px solid var(--border)}
+.bar-fill{height:100%;border-radius:99px;transition:width .4s ease}
+.bar-pct{font-size:.75rem;font-weight:600;width:38px;text-align:right;flex-shrink:0}
+.budget-result{border-radius:var(--radius);padding:1.25rem 1.5rem;margin-bottom:1.5rem;display:flex;align-items:center;gap:12px}
+.budget-result.pos{background:#eaf3de;border:1px solid #c5e0a8}
+.budget-result.neg{background:#fde8e3;border:1px solid #f0b8a8}
+.budget-result.zero{background:var(--warm-light);border:1px solid var(--warm)}
+.result-icon{font-size:1.5rem;flex-shrink:0}
+.result-text h3{font-size:1rem;font-weight:700;margin-bottom:.2rem}
+.result-text p{font-size:.82rem;color:var(--muted);line-height:1.5}
+.budget-actions{display:flex;gap:10px;flex-wrap:wrap}
+.btn-budget{padding:10px 20px;border-radius:10px;border:none;font-size:.83rem;font-weight:600;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:all .15s}
+.btn-budget.primary{background:var(--rose);color:var(--white)}
+.btn-budget.primary:hover{opacity:.88}
+.btn-budget.secondary{background:var(--white);color:var(--black);border:1.5px solid var(--border)}
+.btn-budget.secondary:hover{border-color:var(--rose);color:var(--rose)}
+.sidehustle-tip{background:var(--rose);color:var(--white);border-radius:var(--radius);padding:1.25rem 1.5rem;margin-top:1.5rem;display:none}
+.sidehustle-tip h3{font-size:1rem;font-weight:700;margin-bottom:.4rem}
+.sidehustle-tip p{font-size:.83rem;opacity:.9;line-height:1.55}
+@media(max-width:640px){
+  .budget-sections{grid-template-columns:1fr}
+  .budget-summary{grid-template-columns:repeat(3,1fr)}
+  .sum-val{font-size:1.2rem}
+  .budget-hero{flex-direction:column}
+}
+</style>
+
+<div class="budget-hero">
+  <div>
+    <h2>💶 Mijn Budget Overzicht</h2>
+    <p>Vul je inkomsten en uitgaven in om te zien hoeveel ruimte je hebt om bij te verdienen. Alles wordt automatisch berekend en lokaal opgeslagen.</p>
+  </div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap">
+    <button class="btn-budget secondary" onclick="resetBudget()">↺ Reset</button>
+    <button class="btn-budget primary" onclick="saveBudget()">💾 Opslaan</button>
+  </div>
+</div>
+
+<div class="budget-summary">
+  <div class="sum-card">
+    <div class="sum-lbl">Totaal inkomen</div>
+    <div class="sum-val green" id="sum-income">€0</div>
+  </div>
+  <div class="sum-card">
+    <div class="sum-lbl">Totaal uitgaven</div>
+    <div class="sum-val red" id="sum-expenses">€0</div>
+  </div>
+  <div class="sum-card">
+    <div class="sum-lbl">Over / tekort</div>
+    <div class="sum-val neutral" id="sum-balance">€0</div>
+  </div>
+</div>
+
+<div class="budget-sections">
+  <!-- INKOMEN -->
+  <div class="budget-section">
+    <div class="bs-header" style="background:var(--sage-light)">
+      <div class="bs-title" style="color:var(--sage)">💚 Inkomen</div>
+      <div class="bs-total" id="income-total" style="color:var(--sage)">€0</div>
+    </div>
+    <div class="bs-rows" id="income-rows"></div>
+    <div style="padding:.4rem .6rem .8rem">
+      <button class="bs-add" onclick="addRow('income')">+ Inkomstenbron toevoegen</button>
+    </div>
+  </div>
+
+  <!-- VASTE LASTEN -->
+  <div class="budget-section">
+    <div class="bs-header" style="background:#fde8e3">
+      <div class="bs-title" style="color:var(--rose)">🏠 Vaste lasten</div>
+      <div class="bs-total" id="fixed-total" style="color:var(--rose)">€0</div>
+    </div>
+    <div class="bs-rows" id="fixed-rows"></div>
+    <div style="padding:.4rem .6rem .8rem">
+      <button class="bs-add" onclick="addRow('fixed')">+ Vaste last toevoegen</button>
+    </div>
+  </div>
+
+  <!-- VARIABELE UITGAVEN -->
+  <div class="budget-section">
+    <div class="bs-header" style="background:var(--warm-light)">
+      <div class="bs-title" style="color:#c8a050">🛒 Variabele uitgaven</div>
+      <div class="bs-total" id="variable-total" style="color:#c8a050">€0</div>
+    </div>
+    <div class="bs-rows" id="variable-rows"></div>
+    <div style="padding:.4rem .6rem .8rem">
+      <button class="bs-add" onclick="addRow('variable')">+ Uitgave toevoegen</button>
+    </div>
+  </div>
+
+  <!-- SPAARDOELEN -->
+  <div class="budget-section">
+    <div class="bs-header" style="background:var(--plum-light)">
+      <div class="bs-title" style="color:var(--plum)">🎯 Sparen & doelen</div>
+      <div class="bs-total" id="savings-total" style="color:var(--plum)">€0</div>
+    </div>
+    <div class="bs-rows" id="savings-rows"></div>
+    <div style="padding:.4rem .6rem .8rem">
+      <button class="bs-add" onclick="addRow('savings')">+ Spaardoel toevoegen</button>
+    </div>
+  </div>
+</div>
+
+<!-- UITGAVEN BREAKDOWN BAR -->
+<div class="budget-bar-wrap">
+  <div class="budget-bar-title">📊 Verdeling uitgaven</div>
+  <div id="budget-bars"></div>
+</div>
+
+<!-- RESULTAAT -->
+<div class="budget-result" id="budget-result" style="display:none">
+  <div class="result-icon" id="result-icon"></div>
+  <div class="result-text">
+    <h3 id="result-title"></h3>
+    <p id="result-msg"></p>
+  </div>
+</div>
+
+<!-- SIDE HUSTLE TIP -->
+<div class="sidehustle-tip" id="sidehustle-tip">
+  <h3>💡 Bijverdienen tip voor jou</h3>
+  <p id="sidehustle-tip-text"></p>
+</div>
+
+<script>
+// ===== BUDGET DATA =====
+const BUDGET_DEFAULTS = {
+  income: [
+    {id:'i1', label:'Salaris / uitkering', amount:2500},
+    {id:'i2', label:'Partner inkomen', amount:0},
+    {id:'i3', label:'Bijverdiensten', amount:0},
+  ],
+  fixed: [
+    {id:'f1', label:'Huur / hypotheek', amount:900},
+    {id:'f2', label:'Energie & water', amount:180},
+    {id:'f3', label:'Verzekeringen', amount:150},
+    {id:'f4', label:'Abonnementen', amount:60},
+  ],
+  variable: [
+    {id:'v1', label:'Boodschappen', amount:400},
+    {id:'v2', label:'Transport', amount:120},
+    {id:'v3', label:'Kinderopvang', amount:0},
+    {id:'v4', label:'Uit eten / hobby', amount:100},
+  ],
+  savings: [
+    {id:'s1', label:'Noodfonds', amount:100},
+    {id:'s2', label:'Vakantie', amount:50},
+  ]
+};
+
+let budgetData = JSON.parse(localStorage.getItem('mv_budget') || 'null') || JSON.parse(JSON.stringify(BUDGET_DEFAULTS));
+let rowCounter = 100;
+
+const CAT_COLORS = {
+  income: '#7a9e87',
+  fixed: '#e8735a',
+  variable: '#c8a050',
+  savings: '#7a5c7a'
+};
+
+function fmt(n) {
+  return '€' + Math.round(n).toLocaleString('nl-NL');
+}
+
+function getTotal(cat) {
+  return budgetData[cat].reduce((s,r) => s + (parseFloat(r.amount)||0), 0);
+}
+
+function renderSection(cat) {
+  const container = document.getElementById(cat + '-rows');
+  if (!container) return;
+  container.innerHTML = budgetData[cat].map(row => `
+    <div class="bs-row" id="row-${row.id}">
+      <input class="bs-row-label" type="text" value="${row.label}" placeholder="Omschrijving..."
+        oninput="updateLabel('${cat}','${row.id}',this.value)">
+      <input class="bs-row-amount" type="number" value="${row.amount||''}" placeholder="0" min="0"
+        oninput="updateAmount('${cat}','${row.id}',this.value)" onchange="calcBudget()">
+      <button class="bs-row-del" onclick="deleteRow('${cat}','${row.id}')" title="Verwijderen">×</button>
+    </div>
+  `).join('');
+  const total = getTotal(cat);
+  const totalEl = document.getElementById(cat + '-total');
+  if (totalEl) totalEl.textContent = fmt(total);
+}
+
+function renderAll() {
+  ['income','fixed','variable','savings'].forEach(renderSection);
+  calcBudget();
+}
+
+function updateLabel(cat, id, val) {
+  const row = budgetData[cat].find(r => r.id === id);
+  if (row) row.label = val;
+}
+
+function updateAmount(cat, id, val) {
+  const row = budgetData[cat].find(r => r.id === id);
+  if (row) { row.amount = parseFloat(val)||0; calcBudget(); }
+}
+
+function addRow(cat) {
+  const id = cat[0] + (++rowCounter);
+  budgetData[cat].push({id, label:'', amount:0});
+  renderSection(cat);
+  // focus new label
+  setTimeout(() => {
+    const rows = document.querySelectorAll('#'+cat+'-rows .bs-row');
+    if (rows.length) rows[rows.length-1].querySelector('.bs-row-label')?.focus();
+  }, 50);
+}
+
+function deleteRow(cat, id) {
+  budgetData[cat] = budgetData[cat].filter(r => r.id !== id);
+  renderSection(cat);
+  calcBudget();
+}
+
+function calcBudget() {
+  // Update section totals
+  ['income','fixed','variable','savings'].forEach(cat => {
+    const total = getTotal(cat);
+    const el = document.getElementById(cat+'-total');
+    if (el) el.textContent = fmt(total);
+  });
+
+  const income = getTotal('income');
+  const expenses = getTotal('fixed') + getTotal('variable') + getTotal('savings');
+  const balance = income - expenses;
+
+  document.getElementById('sum-income').textContent = fmt(income);
+  document.getElementById('sum-expenses').textContent = fmt(expenses);
+  const balEl = document.getElementById('sum-balance');
+  balEl.textContent = fmt(balance);
+  balEl.className = 'sum-val ' + (balance > 0 ? 'green' : balance < 0 ? 'red' : 'neutral');
+
+  // BARS
+  const barsEl = document.getElementById('budget-bars');
+  const cats = [
+    {key:'fixed', label:'Vaste lasten', color:'#e8735a'},
+    {key:'variable', label:'Variabele', color:'#c8a050'},
+    {key:'savings', label:'Sparen', color:'#7a5c7a'},
+  ];
+  if (expenses > 0) {
+    barsEl.innerHTML = cats.map(c => {
+      const amt = getTotal(c.key);
+      const pct = Math.round((amt/expenses)*100);
+      return `<div class="bar-item">
+        <div class="bar-label">${c.label}</div>
+        <div class="bar-track"><div class="bar-fill" style="width:${pct}%;background:${c.color}"></div></div>
+        <div class="bar-pct" style="color:${c.color}">${pct}%</div>
+      </div>`;
+    }).join('');
+  } else {
+    barsEl.innerHTML = '<p style="font-size:.8rem;color:var(--muted);text-align:center;padding:.5rem">Voeg uitgaven toe om de verdeling te zien.</p>';
+  }
+
+  // RESULT
+  const resultEl = document.getElementById('budget-result');
+  const tipEl = document.getElementById('sidehustle-tip');
+  const tipText = document.getElementById('sidehustle-tip-text');
+  resultEl.style.display = 'flex';
+
+  if (balance > 200) {
+    resultEl.className = 'budget-result pos';
+    document.getElementById('result-icon').textContent = '🎉';
+    document.getElementById('result-title').textContent = `Je hebt ${fmt(balance)} over per maand!`;
+    document.getElementById('result-msg').textContent = 'Goed bezig! Je kunt dit investeren, extra sparen, of inzetten als startkapitaal voor een side hustle.';
+    tipEl.style.display = 'block';
+    tipText.innerHTML = `Met ${fmt(balance)} per maand over kun je prima starten! 💡 Onze tip: zet het in als startkapitaal voor een online business. Begin met je boekhouding op orde via <a href="https://jouwaffiliatlink.nl/moneybird" target="_blank" style="color:#fff;font-weight:600;text-decoration:underline">Moneybird</a> — de eerste 3 maanden gratis voor ZZP-ers. Of start een Etsy shop met <a href="https://jouwaffiliatlink.nl/canva" target="_blank" style="color:#fff;font-weight:600;text-decoration:underline">Canva Pro</a> (30 dagen gratis proberen).`;
+  } else if (balance >= 0) {
+    resultEl.className = 'budget-result zero';
+    document.getElementById('result-icon').textContent = '⚖️';
+    document.getElementById('result-title').textContent = `Je zit precies op nul (${fmt(balance)} over).`;
+    document.getElementById('result-msg').textContent = 'Je maakt de eindjes aan elkaar, maar er is weinig ruimte. Een side hustle van €200–€300/maand zou een groot verschil maken.';
+    tipEl.style.display = 'block';
+    tipText.innerHTML = `Een naptime business is perfect voor jou! Start met het verkopen van digitale producten via <a href="https://jouwaffiliatlink.nl/gumroad" target="_blank" style="color:#fff;font-weight:600;text-decoration:underline">Gumroad</a> (gratis te beginnen) of bied je diensten aan via <a href="https://jouwaffiliatlink.nl/fiverr" target="_blank" style="color:#fff;font-weight:600;text-decoration:underline">Fiverr</a>. Beide platforms kosten niks om mee te starten.`;
+  } else {
+    resultEl.className = 'budget-result neg';
+    document.getElementById('result-icon').textContent = '⚠️';
+    document.getElementById('result-title').textContent = `Je hebt ${fmt(Math.abs(balance))} per maand tekort.`;
+    document.getElementById('result-msg').textContent = 'Je geeft meer uit dan er binnenkomt. Kijk welke vaste lasten je kunt verlagen én overweeg een side hustle om het gat te dichten.';
+    tipEl.style.display = 'block';
+    tipText.innerHTML = `Je hebt ${fmt(Math.abs(balance))} extra nodig per maand. Start snel met freelancen via <a href="https://jouwaffiliatlink.nl/fiverr" target="_blank" style="color:#fff;font-weight:600;text-decoration:underline">Fiverr</a> of <a href="https://jouwaffiliatlink.nl/upwork" target="_blank" style="color:#fff;font-weight:600;text-decoration:underline">Upwork</a> — tekstschrijven of social media beheer levert snel €300–€500/maand op. Regel je ZZP-administratie direct via <a href="https://jouwaffiliatlink.nl/moneybird" target="_blank" style="color:#fff;font-weight:600;text-decoration:underline">Moneybird</a>.`;
+  }
+}
+
+function saveBudget() {
+  // Collect current input values before saving
+  document.querySelectorAll('.bs-row-label').forEach(el => {
+    const row = el.closest('.bs-row');
+    if (!row) return;
+    const id = row.id.replace('row-','');
+    ['income','fixed','variable','savings'].forEach(cat => {
+      const r = budgetData[cat].find(x => x.id === id);
+      if (r) r.label = el.value;
+    });
+  });
+  document.querySelectorAll('.bs-row-amount').forEach(el => {
+    const row = el.closest('.bs-row');
+    if (!row) return;
+    const id = row.id.replace('row-','');
+    ['income','fixed','variable','savings'].forEach(cat => {
+      const r = budgetData[cat].find(x => x.id === id);
+      if (r) r.amount = parseFloat(el.value)||0;
+    });
+  });
+  localStorage.setItem('mv_budget', JSON.stringify(budgetData));
+  toast('Budget opgeslagen! 💾');
+}
+
+function resetBudget() {
+  if (!confirm('Wil je het budget resetten naar de standaardwaarden?')) return;
+  budgetData = JSON.parse(JSON.stringify(BUDGET_DEFAULTS));
+  localStorage.removeItem('mv_budget');
+  renderAll();
+  toast('Budget gereset ↺');
+}
+
+// Init budget on load
+renderAll();
+</script>
+</div>
+
+<!-- ADMIN -->
+<div id="view-admin" class="view">
+  <div class="admin-top">
+    <div>
+      <h2>Beheer & CMS</h2>
+      <p>Genereer AI-artikelen, publiceer handmatig en beheer automatisering.</p>
+    </div>
+    <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
+      <span class="art-src ai" style="font-size:.75rem;padding:4px 10px">AI artikel</span>
+      <span class="art-src man" style="font-size:.75rem;padding:4px 10px">Handmatig</span>
+      <button onclick="showGithubSettings()" style="background:var(--black);color:var(--white);border:none;border-radius:8px;padding:7px 14px;font-size:.78rem;font-weight:600;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;display:flex;align-items:center;gap:6px">⚙️ GitHub instellen</button>
+      <label id="upload-label" style="background:var(--rose);color:var(--white);border:none;border-radius:8px;padding:7px 14px;font-size:.78rem;font-weight:600;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;display:flex;align-items:center;gap:6px">
+        📂 Bestand uploaden & publiceren
+        <input type="file" id="html-upload" accept=".html" style="display:none" onchange="uploadAndPublish(this)">
+      </label>
+    </div>
+  </div>
+
+  <!-- GITHUB SETTINGS MODAL -->
+  <div id="github-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:1000;align-items:center;justify-content:center">
+    <div style="background:var(--white);border-radius:var(--radius);padding:1.75rem;max-width:460px;width:90%;margin:1rem">
+      <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:.3rem">⚙️ GitHub Instellingen</h3>
+      <p style="font-size:.82rem;color:var(--muted);margin-bottom:1.25rem;line-height:1.55">Vul eenmalig je GitHub gegevens in. Deze worden veilig opgeslagen in je browser.</p>
+      <div class="field">
+        <label>GitHub gebruikersnaam</label>
+        <input type="text" id="gh-user" placeholder="bijv. francisneslo91-dev">
+      </div>
+      <div class="field">
+        <label>Repository naam</label>
+        <input type="text" id="gh-repo" placeholder="bijv. mamaverdient">
+      </div>
+      <div class="field">
+        <label>Bestandsnaam op GitHub</label>
+        <input type="text" id="gh-file" placeholder="bijv. index.html" value="index.html">
+      </div>
+      <div class="field">
+        <label>GitHub Personal Access Token <a href="https://github.com/settings/tokens/new?scopes=repo&description=MamaVerdient" target="_blank" style="color:var(--rose);font-size:.75rem;font-weight:600">→ Aanmaken</a></label>
+        <input type="password" id="gh-token" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+        <p style="font-size:.72rem;color:var(--muted);margin-top:.3rem">Zet bij aanmaken ✅ repo aan. Token wordt alleen lokaal opgeslagen.</p>
+      </div>
+      <div style="display:flex;gap:8px;margin-top:1rem">
+        <button onclick="saveGithubSettings()" class="btn-full btn-rose-full" style="flex:1">Opslaan</button>
+        <button onclick="document.getElementById('github-modal').style.display='none'" class="btn-full" style="flex:1;background:var(--bg);color:var(--black);border:1.5px solid var(--border)">Annuleren</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="admin-stats">
+    <div class="stat-card"><div class="stat-lbl">Totaal artikelen</div><div class="stat-val" id="stat-total">0</div></div>
+    <div class="stat-card"><div class="stat-lbl">AI gegenereerd</div><div class="stat-val rose" id="stat-ai">0</div></div>
+    <div class="stat-card"><div class="stat-lbl">Handmatig</div><div class="stat-val sage" id="stat-manual">0</div></div>
+    <div class="stat-card"><div class="stat-lbl">Auto-run status</div><div class="stat-val" id="stat-auto" style="font-size:1rem;padding-top:.4rem">Weekelijks aan</div></div>
+  </div>
+
+  <div class="admin-grid">
+    <!-- AI GENERATOR -->
+    <div class="admin-panel">
+      <div class="panel-hd">
+        <div class="panel-icon" style="background:var(--rose-light)">✦</div>
+        <div><h3>AI Artikel Generator</h3></div>
+      </div>
+      <div class="field">
+        <label>Onderwerp / keyword</label>
+        <input type="text" id="gen-topic" placeholder="bijv. bijverdienen thuis met baby">
+      </div>
+      <div class="field">
+        <label>Categorie</label>
+        <select id="gen-cat">
+          <option value="naptime">☕ Naptime business</option>
+          <option value="freelance">💻 Freelancen</option>
+          <option value="creatief">🎨 Creatief verkopen</option>
+          <option value="online">📱 Online business</option>
+          <option value="zzp">📋 ZZP & belasting</option>
+          <option value="mindset">✨ Mindset & balans</option>
+          <option value="crypto">₿ Investeren & crypto</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Toon</label>
+        <select id="gen-tone">
+          <option value="warm, persoonlijk en aanmoedigend">Warm & aanmoedigend</option>
+          <option value="praktisch en no-nonsense">Praktisch & to-the-point</option>
+          <option value="inspirerend en energiek">Inspirerend & energiek</option>
+        </select>
+      </div>
+      <button class="btn-full btn-rose-full" id="gen-btn" onclick="generateArticle()">
+        <span id="gen-btn-text">✦ Genereer artikel</span>
+      </button>
+      <div class="gen-preview" id="gen-preview"></div>
+      <div class="gen-actions" id="gen-actions" style="display:none">
+        <button class="btn-sm primary" onclick="publishGenerated()">Publiceren ✓</button>
+        <button class="btn-sm" onclick="generateArticle()">Opnieuw</button>
+        <button class="btn-sm" onclick="discardGenerated()">Weggooien</button>
+      </div>
+    </div>
+
+    <!-- MANUAL -->
+    <div class="admin-panel">
+      <div class="panel-hd">
+        <div class="panel-icon" style="background:var(--sage-light)">✎</div>
+        <div><h3>Handmatig artikel toevoegen</h3></div>
+      </div>
+      <div class="field">
+        <label>Titel</label>
+        <input type="text" id="man-title" placeholder="Schrijf een pakkende titel...">
+      </div>
+      <div class="field">
+        <label>Categorie</label>
+        <select id="man-cat">
+          <option value="naptime">☕ Naptime business</option>
+          <option value="freelance">💻 Freelancen</option>
+          <option value="creatief">🎨 Creatief verkopen</option>
+          <option value="online">📱 Online business</option>
+          <option value="zzp">📋 ZZP & belasting</option>
+          <option value="mindset">✨ Mindset & balans</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Samenvatting</label>
+        <textarea id="man-excerpt" placeholder="Korte beschrijving voor de artikelkaart..."></textarea>
+      </div>
+      <div class="field">
+        <label>Artikel inhoud</label>
+        <textarea id="man-body" style="min-height:110px" placeholder="Schrijf je volledige artikel hier... (markdown ondersteund: ## Kop, **vet**, - lijst)"></textarea>
+      </div>
+      <button class="btn-full btn-sage-full" onclick="publishManual()">✎ Publiceer artikel</button>
+    </div>
+
+    <!-- ARTICLE LIST -->
+    <div class="admin-panel" style="grid-column:1/-1">
+      <div class="panel-hd">
+        <div class="panel-icon" style="background:var(--warm-light)">≡</div>
+        <div><h3>Alle artikelen</h3></div>
+        <span id="list-count" style="margin-left:auto;font-size:.75rem;color:var(--muted)"></span>
+      </div>
+      <div class="art-list" id="art-list">
+        <div style="text-align:center;padding:1.5rem;color:var(--muted);font-size:.85rem">Nog geen artikelen gepubliceerd.</div>
+      </div>
+    </div>
+
+    <!-- AUTOMATION -->
+    <div class="admin-panel">
+      <div class="panel-hd">
+        <div class="panel-icon" style="background:var(--sage-light)">⟳</div>
+        <div><h3>Automatisering</h3></div>
+      </div>
+      <div class="sched-row">
+        <div><div class="sched-lbl">Dagelijks 1 artikel</div><div class="sched-sub">Elke ochtend om 08:00</div></div>
+        <button class="toggle" id="toggle-daily" onclick="toggleAuto('daily')"></button>
+      </div>
+      <div class="sched-row">
+        <div><div class="sched-lbl">Wekelijkse bulk (5x)</div><div class="sched-sub">Elke maandag, uit de wachtrij</div></div>
+        <button class="toggle on" id="toggle-weekly" onclick="toggleAuto('weekly')"></button>
+      </div>
+      <div class="sched-row">
+        <div><div class="sched-lbl">Trending onderwerpen</div><div class="sched-sub">Actuele topics automatisch</div></div>
+        <button class="toggle" id="toggle-trending" onclick="toggleAuto('trending')"></button>
+      </div>
+      <button class="btn-full btn-rose-full" style="margin-top:.75rem" onclick="runAutoNow()">⟳ Nu handmatig draaien</button>
+    </div>
+
+    <!-- TOPIC QUEUE -->
+    <div class="admin-panel">
+      <div class="panel-hd">
+        <div class="panel-icon" style="background:var(--plum-light)">☰</div>
+        <div><h3>Topic wachtrij</h3></div>
+      </div>
+      <div class="field">
+        <label>Onderwerpen (één per regel)</label>
+        <textarea id="topic-queue" style="min-height:130px"></textarea>
+      </div>
+      <button class="btn-full btn-plum-full" onclick="saveQueue()">Wachtrij opslaan</button>
+      <p style="font-size:.72rem;color:var(--muted);margin-top:.6rem">Topics worden bij de volgende geplande run automatisch verwerkt.</p>
+    </div>
+  </div>
+</div>
+
+<!-- CHAT -->
+<button class="chat-fab" onclick="toggleChat()">💬 Vraag de adviseur</button>
+<div class="chat-panel" id="chat-panel">
+  <div class="chat-ph">
+    <div class="av">🌸</div>
+    <div class="chat-ph-info">
+      <div class="chat-ph-name">MamaVerdient Coach</div>
+      <div class="chat-ph-sub">Persoonlijk advies voor jou</div>
+    </div>
+    <button class="chat-close" onclick="toggleChat()">✕</button>
+  </div>
+  <div class="chat-msgs" id="chat-msgs">
+    <div class="cmsg bot">Hoi! 🌸 Ik ben jouw persoonlijke coach voor bijverdienen als vrouw of mama. Vertel me over jouw situatie — hoeveel tijd heb je? Wat kun je goed? — en ik geef je concreet advies op maat.</div>
+  </div>
+  <div class="chat-suggestions" id="chat-sugs">
+    <span class="chat-sug" onclick="chatSend(this.textContent)">Ik heb 1 uur per dag</span>
+    <span class="chat-sug" onclick="chatSend(this.textContent)">Ik ben net gestopt met werken</span>
+    <span class="chat-sug" onclick="chatSend(this.textContent)">Wat kan ik doen met een baby?</span>
+  </div>
+  <div class="chat-input-row">
+    <input type="text" id="chat-in" placeholder="Jouw vraag..." onkeydown="if(event.key==='Enter')chatSend()">
+    <button class="chat-send" onclick="chatSend()">→</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ===== DATA =====
+let articles = JSON.parse(localStorage.getItem('mv_articles') || '[]');
+let generatedArticle = null;
+let chatHistory = [];
+let autoToggles = JSON.parse(localStorage.getItem('mv_auto') || '{"daily":false,"weekly":true,"trending":false}');
+let activeCat = '';
+
+const CAT = {
+  naptime:  { label: 'Naptime business',   color: '#e8735a', bg: '#fde8e3' },
+  freelance:{ label: 'Freelancen',          color: '#7a9e87', bg: '#e8f2eb' },
+  creatief: { label: 'Creatief verkopen',   color: '#c8a050', bg: '#fdf3e0' },
+  online:   { label: 'Online business',     color: '#7a5c7a', bg: '#efe8ef' },
+  zzp:      { label: 'ZZP & belasting',     color: '#5a7ab0', bg: '#e3eaf8' },
+  mindset:  { label: 'Mindset & balans',    color: '#a07a5a', bg: '#f2ece5' }
+};
+
+const SYSTEM_CHAT = `Je bent "MamaVerdient Coach", een warme, praktische coach voor MamaVerdient.nl — een Nederlandse website speciaal voor vrouwen en moeders die willen bijverdienen. 
+
+Jouw toon: empathisch, aanmoedigend, realistisch. Geen loze beloften, maar echte tips.
+Schrijf altijd in het Nederlands, informeel ("je/jij").
+Max 130 woorden per antwoord. Stel 1 gerichte vervolgvraag.
+
+Je kent:
+- Side hustles die combineerbaar zijn met moederschap: Etsy, freelance schrijven, VA-werk, online cursussen, social media management, boekhouden, tutoring, fotografie
+- Nederlandse context: KvK, zelfstandigenaftrek, belastingvrije bijverdienste, Bol.com partner
+- De realiteit van moeders: weinig tijd, vermoeidheid, naptime-werk, schooltijden
+- Digitale producten: templates, e-books, Canva designs, printables
+- Platforms: Fiverr, Upwork, Etsy, Gumroad, Teachable
+
+Begin met empathie als iemand iets moeilijks deelt.`;
+
+const SYSTEM_WRITER = `Je schrijft voor MamaVerdient.nl — een Nederlandse website voor vrouwen en moeders die willen bijverdienen. 
+
+Schrijfstijl: warm, praktisch, eerlijk, aanmoedigend. Gebruik "je/jij". Schrijf vanuit begrip voor de realiteit van moeders (weinig tijd, kinderen, balans werk-gezin).
+
+Verwerk altijd:
+- Nederlandse context (KvK, BTW, belastingvrije bijverdienste €8.700)
+- Realistische tijdsinschattingen ("kun je doen tijdens de slaapuurtjes")
+- Concrete bedragen in euro's
+- Minimaal 1 persoonlijk voorbeeld of scenario
+
+Structuur:
+TITEL: [pakkende, SEO-vriendelijke titel]
+EXCERPT: [2 zinnen die vrouwen aanspreken]
+INHOUD:
+[Volledig artikel, minimaal 400 woorden, met ## koppen]`;
+
+
+// ===== PRE-FILLED ARTICLES =====
+const PREFILLED_ARTICLES = [
+
+  // ===== NAPTIME BUSINESS =====
+  {
+    id: 'pre1', cat: 'naptime', source: 'manual', date: '8 mei 2026',
+    title: 'Bijverdienen tijdens de slaapuurtjes: zo begin je stap voor stap',
+    excerpt: 'Die gouden uurtjes als je kindje slaapt zijn meer waard dan je denkt. Ontdek hoe je die tijd slim inzet om een echte bijverdienste op te bouwen — zonder stress, zonder grote investering.',
+    body: `## Bijverdienen tijdens de slaapuurtjes
+
+Weet je wat ik zo mooi vind aan ondernemen als mama? Je hoeft het niet groots aan te pakken. Geen kantoor, geen oppas, geen grote investeringen. Gewoon jij, je laptop, en die kostbare uurtjes als je kindje slaapt.
+
+Want laten we eerlijk zijn — die slaapuurtjes zijn goud waard. En in die ene, soms anderhalf uur? Kun je echt iets bouwen. Iets wat jou financieel vrijer maakt, zonder dat je je als moeder minder voelt.
+
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:1.25rem 0">
+<div style="background:#e8f2eb;border-radius:10px;padding:.9rem;text-align:center"><div style="font-size:1.3rem">⏱</div><div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#7a9e87;margin:.3rem 0">Tijdsinvestering</div><div style="font-size:.85rem;font-weight:600">1–2 uur per dag</div></div>
+<div style="background:#fde8e3;border-radius:10px;padding:.9rem;text-align:center"><div style="font-size:1.3rem">💰</div><div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#e8735a;margin:.3rem 0">Startkapitaal</div><div style="font-size:.85rem;font-weight:600">€0 – €50</div></div>
+<div style="background:#fdf3e0;border-radius:10px;padding:.9rem;text-align:center"><div style="font-size:1.3rem">📈</div><div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#c8a050;margin:.3rem 0">Verdienmogelijkheden</div><div style="font-size:.85rem;font-weight:600">€200 – €1.500/mo</div></div>
+</div>
+
+## Wat maakt een naptime business zo bijzonder?
+
+Een naptime business is niet zomaar een side hustle. Het is een business die je opbouwt in de gaatjes van je dag — bewust, op jouw tempo, zonder dat je hoeft te kiezen tussen moeder zijn en ondernemer zijn.
+
+Het mooie? Je hoeft niet elke dag hetzelfde te doen. De ene dag werk je aan je content, de andere dag stuur je een factuur of upload je een nieuw product. Kleine acties, elke dag, die bij elkaar optellen tot iets groots.
+
+## De beste naptime businesses om mee te starten
+
+### 1. Digitale producten maken en verkopen
+Dit is mijn absolute favoriet voor moeders die weinig tijd hebben. Je maakt iets eenmalig — een template, een e-book, een planner — en verkoopt het daarna oneindig. Geen klantenservice, geen verzenden, geen gedoe. Gewoon passief inkomen terwijl jij met je kindje speelt.
+
+Denk aan een weekplanner voor moeders, een budgettracker, een babyvoedingsschema — dingen waar jij zelf ook behoefte aan had. Want als jij het nodig had, zijn er duizenden andere moeders die dat ook hebben.
+
+### 2. Een YouTube Cashcow kanaal bouwen
+Klinkt misschien groots, maar met AI is het tegenwoordig echt toegankelijk. Je maakt video's zonder voor de camera te hoeven staan, zonder een dure microfoon, zonder technische kennis. Tools zoals [ElevenLabs](https://try.elevenlabs.io/lvyhk7ftktpq) genereren realistische stemmen voor je video, zodat jij alleen de strategie hoeft te bedenken.
+
+En voor het vinden van de juiste niche? Daar is [Nexlev](https://www.nexlev.io/?fpr=francis96) voor — een tool die op basis van data laat zien welke YouTube niches winstgevend zijn en weinig concurrentie hebben.
+
+### 3. Freelance diensten aanbieden
+Kan je goed schrijven, ontwerpen of organiseren? Dan kun je dat geld laten opleveren. Social media beheer voor lokale bedrijven, blogartikelen schrijven, virtual assistant werk — het zijn allemaal diensten die je vanuit huis kunt doen, in jouw eigen tijd.
+
+### 4. Een online cursus of workshop maken
+Heb je kennis die anderen kunnen gebruiken? Zet het om in een cursus. Met platforms zoals [Huddle](https://checkout.thehuddle.nl/r?id=DZhWY23O) maak je in een uurtje een complete online cursus die je daarna passief verkoopt. En je eigen verkooppagina? Die maak je met [Plug & Pay](https://start.plugandpay.nl/r?id=pny1hqxV) — ook in minder dan een uur.
+
+## Hoe begin je?
+
+Mijn advies: kies één ding. Niet twee, niet drie — één. Stel jezelf de vraag: wat past het best bij wat ik al kan? En begin daar. Perfectionisme is de vijand van vooruitgang, zeker als mama.
+
+Maak die eerste week gewoon iets. Een template, een eerste video, een aanmeldpagina. Het hoeft niet perfect te zijn — het moet er gewoon zijn.
+
+## Wat kun je realistisch verwachten?
+
+Met 5 uur per week (verdeeld over de slaapuurtjes) is €200–€500 per maand realistisch binnen 2 tot 3 maanden. Dat is geen belofte, maar het is wat veel moeders voor je hebben bereikt die gewoon begonnen zijn.
+
+En het mooiste? Elke maand wordt het iets groter. Elke maand leer je iets bij. En op een gegeven moment kijk je terug en denk je: wauw, heb ik dit gebouwd tijdens de slaapuurtjes van mijn kindje?
+
+Ja. Dat heb je gedaan.`
+  },
+
+  {
+    id: 'pre2', cat: 'naptime', source: 'manual', date: '8 mei 2026',
+    title: 'YouTube Cashcow kanaal bouwen als mama: zo doe je het met AI',
+    excerpt: 'Een faceless YouTube kanaal opbouwen dat passief inkomen genereert — zonder camera, zonder microfoon, zonder technische kennis. Met AI is het tegenwoordig echt mogelijk.',
+    body: `## YouTube Cashcow kanaal bouwen als mama
+
+Oké, ik weet wat je denkt. YouTube? Ik moet toch voor de camera? Nee. Absoluut niet. En dat is precies wat een YouTube Cashcow kanaal zo perfect maakt voor moeders.
+
+Een cashcow kanaal is een kanaal waarbij AI het zware werk doet. Jij bepaalt de strategie en het onderwerp — de rest wordt grotendeels geautomatiseerd. Geen gezicht in beeld, geen dure microfoon, geen studio. Gewoon jij, je laptop, en de juiste tools.
+
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:1.25rem 0">
+<div style="background:#e8f2eb;border-radius:10px;padding:.9rem;text-align:center"><div style="font-size:1.3rem">⏱</div><div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#7a9e87;margin:.3rem 0">Tijdsinvestering</div><div style="font-size:.85rem;font-weight:600">3–5 uur per week</div></div>
+<div style="background:#fde8e3;border-radius:10px;padding:.9rem;text-align:center"><div style="font-size:1.3rem">💰</div><div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#e8735a;margin:.3rem 0">Startkapitaal</div><div style="font-size:.85rem;font-weight:600">€0 – €30/mo</div></div>
+<div style="background:#fdf3e0;border-radius:10px;padding:.9rem;text-align:center"><div style="font-size:1.3rem">📈</div><div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#c8a050;margin:.3rem 0">Verdienmogelijkheden</div><div style="font-size:.85rem;font-weight:600">€500 – €5.000/mo</div></div>
+</div>
+
+## Waarom YouTube zo krachtig is
+
+YouTube is het op een na grootste zoekmachine ter wereld. Mensen zoeken er dagelijks miljoenen keren op — van kookvideo's tot financieel advies, van kinderverzorging tot reistips. En voor elk onderwerp zijn er adverteerders die willen betalen om hun product te laten zien.
+
+Jij profiteert daarvan via YouTube AdSense. Zodra je kanaal 1.000 abonnees en 4.000 kijkuren heeft, mag je meedoen aan het partnerprogramma. Daarna verdien je bij elke kijkbeurt automatisch mee — ook terwijl je slaapt, ook terwijl je met je kindje speelt.
+
+## Stap 1: Kies een winstgevende niche
+
+Dit is de belangrijkste beslissing. Je wilt een niche kiezen met veel zoekopdrachten, weinig concurrentie, en adverteerders die goed betalen.
+
+Vroeger moest je dit zelf uitzoeken met veel trial and error. Nu heb je [Nexlev](https://www.nexlev.io/?fpr=francis96) — een tool die op basis van echte YouTube-data laat zien welke niches winstgevend zijn. Je ziet direct hoeveel een kanaal in een bepaalde niche gemiddeld verdient, hoe groot de concurrentie is, en welke onderwerpen het beste scoren. Dat bespaart je maanden aan giswerk.
+
+## Stap 2: Schrijf je scripts met AI
+
+Zodra je je niche hebt, schrijf je scripts voor je video's. Gebruik Claude of ChatGPT om een volledig script te genereren. Geef de AI het onderwerp, de doelgroep en de gewenste lengte — en je hebt in 10 minuten een compleet script.
+
+## Stap 3: Genereer een stem met ElevenLabs
+
+Dit is waar de magie gebeurt. [ElevenLabs](https://try.elevenlabs.io/lvyhk7ftktpq) is een AI-stemgenerator die zo realistisch klinkt dat je nauwelijks het verschil hoort met een echte stem. Je plakt je script erin, kiest een stem die past bij je kanaal, en downloadt de audio.
+
+Geen microfoon nodig. Geen opname. Geen ruis op de achtergrond omdat je kindje net wakker wordt. ElevenLabs heeft een gratis versie om mee te starten, en de betaalde versie kost maar een paar euro per maand.
+
+## Stap 4: Maak je video
+
+Combineer je audio met stockbeelden, animaties of AI-gegenereerde beelden. Tools zoals Canva, Pexels of Adobe Express hebben gratis stockvideo's die je mag gebruiken. Zet alles samen in een gratis videobewerkingsprogramma zoals CapCut of DaVinci Resolve.
+
+## Stap 5: Upload en groei
+
+Upload je video op YouTube met een goede titel, beschrijving en thumbnail. Consistentie is het sleutelwoord — 1 tot 2 video's per week is ideaal voor groei.
+
+## De complete cursus: Faceless Niches
+
+Wil je dit stap voor stap leren, inclusief welke niches nu het meest winstgevend zijn en hoe je je eerste €1.000 per maand bereikt? Dan is [Faceless Niches](https://www.facelessniches.com/francis) precies wat je zoekt. Deze cursus is speciaal gemaakt voor mensen die een passief inkomen willen opbouwen via YouTube zonder voor de camera te staan — inclusief alle tools, strategieen en voorbeelden.
+
+## Wat kun je verwachten?
+
+Kleine kanalen (5.000–10.000 abonnees) verdienen gemiddeld €300–€800 per maand. Middelgrote kanalen halen €1.500–€3.000. En grote cashcow kanalen? Die verdienen soms €10.000+ per maand — volledig automatisch.
+
+Het kost tijd om te groeien. Gemiddeld 6 tot 12 maanden voordat je echt serieus inkomen ziet. Maar als je die tijd investeert, bouw je iets wat jaar na jaar voor je werkt.`
+  },
+
+  // ===== ONLINE BUSINESS =====
+  {
+    id: 'pre7', cat: 'online', source: 'manual', date: '8 mei 2026',
+    title: 'Maak je eigen website en verkoopsysteem binnen 1 uur met Plug & Pay',
+    excerpt: 'Je hebt een geweldig idee voor een product of dienst — maar hoe zet je dat online? Met Plug & Pay heb je binnen een uur een professionele verkooppagina staan, zonder technische kennis.',
+    body: `## Je eigen online business starten met Plug & Pay
+
+Ik hoor het zo vaak van moeders: "Ik wil wel iets verkopen online, maar ik heb geen idee hoe ik dat technisch moet opzetten." En dat begrijp ik heel goed. Want vroeger was het ook echt ingewikkeld — domeinen, hosting, betaalsystemen, BTW-instellingen... het was een jungle.
+
+Maar dat is niet meer zo. Met Plug & Pay zet je in letterlijk een uur een complete, professionele online business op. En je hoeft er niks voor te kunnen.
+
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:1.25rem 0">
+<div style="background:#e8f2eb;border-radius:10px;padding:.9rem;text-align:center"><div style="font-size:1.3rem">⏱</div><div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#7a9e87;margin:.3rem 0">Tijdsinvestering</div><div style="font-size:.85rem;font-weight:600">1 uur setup</div></div>
+<div style="background:#fde8e3;border-radius:10px;padding:.9rem;text-align:center"><div style="font-size:1.3rem">💰</div><div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#e8735a;margin:.3rem 0">Startkapitaal</div><div style="font-size:.85rem;font-weight:600">14 dagen gratis</div></div>
+<div style="background:#fdf3e0;border-radius:10px;padding:.9rem;text-align:center"><div style="font-size:1.3rem">📈</div><div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#c8a050;margin:.3rem 0">Verdienmogelijkheden</div><div style="font-size:.85rem;font-weight:600">Onbeperkt</div></div>
+</div>
+
+## Wat is Plug & Pay precies?
+
+Plug & Pay is een Nederlands platform waarmee je betaalpaginas, landingspaginas en complete verkoopfunnels maakt. Het is specifiek gemaakt voor ondernemers die snel en zonder technische kennis online willen verkopen.
+
+Wat maakt het zo fijn? Alles zit in een systeem. Je hoeft niet te puzzelen met losse tools die niet goed samenwerken. Plug & Pay regelt je betaalsysteem, je facturen, je BTW-afdracht en zelfs je upsells — automatisch.
+
+## Wat kun je verkopen via Plug & Pay?
+
+Eigenlijk alles. Maar het werkt het best voor:
+- **Digitale producten** — e-books, templates, printables, video's
+- **Online cursussen** — combineer het met Huddle voor een compleet systeem
+- **Coaching en trajecten** — verkoop een intake of coachingpakket
+- **Abonnementen** — maandelijks terugkerende inkomsten
+- **Fysieke producten** — als je ook iets tastbaars verkoopt
+
+## Tutorial: je website in 1 uur met AI
+
+### Stap 1: Maak een gratis account aan
+Ga naar [Plug & Pay](https://start.plugandpay.nl/r?id=pny1hqxV) en start je gratis proefperiode van 14 dagen. Je hebt geen creditcard nodig om te beginnen.
+
+### Stap 2: Kies een template
+Plug & Pay heeft tientallen kant-en-klare templates voor landingspaginas. Van minimalistisch en strak tot warm en persoonlijk — er is altijd iets wat bij jouw stijl past. Kies er een en pas hem aan.
+
+### Stap 3: Laat AI je teksten schrijven
+Dit is waar het echt makkelijk wordt. Open Claude of ChatGPT en zeg: "Schrijf een overtuigende verkooppagina voor [jouw product], gericht op moeders die thuis willen bijverdienen." In 5 minuten heb je teksten die je direct kunt plakken in je template.
+
+### Stap 4: Voeg je product toe
+Upload je digitale product, stel een prijs in en kies hoe je wilt dat klanten betalen — eenmalig, in termijnen of via abonnement.
+
+### Stap 5: Koppel je betaalmethoden
+Plug & Pay ondersteunt iDEAL, creditcard, PayPal en meer. Alles is al ingebouwd — jij hoeft alleen je bankgegevens in te voeren om uitbetaald te krijgen.
+
+### Stap 6: Publiceer en deel
+Je pagina is live. Deel hem op Instagram, in je WhatsApp-groepen, via Pinterest — overal waar jouw doelgroep zit.
+
+## Waarom Plug & Pay en niet iets anders?
+
+Wat ik zo fijn vind aan Plug & Pay is dat het echt voor de Nederlandse markt is gebouwd. BTW wordt automatisch verwerkt, facturen worden automatisch verstuurd, en alles is in het Nederlands. Geen gedoe met ingewikkelde Amerikaanse platforms die de Nederlandse regelgeving niet snappen.
+
+En de klantenservice? Die is ook Nederlands. Als je ergens niet uitkomt, kun je gewoon bellen of mailen en krijg je snel antwoord.
+
+[Start je gratis proefperiode van 14 dagen →](https://start.plugandpay.nl/r?id=pny1hqxV)`
+  },
+
+  {
+    id: 'pre8', cat: 'online', source: 'manual', date: '8 mei 2026',
+    title: 'Maak je eigen online cursus binnen 1 uur met AI via Huddle',
+    excerpt: 'Jij hebt kennis die anderen nodig hebben. Met Huddle en AI zet je die kennis om in een online cursus die je passief inkomen oplevert — ook terwijl je kindje slaapt.',
+    body: `## Je eigen online cursus maken met Huddle
+
+Stel je voor: je hebt ooit iets geleerd — over voeding, over organiseren, over social media, over boekhouden voor ZZP-ers, over slaaptraining bij baby's — en nu kun je die kennis verpakken in een cursus die je online verkoopt.
+
+Klinkt ambitieus? Dat hoeft het niet te zijn. Want met Huddle en een beetje hulp van AI is een online cursus maken tegenwoordig echt iets wat je in een middagje doet — tijdens de slaapuurtjes van je kindje.
+
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:1.25rem 0">
+<div style="background:#e8f2eb;border-radius:10px;padding:.9rem;text-align:center"><div style="font-size:1.3rem">⏱</div><div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#7a9e87;margin:.3rem 0">Tijdsinvestering</div><div style="font-size:.85rem;font-weight:600">1 uur setup, daarna passief</div></div>
+<div style="background:#fde8e3;border-radius:10px;padding:.9rem;text-align:center"><div style="font-size:1.3rem">💰</div><div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#e8735a;margin:.3rem 0">Startkapitaal</div><div style="font-size:.85rem;font-weight:600">14 dagen gratis</div></div>
+<div style="background:#fdf3e0;border-radius:10px;padding:.9rem;text-align:center"><div style="font-size:1.3rem">📈</div><div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#c8a050;margin:.3rem 0">Verdienmogelijkheden</div><div style="font-size:.85rem;font-weight:600">€500 – €5.000/mo</div></div>
+</div>
+
+## Wat is Huddle?
+
+Huddle is een Nederlands platform speciaal gebouwd voor mensen die online cursussen, memberships en communities willen verkopen. Het is gebruiksvriendelijk, volledig in het Nederlands, en heeft alles ingebouwd wat je nodig hebt.
+
+Wat ik zo fijn vind aan Huddle is de community-functie. Je cursus is niet alleen een stel video's — je kunt er ook een besloten community omheen bouwen waar je deelnemers met elkaar kunnen praten, vragen kunnen stellen en elkaar kunnen inspireren. Dat verhoogt de waarde van je cursus enorm, en zorgt ervoor dat mensen graag blijven.
+
+## Wat kun je verkopen via Huddle?
+
+- **Online cursussen** — video, tekst, audio of een mix
+- **Memberships** — maandelijks terugkerende toegang tot content
+- **Groepsprogrammas** — begeleide trajecten met een groep
+- **Communities** — een besloten omgeving voor jouw niche
+
+## Tutorial: je cursus in 1 uur live
+
+### Stap 1: Kies je onderwerp
+Begin met de vraag: wat weten mensen die bij mij komen vragen? Wat doe jij moeiteloos wat anderen moeilijk vinden? Dat is je cursusonderwerp.
+
+Voorbeelden voor moeders:
+- Slaaptraining voor baby's van 0-6 maanden
+- Budgetteren met een jong gezin
+- Instagram groeien als mama-creator
+- Gezond koken in 30 minuten voor drukke gezinnen
+- Thuiswerken met kleine kinderen
+
+### Stap 2: Laat AI de structuur maken
+Open Claude of ChatGPT en zeg: "Maak een cursusstructuur voor een online cursus over [onderwerp], voor [doelgroep]. Verdeel het in 5 modules met elk 3-4 lessen." In 5 minuten heb je een complete opzet.
+
+### Stap 3: Maak een account aan bij Huddle
+Ga naar [Huddle](https://checkout.thehuddle.nl/r?id=DZhWY23O) en start je gratis proefperiode van 14 dagen. Maak je cursus aan, voeg je modules en lessen toe.
+
+### Stap 4: Maak je content
+Je content hoeft niet perfect te zijn. Je kunt:
+- Korte teksten schrijven per les (AI schrijft ze voor je)
+- Simpele video's opnemen met je telefoon
+- Audio-lessen maken via [ElevenLabs](https://try.elevenlabs.io/lvyhk7ftktpq) als je liever geen eigen stem gebruikt
+
+### Stap 5: Stel je prijs in
+Een beginner vraagt €47–€97 voor een cursus. Heb je meer ervaring of een grotere naam? Dan is €197–€497 heel normaal. Start laag, verhoog naarmate je meer reviews krijgt.
+
+### Stap 6: Maak een verkooppagina via Plug & Pay
+Combineer Huddle met [Plug & Pay](https://start.plugandpay.nl/r?id=pny1hqxV) voor een professionele verkooppagina. Huddle beheert de cursus, Plug & Pay regelt de betaling en marketing.
+
+## Het mooie van passief inkomen via cursussen
+
+Als je cursus eenmaal staat, hoef je er nauwelijks meer aan te doen. Mensen kopen hem, volgen hem, en jij krijgt de betaling automatisch gestort. Je kunt tegelijkertijd met je kindje spelen en geld verdienen.
+
+Dat is de kracht van digitale producten. Je doet het werk een keer, en daarna werkt het voor jou.
+
+[Start je gratis proefperiode van 14 dagen bij Huddle →](https://checkout.thehuddle.nl/r?id=DZhWY23O)`
+  },
+
+  {
+    id: 'pre8b', cat: 'online', source: 'manual', date: '8 mei 2026',
+    title: 'Affiliate marketing voor moeders: zo verdien je commissie zonder eigen product',
+    excerpt: 'Je hebt geen eigen product nodig om geld te verdienen online. Met affiliate marketing verdien je commissie door producten van anderen aan te bevelen — op jouw manier, in jouw tempo.',
+    body: `## Affiliate marketing: verdienen zonder eigen product
+
+Wat als ik je vertel dat je geld kunt verdienen door gewoon te vertellen wat je al gebruikt en aanbeveelt? Dat is affiliate marketing in een notendop.
+
+Jij krijgt een unieke link van een bedrijf. Deel je die link en iemand koopt iets via jou? Dan krijg jij een commissie. Zonder dat je zelf iets hoeft te verzenden, te maken of te beheren.
+
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:1.25rem 0">
+<div style="background:#e8f2eb;border-radius:10px;padding:.9rem;text-align:center"><div style="font-size:1.3rem">⏱</div><div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#7a9e87;margin:.3rem 0">Tijdsinvestering</div><div style="font-size:.85rem;font-weight:600">2–5 uur per week</div></div>
+<div style="background:#fde8e3;border-radius:10px;padding:.9rem;text-align:center"><div style="font-size:1.3rem">💰</div><div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#e8735a;margin:.3rem 0">Startkapitaal</div><div style="font-size:.85rem;font-weight:600">€0</div></div>
+<div style="background:#fdf3e0;border-radius:10px;padding:.9rem;text-align:center"><div style="font-size:1.3rem">📈</div><div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#c8a050;margin:.3rem 0">Verdienmogelijkheden</div><div style="font-size:.85rem;font-weight:600">€100 – €3.000/mo</div></div>
+</div>
+
+## Hoe werkt het in de praktijk?
+
+Stel: jij schrijft een Instagram post over hoe je een online cursus hebt gemaakt met Huddle. Je deelt je ervaringen, je laat zien wat je hebt gebouwd, en je plaatst je affiliate link onderaan. Iemand klikt op die link en koopt een abonnement bij Huddle. Jij verdient commissie. Zo simpel is het.
+
+## De beste affiliate programmas voor moeders
+
+### Plug & Pay
+Perfect als jij schrijft over ondernemen, online verkopen of digitale producten. [Plug & Pay](https://start.plugandpay.nl/r?id=pny1hqxV) heeft een aantrekkelijk affiliateprogramma — en omdat het een Nederlands platform is, converteert het goed bij een Nederlandse doelgroep.
+
+### Huddle
+Als jij andere moeders inspireert om een cursus te maken, is [Huddle](https://checkout.thehuddle.nl/r?id=DZhWY23O) een perfecte affiliate. Het platform is laagdrempelig en de 14-daagse gratis proefperiode maakt de drempel om te klikken heel laag.
+
+### Faceless Niches
+Schrijf je over YouTube of passief inkomen? Dan is [Faceless Niches](https://www.facelessniches.com/francis) een geweldige affiliate. Dit is een cursus die mensen leert hoe ze een YouTube cashcow kanaal opbouwen — iets wat veel moeders aanspreekt.
+
+### Bitvavo
+Ben je actief in de crypto of investeren niche? [Bitvavo](https://bitvavo.com/invite?a=F30E8B41FF) biedt een referralprogramma waarbij jij en je lezer allebei profiteren.
+
+## Hoe begin je?
+
+1. **Kies je niche** — schrijf over iets waar je echt passie voor hebt
+2. **Bouw een klein publiek** — Instagram, een blog, Pinterest, een nieuwsbrief
+3. **Deel eerlijke ervaringen** — geen harde sales, maar authentieke verhalen
+4. **Verwerk je affiliate links natuurlijk** — niet als advertentie maar als aanbeveling
+
+De moeders die het meest verdienen met affiliate marketing zijn niet degenen die het hardst pushen — maar degenen die het meest authentiek zijn.`
+  },
+
+  // ===== FREELANCEN =====
+  {
+    id: 'pre3', cat: 'freelance', source: 'manual', date: '8 mei 2026',
+    title: 'Freelancen als mama: zo vind je je eerste klant (ook zonder ervaring)',
+    excerpt: 'Je hoeft geen CV vol werkervaring te hebben om te beginnen met freelancen. Je hebt al meer skills dan je denkt — je moet alleen weten hoe je ze verkoopt.',
+    body: `## Freelancen als mama: jij hebt meer te bieden dan je denkt
+
+Weet je wat ik zo vaak hoor van moeders? "Maar ik heb niks bijzonders te bieden." En dan vertel ik hen wat ze allemaal kunnen: plannen, organiseren, communiceren, schrijven, sociale media beheren, administratie doen, creatief zijn — dingen die ze als mama dagelijks doen zonder het als een vaardigheid te zien.
+
+Freelancen is niets anders dan die vaardigheden aanbieden aan bedrijven die er behoefte aan hebben. En die bedrijven? Die zijn er genoeg.
+
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:1.25rem 0">
+<div style="background:#e8f2eb;border-radius:10px;padding:.9rem;text-align:center"><div style="font-size:1.3rem">⏱</div><div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#7a9e87;margin:.3rem 0">Tijdsinvestering</div><div style="font-size:.85rem;font-weight:600">5–20 uur per week</div></div>
+<div style="background:#fde8e3;border-radius:10px;padding:.9rem;text-align:center"><div style="font-size:1.3rem">💰</div><div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#e8735a;margin:.3rem 0">Startkapitaal</div><div style="font-size:.85rem;font-weight:600">€0 – €75 (KvK)</div></div>
+<div style="background:#fdf3e0;border-radius:10px;padding:.9rem;text-align:center"><div style="font-size:1.3rem">📈</div><div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#c8a050;margin:.3rem 0">Verdienmogelijkheden</div><div style="font-size:.85rem;font-weight:600">€500 – €3.000/mo</div></div>
+</div>
+
+## Welke freelance diensten passen bij moeders?
+
+### Social media management
+Bedrijven weten dat ze actief moeten zijn op Instagram en Facebook, maar ze hebben er de tijd of kennis niet voor. Jij neemt die taak over. Je maakt content, plant posts, beantwoordt reacties. Verdien €150–€400 per klant per maand — en je kunt meerdere klanten tegelijk hebben.
+
+### Tekstschrijven en copywriting
+Elke website, elke blog, elke nieuwsbrief heeft content nodig. Als je goed kunt schrijven — en dat kunnen de meeste moeders die dagelijks communiceren — dan kun je dat laten betalen. €0,05–€0,15 per woord is normaal, wat neerkomt op €30–€75 voor een gemiddeld blogartikel.
+
+### Virtual assistant
+Als VA help je ondernemers met hun dagelijkse administratie: e-mails beantwoorden, agenda beheren, documenten opmaken, onderzoek doen. Volledig op afstand, volledig in jouw eigen tijd. Verdien €15–€30 per uur.
+
+### Boekhouding en administratie
+Heb je een achtergrond in administratie of financien? Dan is er veel vraag naar freelance boekhouders die ZZP-ers en kleine bedrijven helpen. Dit is ook een dienst die goed te automatiseren is via platforms zoals [Plug & Pay](https://start.plugandpay.nl/r?id=pny1hqxV).
+
+## Stap voor stap je eerste klant vinden
+
+### Stap 1: Kies een dienst
+Begin met wat je al kunt. Schrijf je goed? Begin met content. Ben je creatief? Begin met social media. Ben je georganiseerd? Begin als VA.
+
+### Stap 2: Vertel het je netwerk
+Stuur een berichtje naar 10 mensen in je netwerk. Iets als: "Ik ben gestart als freelance [tekstschrijver/VA/social media manager]. Ken jij iemand die hier behoefte aan heeft?" Eerste klanten komen bijna altijd via via.
+
+### Stap 3: Maak een simpel portfolio
+Je hoeft niet veel te laten zien. Een paar voorbeelden van je werk, een korte bio, je contactgegevens. Een simpele pagina via [Plug & Pay](https://start.plugandpay.nl/r?id=pny1hqxV) is al genoeg.
+
+### Stap 4: Stel je tarief in
+Begin iets lager dan de markt om ervaring op te doen. Maar onderschat jezelf niet. Als beginner is €20–€25 per uur een prima startpunt. Na 6 maanden verhoog je naar €35–€50.
+
+### Stap 5: Leer continu bij
+De freelancers die het meest verdienen zijn degenen die blijven leren. Viral Academy leert je hoe je als content creator en freelancer kunt groeien — inclusief hoe je betere klanten aantrekt en hogere tarieven vraagt. *(affiliate link volgt)*
+
+## Wat maakt freelancen zo perfect voor moeders?
+
+Flexibiliteit. Je werkt wanneer het jou uitkomt. Kindje ziek? Je verplaatst je werk. School vrij? Je neemt een dag vrij. Je bent je eigen baas — en dat voelt heel anders dan je ooit had gedacht.`
+  },
+
+  {
+    id: 'pre3b', cat: 'freelance', source: 'manual', date: '8 mei 2026',
+    title: 'Viral Academy: zo word je een succesvolle content creator als mama',
+    excerpt: 'Viral Academy leert je stap voor stap hoe je groeit als content creator en freelancer — ook als je net begint en weinig tijd hebt.',
+    body: `## Viral Academy: jouw snelweg naar freelance succes als mama
+
+Misschien herken je dit: je kijkt naar andere moeders op Instagram die hun leven delen, producten aanbevelen en duidelijk geld verdienen met hun content — en je denkt: hoe doen zij dat nou? En kan ik dat ook?
+
+Het antwoord is ja. Maar je hebt wel de juiste kennis nodig. En dat is precies wat Viral Academy biedt.
+
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:1.25rem 0">
+<div style="background:#e8f2eb;border-radius:10px;padding:.9rem;text-align:center"><div style="font-size:1.3rem">⏱</div><div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#7a9e87;margin:.3rem 0">Tijdsinvestering</div><div style="font-size:.85rem;font-weight:600">Op eigen tempo</div></div>
+<div style="background:#fde8e3;border-radius:10px;padding:.9rem;text-align:center"><div style="font-size:1.3rem">💰</div><div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#e8735a;margin:.3rem 0">Startkapitaal</div><div style="font-size:.85rem;font-weight:600">Zie website</div></div>
+<div style="background:#fdf3e0;border-radius:10px;padding:.9rem;text-align:center"><div style="font-size:1.3rem">📈</div><div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#c8a050;margin:.3rem 0">Verdienmogelijkheden</div><div style="font-size:.85rem;font-weight:600">€1.000 – €5.000/mo</div></div>
+</div>
+
+## Wat leer je bij Viral Academy?
+
+Viral Academy is geen vaag "word influencer" programma. Het is een concrete, stap-voor-stap opleiding die je leert hoe je als content creator echt geld verdient.
+
+Je leert onder andere:
+
+- **Hoe je viral content maakt** die mensen aanspreekt en deelt — ook als je geen grote following hebt
+- **Social media strategie** voor Instagram, TikTok en YouTube — welke content werkt wanneer en waarom
+- **Hoe je betaalde samenwerkingen aantrekt** — van merkdeals tot gesponsorde posts
+- **Hoe je je diensten als freelancer verkoopt** via je content — zodat klanten naar jou toe komen in plaats van andersom
+- **Van hobbyist naar professional** — de stap die de meeste mensen nooit zetten
+
+## Voor welke moeders is dit ideaal?
+
+- Moeders die al actief zijn op social media maar er nog niks mee verdienen
+- Moeders die creatief zijn en graag schrijven, filmen of ontwerpen
+- Moeders die willen freelancen als social media manager of content creator
+- Moeders die een eigen merk willen opbouwen rond hun passie
+
+## Combineer het met de juiste tools
+
+Als je de kennis hebt van Viral Academy, heb je ook de tools nodig om te verkopen. [Plug & Pay](https://start.plugandpay.nl/r?id=pny1hqxV) voor je eigen verkooppagina, [Huddle](https://checkout.thehuddle.nl/r?id=DZhWY23O) voor je eigen cursus of community — en je hebt een complete online business.
+
+*(Affiliate link voor Viral Academy volgt — neem contact op voor de meest actuele link)*`
+  },
+
+  // ===== CREATIEF VERKOPEN =====
+  {
+    id: 'pre5', cat: 'creatief', source: 'manual', date: '8 mei 2026',
+    title: 'Etsy shop beginnen als mama: van eerste product tot eerste verkoop',
+    excerpt: 'Etsy is de perfecte plek voor creatieve moeders die iets willen verkopen. Geen technische kennis, geen grote investering — gewoon jouw creativiteit omzetten in inkomen.',
+    body: `## Etsy shop beginnen als mama
+
+Etsy is magisch voor creatieve moeders. Het is een marktplaats waar miljoenen mensen actief op zoek zijn naar unieke, handgemaakte of digitale producten — en jij kunt ze dat geven.
+
+Het mooie aan Etsy is dat je al een bestaand publiek hebt. Je hoeft niet zelf duizenden volgers op te bouwen voordat je eerste verkoop binnenkomt. Etsy brengt de kopers naar jou toe, via zoekopdrachten.
+
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:1.25rem 0">
+<div style="background:#e8f2eb;border-radius:10px;padding:.9rem;text-align:center"><div style="font-size:1.3rem">⏱</div><div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#7a9e87;margin:.3rem 0">Tijdsinvestering</div><div style="font-size:.85rem;font-weight:600">3–5 uur setup</div></div>
+<div style="background:#fde8e3;border-radius:10px;padding:.9rem;text-align:center"><div style="font-size:1.3rem">💰</div><div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#e8735a;margin:.3rem 0">Startkapitaal</div><div style="font-size:.85rem;font-weight:600">€0 – €20</div></div>
+<div style="background:#fdf3e0;border-radius:10px;padding:.9rem;text-align:center"><div style="font-size:1.3rem">📈</div><div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#c8a050;margin:.3rem 0">Verdienmogelijkheden</div><div style="font-size:.85rem;font-weight:600">€200 – €2.000/mo</div></div>
+</div>
+
+## Wat verkoop je op Etsy?
+
+### Digitale downloads (mijn aanrader voor moeders!)
+Dit is de meest passieve vorm van verkopen op Etsy. Je maakt een product eenmalig — een planner, een sjabloon, een kalender, een babyboek — en verkoopt het daarna automatisch. Etsy levert het product direct aan de koper, zonder dat jij iets hoeft te doen.
+
+Voorbeelden die goed verkopen:
+- Weekplanners voor moeders
+- Budgettrackers voor gezinnen
+- Babyvoedings- en slaapschemas
+- Huwelijksdagboeken en gastenboeken
+- Geboortekaartjes templates
+
+### Handgemaakte producten
+Maak je sieraden, knipwerk, handbeschilderde kaarten of andere handgemaakte items? Dan is Etsy de perfecte plek. Etsy-kopers waarderen ambacht en zijn bereid meer te betalen voor iets met een verhaal.
+
+### Printables
+Vergelijkbaar met digitale downloads, maar dan specifiek voor items die mensen zelf printen. Denk aan muurkunst, activiteiten voor kinderen, schoollunchen checklist.
+
+## Stap voor stap je Etsy shop openen
+
+### Stap 1: Maak een account aan
+Ga naar etsy.com en maak een gratis verkopersaccount aan. Kies een shopnaam die past bij jouw stijl en producten.
+
+### Stap 2: Maak je eerste producten
+Voor digitale producten gebruik je Canva. Canva heeft gratis templates voor planners, kalenders en meer. Maak er 5 tot 10 om mee te starten — variatie helpt je om te ontdekken wat het beste verkoopt.
+
+### Stap 3: Maak professionele productfoto's
+Dit is cruciaal. Op Etsy winnen de mooiste foto's. Gebruik daglicht, een neutrale achtergrond, en laat het product goed zien. Voor digitale producten maak je mockups — Canva heeft hier gratis templates voor.
+
+### Stap 4: Schrijf goede producttitels
+Etsy werkt als een zoekmachine. Gebruik de woorden die mensen intypen als ze zoeken. Niet "Mooie planner" maar "Weekplanner A4 voor moeders - printable dagplanner NL".
+
+### Stap 5: Stel een prijs in
+Digitale producten verkopen voor €3–€15 per stuk. Bundels van meerdere producten verkopen voor €9–€25. Kijk altijd wat vergelijkbare producten doen.
+
+### Stap 6: Deel je shop op Pinterest
+Pinterest stuurt enorm veel gratis verkeer naar Etsy shops. Maak een Pinterest account, pin je producten dagelijks, en zie je verkeer groeien.
+
+*(Affiliate link voor Etsy volgt — neem contact op voor de meest actuele link)*
+
+## Hoeveel kun je verdienen?
+
+Een kleine Etsy shop met 20-30 digitale producten verdient gemiddeld €200–€500 per maand passief. Grotere shops met SEO-geoptimaliseerde listings verdienen €1.000–€2.000 per maand. En dat allemaal terwijl jij met je kindje speelt.`
+  },
+
+  {
+    id: 'pre5b', cat: 'creatief', source: 'manual', date: '8 mei 2026',
+    title: 'Verkopen op Vinted: zo verdien je bij met je kledingkast',
+    excerpt: 'Je kledingkast zit vol kleding die je niet meer draagt — van jezelf, van je kinderen, misschien wel van je partner. Op Vinted verkoop je het eenvoudig en verdien je er extra mee.',
+    body: `## Verkopen op Vinted: ruim op en verdien erbij
+
+Vinted is inmiddels een van de populairste apps in Nederland — en dat is niet voor niks. Het is makkelijk, gratis voor verkopers, en er lopen miljoenen actieve kopers rond die op zoek zijn naar betaalbare tweedehands kleding.
+
+Voor moeders is Vinted perfect. Want laten we eerlijk zijn: kinderkleding groeit er zo uit. Wat je kind deze zomer draagt, past volgend jaar niet meer. In plaats van de kast vol te proppen met kleding die niemand meer draagt, verkoop je het — en gebruik je dat geld voor nieuwe items of om je spaarpotje te vullen.
+
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:1.25rem 0">
+<div style="background:#e8f2eb;border-radius:10px;padding:.9rem;text-align:center"><div style="font-size:1.3rem">⏱</div><div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#7a9e87;margin:.3rem 0">Tijdsinvestering</div><div style="font-size:.85rem;font-weight:600">1–3 uur per week</div></div>
+<div style="background:#fde8e3;border-radius:10px;padding:.9rem;text-align:center"><div style="font-size:1.3rem">💰</div><div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#e8735a;margin:.3rem 0">Startkapitaal</div><div style="font-size:.85rem;font-weight:600">€0 — gratis!</div></div>
+<div style="background:#fdf3e0;border-radius:10px;padding:.9rem;text-align:center"><div style="font-size:1.3rem">📈</div><div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#c8a050;margin:.3rem 0">Verdienmogelijkheden</div><div style="font-size:.85rem;font-weight:600">€50 – €500/mo</div></div>
+</div>
+
+## Hoe werkt Vinted precies?
+
+Vinted werkt via de app op je telefoon. Je maakt een gratis account aan, fotografeert je kleding, schrijft een beschrijving, stelt een prijs in en publiceert je item. Zodra iemand koopt, ontvang je een verzendinstructie. Je verpakt het item, brengt het naar een afhaalpunt (PostNL, DHL of DPD) en klaar.
+
+Het mooie? Als verkoper betaal jij geen commissie. Vinted brengt de koper servicekosten in rekening. Jij ontvangt het volledige bedrag dat je hebt gevraagd.
+
+## Tips voor meer verkopen
+
+### Tip 1: Maak goede foto's
+Dit is het allerbelangrijkste. Kleding op een hanger of netjes gevouwen op een lichte ondergrond verkoopt het best. Gebruik daglicht — leg de kleding gewoon bij je raam neer. Geen filters, geen kunstlicht.
+
+### Tip 2: Wees eerlijk over de staat
+Beschrijf kleine vlekjes of slijtage eerlijk. Kopers waarderen transparantie, en je voorkomt teleurstellingen achteraf. Een eerlijk verkoopprofiel bouwt ook vertrouwen op, wat leidt tot meer volgers en terugkerende kopers.
+
+### Tip 3: Prijs slim in
+Kijk altijd naar vergelijkbare items. Te hoog geprijsd = geen verkopen. Te laag = je laat geld liggen. Een goed beginpunt is 30-40% van de nieuwprijs voor gedragen kleding in goede staat.
+
+### Tip 4: Bundel items
+Als een koper meerdere items bij je koopt, bespaart die op verzendkosten. Dat is een grote motivatie voor kopers. Vermeld in je beschrijving dat je bundels aanbiedt.
+
+### Tip 5: Wees actief
+Reageer snel op berichten, volg andere gebruikers terug, en zet je items regelmatig op "bump" (dit brengt ze hoger in de zoekresultaten). Hoe actiever je bent, hoe meer je verkoopt.
+
+## Van bijverdienen naar een echt inkomen
+
+Veel vrouwen beginnen met hun eigen kledingkast — en ontdekken dat ze er geld mee verdienen. Daarna gaan ze verder: kleding kopen op rommelmarkten, kringloopwinkels of bij particulieren om door te verkopen. Dat heet flipping.
+
+Een ervaren Vinted-flipper verdient €200–€500 per maand, soms meer. Het vereist wat meer inzet, maar het is een volledig schaalbare business die je vanuit huis kunt runnen.
+
+*(Affiliate link voor Vinted volgt zodra beschikbaar)*`
+  },
+
+  {
+    id: 'pre6', cat: 'creatief', source: 'manual', date: '8 mei 2026',
+    title: 'Canva templates verkopen: passief inkomen voor creatieve moeders',
+    excerpt: 'Maak een Canva template eenmalig en verkoop hem honderden keren. Geen voorraad, geen verzenden, geen gedoe — gewoon passief inkomen uit jouw creativiteit.',
+    body: `## Canva templates verkopen: creatief zijn en er geld mee verdienen
+
+Als jij iemand bent die uren kan doorbrengen in Canva — gewoon omdat je het leuk vindt — dan heb ik goed nieuws voor je. Wat jij doet als hobby, kunnen anderen niet. En ze zijn bereid daarvoor te betalen.
+
+Canva templates zijn kant-en-klare ontwerpen die iemand koopt en daarna zelf kan aanpassen. Denk aan Instagram-templates, presentaties, planners, uitnodigingen, CV's — de markt is enorm en er is altijd vraag naar nieuwe, frisse ontwerpen.
+
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:1.25rem 0">
+<div style="background:#e8f2eb;border-radius:10px;padding:.9rem;text-align:center"><div style="font-size:1.3rem">⏱</div><div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#7a9e87;margin:.3rem 0">Tijdsinvestering</div><div style="font-size:.85rem;font-weight:600">2–4 uur per week</div></div>
+<div style="background:#fde8e3;border-radius:10px;padding:.9rem;text-align:center"><div style="font-size:1.3rem">💰</div><div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#e8735a;margin:.3rem 0">Startkapitaal</div><div style="font-size:.85rem;font-weight:600">€0 – €15/mo (Canva Pro)</div></div>
+<div style="background:#fdf3e0;border-radius:10px;padding:.9rem;text-align:center"><div style="font-size:1.3rem">📈</div><div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#c8a050;margin:.3rem 0">Verdienmogelijkheden</div><div style="font-size:.85rem;font-weight:600">€200 – €2.000/mo</div></div>
+</div>
+
+## Welke templates verkopen het best?
+
+### Instagram templates
+Ondernemers, coaches en kleine bedrijven willen er professioneel uitzien op Instagram maar hebben geen tijd of talent om zelf te ontwerpen. Een set van 30 Instagram-templates in een consistente stijl verkoopt heel goed. Prijzen liggen tussen €9 en €29 per set.
+
+### Planners en trackers
+Weekplanners, maandplanners, habitrackers, budgettrackers — er is altijd vraag naar. Zeker als je ze maakt voor een specifieke doelgroep, zoals moeders of ZZP-ers.
+
+### Presentatietemplates
+Ondernemers die een pitch moeten geven of een workshop geven zijn altijd op zoek naar mooie presentatietemplates. Dit is een niche met minder concurrentie en hogere prijzen (€15–€49 per template).
+
+### CV en portfolio templates
+Iemand die solliciteert wil er professioneel uitzien. Een goed CV-template verkoopt zichzelf — en er is altijd vraag naar.
+
+## Hoe maak je templates die goed verkopen?
+
+### Kies een stijl en blijf erbij
+Kopers kopen niet alleen een template, ze kopen een stijl. Kies een esthetiek — warm en minimalistisch, kleurrijk en speels, zakelijk en strak — en maak alles in die stijl. Zo bouw je een herkenbare winkel op.
+
+### Gebruik Canva Pro
+De gratis versie van Canva heeft beperkingen als het gaat om het delen van templates voor verkoop. Met Canva Pro (vanaf €13 per maand) kun je templates instellen als "template-links" die kopers direct in hun eigen Canva kunnen openen.
+
+### Verkoop je templates via je eigen pagina
+In plaats van alleen op Etsy te verkopen, kun je ook je eigen verkooppagina maken via [Plug & Pay](https://start.plugandpay.nl/r?id=pny1hqxV). Zo houd je meer van je inkomsten over en bouw je je eigen klantenlijst op.
+
+## Het passieve karakter van dit business model
+
+Dit is het mooiste aan templates: je maakt het een keer, en daarna verdient het voor je. Geen klantenservice, geen verzenden, geen levering. Automatisch. Elke nacht, elke dag, ook als jij met je kindje speelt.
+
+Veel moeders beginnen met 10 templates en bouwen dit op naar een winkel van 100+ producten. Dat gaat niet van de ene op de andere dag, maar elke template die je maakt is een investering in je toekomstige passieve inkomen.`
+  },
+
+  // ===== ZZP & BELASTING =====
+  {
+    id: 'pre9', cat: 'zzp', source: 'manual', date: '8 mei 2026',
+    title: 'ZZP starten als mama: de complete checklist voor een vliegende start',
+    excerpt: 'KvK, BTW, zelfstandigenaftrek — het klinkt ingewikkeld, maar het valt echt mee. Ik loop je stap voor stap door alles heen wat je moet regelen als je als mama ZZP-er wil worden.',
+    body: `## ZZP starten als mama: zo doe je het goed
+
+Ik weet nog goed hoe overweldigend het voelde toen ik begon. KvK? BTW? Zelfstandigenaftrek? Waar begin je? En hoe houd je dat bij naast je kindje, het huishouden en alles wat er nog meer bij komt kijken?
+
+Het antwoord is: stap voor stap. En het is veel minder ingewikkeld dan het klinkt. Laat me je er doorheen loodsen.
+
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:1.25rem 0">
+<div style="background:#e8f2eb;border-radius:10px;padding:.9rem;text-align:center"><div style="font-size:1.3rem">⏱</div><div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#7a9e87;margin:.3rem 0">Tijdsinvestering</div><div style="font-size:.85rem;font-weight:600">1 dag setup</div></div>
+<div style="background:#fde8e3;border-radius:10px;padding:.9rem;text-align:center"><div style="font-size:1.3rem">💰</div><div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#e8735a;margin:.3rem 0">Startkapitaal</div><div style="font-size:.85rem;font-weight:600">€75 (KvK inschrijving)</div></div>
+<div style="background:#fdf3e0;border-radius:10px;padding:.9rem;text-align:center"><div style="font-size:1.3rem">📈</div><div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#c8a050;margin:.3rem 0">Verdienmogelijkheden</div><div style="font-size:.85rem;font-weight:600">Onbeperkt</div></div>
+</div>
+
+## Stap 1: Inschrijven bij de Kamer van Koophandel
+
+Voordat je officieel zakelijk kunt factureren, moet je je inschrijven bij de KvK. Dit doe je online via kvk.nl en kost €75. Je kiest een bedrijfsnaam (die hoeft niet super origineel te zijn — je eigen naam + wat je doet werkt prima), een rechtsvorm (voor starters: eenmanszaak) en een beschrijving van je activiteiten.
+
+Na inschrijving krijg je een KvK-nummer en een BTW-nummer. Die heb je nodig voor je facturen.
+
+## Stap 2: Zakelijke bankrekening openen
+
+Houd zakelijk en prive altijd gescheiden. Niet alleen voor de belasting, maar ook voor je eigen overzicht. Hoeveel verdien je? Hoeveel geef je uit? Dat zie je alleen als je het netjes bijhoudt.
+
+## Stap 3: Regel je boekhouding
+
+Dit is waar veel starters struikelen — en dat is jammer, want het hoeft niet moeilijk te zijn. Met de juiste software is je boekhouding bijhouden een kwestie van 30 minuten per week.
+
+Mijn tip: begin meteen goed. Gooi niet alles op een stapel om het later te sorteren. Elke factuur die je verstuurt, elk bonnetje dat je maakt — direct verwerken.
+
+## Stap 4: Begrijp de belastingregels
+
+### Zelfstandigenaftrek
+Als je minimaal 1.225 uur per jaar als ZZP-er werkt (dat is minder dan 24 uur per week), heb je recht op de zelfstandigenaftrek van €3.750. Dit bedrag trek je af van je winst voordat je belasting betaalt.
+
+### Startersaftrek
+In de eerste drie jaar van je ZZP-bestaan heb je ook nog eens recht op de startersaftrek van €2.123 extra per jaar. Dat is een enorm voordeel — maak er gebruik van.
+
+### BTW — wel of niet?
+Verdien je minder dan €20.000 per jaar? Dan kun je de Kleineondernemersregeling (KOR) aanvragen. Je hoeft dan geen BTW te rekenen en ook geen BTW-aangifte te doen. Dat scheelt een hoop administratie.
+
+### Belastingvrije bijverdienste
+Ben je (nog) geen ZZP-er en verdien je iets bij als particulier? Dan mag je tot €8.700 per jaar bijverdienen zonder dat dit als winst wordt aangemerkt. Dit heet resultaat overige werkzaamheden. Verdien je meer? Dan is het slim om je toch in te schrijven als ZZP-er.
+
+## Stap 5: Maak je eerste verkooppagina
+
+Nu je administratief op orde bent, is het tijd om te verkopen. Met [Plug & Pay](https://start.plugandpay.nl/r?id=pny1hqxV) maak je een professionele betaalpagina waarop klanten jouw dienst of product kunnen kopen. BTW wordt automatisch verwerkt, facturen worden automatisch verstuurd.
+
+Dat is het. Je bent officieel ondernemer. En nu? Geniet ervan.`
+  },
+
+  {
+    id: 'pre10', cat: 'zzp', source: 'manual', date: '8 mei 2026',
+    title: 'Hoeveel mag je bijverdienen zonder belasting te betalen als mama?',
+    excerpt: 'Veel moeders zijn bang dat bijverdienen ingewikkeld is qua belasting. Maar de regels zijn simpeler dan je denkt — en er is meer ruimte dan je verwacht.',
+    body: `## Bijverdienen en belasting: wat je echt moet weten
+
+Laten we eerlijk zijn: belasting is niet het spannendste onderwerp. Maar als je wilt bijverdienen als mama, is het wel belangrijk dat je weet waar je aan toe bent. Want niemand wil achteraf voor verrassingen komen te staan.
+
+De goede nieuws: er is meer ruimte dan de meeste mensen denken.
+
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:1.25rem 0">
+<div style="background:#e8f2eb;border-radius:10px;padding:.9rem;text-align:center"><div style="font-size:1.3rem">⏱</div><div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#7a9e87;margin:.3rem 0">Minimale tijd</div><div style="font-size:.85rem;font-weight:600">30 min/maand bijhouden</div></div>
+<div style="background:#fde8e3;border-radius:10px;padding:.9rem;text-align:center"><div style="font-size:1.3rem">💰</div><div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#e8735a;margin:.3rem 0">Belastingvrij</div><div style="font-size:.85rem;font-weight:600">Tot €8.700/jaar</div></div>
+<div style="background:#fdf3e0;border-radius:10px;padding:.9rem;text-align:center"><div style="font-size:1.3rem">📈</div><div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#c8a050;margin:.3rem 0">Als ZZP-er</div><div style="font-size:.85rem;font-weight:600">Veel meer aftrekposten</div></div>
+</div>
+
+## Scenario 1: Je bijverdient als particulier
+
+Ben je niet ingeschreven als ZZP-er en verdien je wat bij — via Etsy, Vinted, als freelancer of via een ander kanaal? Dan valt dit onder "resultaat overige werkzaamheden."
+
+Je mag tot **€8.700 per jaar** (2025) bijverdienen zonder dat dit als winst wordt aangemerkt. Je geeft het wel op in je belastingaangifte, maar er zit een vrijstelling op die er in de praktijk voor zorgt dat je er nauwelijks belasting over betaalt.
+
+Verdien je meer dan €8.700 per jaar structureel? Dan raadt de Belastingdienst aan je in te schrijven als ZZP-er. Dat klinkt als meer werk, maar het biedt ook veel voordelen.
+
+## Scenario 2: Je bent ZZP-er
+
+Als ZZP-er heb je toegang tot flinke belastingvoordelen:
+
+**Zelfstandigenaftrek: €3.750**
+Dit bedrag trek je direct af van je winst. Verdien je €20.000? Dan reken je belasting over €16.250.
+
+**Startersaftrek: €2.123 per jaar (3 jaar lang)**
+In je eerste drie jaar als ZZP-er krijg je er nog eens €2.123 bij. Dat is een extra aftrekpost van ruim €2.000.
+
+**MKB-winstvrijstelling: 14% van je winst**
+Na aftrek van de zelfstandigenaftrek mag je nog eens 14% van je resterende winst aftrekken. Dit maakt ondernemen als ZZP-er fiscaal heel aantrekkelijk.
+
+**Kleineondernemersregeling (KOR)**
+Verdien je minder dan €20.000 per jaar? Vraag dan de KOR aan. Je hoeft dan geen BTW te rekenen en geen BTW-aangifte te doen. Minder administratie, meer rust.
+
+## Praktisch: hoe houd je alles bij?
+
+De sleutel tot stress-vrij bijverdienen is een goed overzicht. Leg 20-30% van elke betaling apart voor de belasting — dan kom je nooit tekort.
+
+En voor je boekhouding: zorg voor een systeem vanaf dag 1. Gooi niet alles op een stapeltje om later te verwerken. Dat wordt een nachtmerrie. Gebruik boekhoudtools die speciaal zijn gemaakt voor kleine ondernemers en ZZP-ers.
+
+Combineer dat met [Plug & Pay](https://start.plugandpay.nl/r?id=pny1hqxV) voor je facturen en betaalpaginas — dan is je administratie grotendeels geautomatiseerd en heb je altijd een duidelijk overzicht.`
+  },
+
+  // ===== MINDSET =====
+  {
+    id: 'pre11', cat: 'mindset', source: 'manual', date: '8 mei 2026',
+    title: 'Werk-prive balans als ondernemer mama: zo vind je jouw evenwicht',
+    excerpt: 'Ondernemen en moeder zijn tegelijk — het kan, maar het vraagt om een bewuste aanpak. Geen schuldgevoel, geen perfectie, gewoon jouw manier.',
+    body: `## Werk-prive balans als ondernemer mama
+
+Ik ga je iets vertellen wat niemand je vertelt als je begint met ondernemen als mama: het zal nooit perfect zijn. Er zullen dagen zijn waarop je je schuldig voelt dat je werkt terwijl je kindje speelt. En er zullen dagen zijn waarop je je schuldig voelt dat je met je kindje speelt terwijl je eigenlijk zou moeten werken.
+
+Dat schuldgevoel? Dat hoort erbij. Maar het is geen signaal dat je iets fout doet. Het is een signaal dat je hart op de juiste plek zit.
+
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:1.25rem 0">
+<div style="background:#e8f2eb;border-radius:10px;padding:.9rem;text-align:center"><div style="font-size:1.3rem">⏱</div><div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#7a9e87;margin:.3rem 0">Investering</div><div style="font-size:.85rem;font-weight:600">Op jouw tempo</div></div>
+<div style="background:#fde8e3;border-radius:10px;padding:.9rem;text-align:center"><div style="font-size:1.3rem">💰</div><div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#e8735a;margin:.3rem 0">Kosten</div><div style="font-size:.85rem;font-weight:600">€0</div></div>
+<div style="background:#fdf3e0;border-radius:10px;padding:.9rem;text-align:center"><div style="font-size:1.3rem">📈</div><div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#c8a050;margin:.3rem 0">Opbrengst</div><div style="font-size:.85rem;font-weight:600">Meer rust en vrijheid</div></div>
+</div>
+
+## De mindset shift die alles verandert
+
+Jij bent een betere moeder als jij je gelukkig en vervuld voelt. Punt. Een mama die dagelijks doet waar haar hart sneller van gaat klopt, die iets bouwt wat haar trots maakt — die mama straalt iets uit wat haar kinderen zullen onthouden.
+
+Je geeft je kinderen geen slechte moeder door te ondernemen. Je geeft ze een voorbeeld van een vrouw die durft, die droomt, die doorzet.
+
+## Praktische tips voor meer balans
+
+### Blok vaste werktijden
+Kies momenten die voor jou werken — tijdens de slaapuurtjes, in de avond, op de ochtend voordat de rest wakker is — en behandel die tijd als heilig. Communiceer naar je omgeving: dit zijn mijn werktijden.
+
+### Leer nee zeggen
+Niet elke kans is de juiste kans. Niet elk verzoek verdient jouw energie. Selectief zijn is een skill, geen gebrek aan ambitie.
+
+### Batching: doe gelijksoortige taken achter elkaar
+In plaats van de hele dag heen en weer te schakelen tussen taken, groepeer je ze. Maandag: content schrijven. Dinsdag: e-mails. Woensdag: klanten. Dat geeft rust in je hoofd en efficiency in je werk.
+
+### Automatiseer wat je kunt
+Hoe meer je automatiseert, hoe meer tijd je overhoudt voor de dingen die er echt toe doen. [Plug & Pay](https://start.plugandpay.nl/r?id=pny1hqxV) automatiseert je betalingen en facturen. [Huddle](https://checkout.thehuddle.nl/r?id=DZhWY23O) beheert je cursus op de achtergrond. Dat zijn uren per week die je terugkrijgt.
+
+### Zorg voor jezelf — echt
+Plan ook tijd voor jezelf in je agenda. Een uur wandelen, een boek lezen, een bad nemen zonder kleine handjes die aan de deur kloppen — het klinkt luxe, maar het is noodzaak. Je kunt niet geven wat je niet hebt.
+
+## Community maakt het verschil
+
+Ondernemen als mama kan eenzaam voelen. Zeker als mensen in je omgeving het niet begrijpen. Zoek andere mama-onderneemsters op — online en offline. Een community van gelijkgestemde vrouwen is meer waard dan welke cursus dan ook.
+
+En als je op zoek bent naar zo'n community? [Huddle](https://checkout.thehuddle.nl/r?id=DZhWY23O) heeft communities voor ondernemers die je kunt joinen — of zelf opzetten voor jouw doelgroep.`
+  },
+
+  // ===== INVESTEREN & CRYPTO =====
+  {
+    id: 'pre12', cat: 'crypto', source: 'manual', date: '8 mei 2026',
+    title: 'Beleggen als mama: zo begin je veilig en slim met je geld',
+    excerpt: 'Je spaargeld staat op de bank terwijl inflatie langzaam de waarde ervan opeet. Beleggen is de manier om je geld voor je te laten werken — ook als mama, ook met een klein budget.',
+    body: `## Beleggen als mama: je geld laten werken voor jou
+
+Spaargeld op de bank voelt veilig. Maar weet je wat er in werkelijkheid gebeurt? Inflatie eet langzaam de waarde op. Als de rente op je spaarrekening lager is dan de inflatie — wat de laatste jaren het geval was — verlies je eigenlijk koopkracht.
+
+Beleggen is de manier om dat te veranderen. Je laat je geld werken in plaats van het stil te laten staan.
+
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:1.25rem 0">
+<div style="background:#e8f2eb;border-radius:10px;padding:.9rem;text-align:center"><div style="font-size:1.3rem">⏱</div><div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#7a9e87;margin:.3rem 0">Tijdsinvestering</div><div style="font-size:.85rem;font-weight:600">1 uur per maand</div></div>
+<div style="background:#fde8e3;border-radius:10px;padding:.9rem;text-align:center"><div style="font-size:1.3rem">💰</div><div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#e8735a;margin:.3rem 0">Startkapitaal</div><div style="font-size:.85rem;font-weight:600">Vanaf €50/mo</div></div>
+<div style="background:#fdf3e0;border-radius:10px;padding:.9rem;text-align:center"><div style="font-size:1.3rem">📈</div><div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#c8a050;margin:.3rem 0">Gemiddeld rendement</div><div style="font-size:.85rem;font-weight:600">7–10% per jaar</div></div>
+</div>
+
+## Begin klein: €50 per maand maakt al verschil
+
+Je hoeft niet te wachten tot je een groot bedrag bij elkaar hebt gespaart. Met €50 per maand kun je al beginnen — en de kracht van samengesteld rendement doet de rest.
+
+Stel: je belegt €50 per maand gedurende 20 jaar, met een gemiddeld rendement van 8% per jaar. Na 20 jaar heb je niet €12.000 (wat je had ingelegd), maar ruim €29.000. Dat is de magie van lang beleggen.
+
+## ETFs: de simpelste manier om te beginnen
+
+Een ETF (Exchange Traded Fund) is een mandje van aandelen. In plaats van aandelen van een enkel bedrijf te kopen — wat risicovol is — koop je een klein stukje van honderden of zelfs duizenden bedrijven tegelijk.
+
+De meest bekende ETF's volgen de wereldwijde aandelenmarkt — dus als de economie als geheel groeit, groeit jouw belegging mee. Historisch gezien is dat gemiddeld 7-10% per jaar.
+
+## Crypto als aanvulling — met verstand
+
+Naast traditioneel beleggen is crypto voor sommige mensen een interessante aanvulling. Maar — en dit is belangrijk — crypto is veel volatieler dan aandelen. Prijzen kunnen in korte tijd enorm stijgen en ook enorm dalen.
+
+Wil je crypto proberen? Begin veilig bij [Bitvavo](https://bitvavo.com/invite?a=F30E8B41FF). Bitvavo is het grootste Nederlandse crypto-platform, valt onder toezicht van De Nederlandsche Bank, en heeft een gebruiksvriendelijke interface die perfect is voor beginners. Je kunt al beginnen met €10.
+
+Voor meer geavanceerde crypto-handel en meer altcoins is [MEXC](https://promote.mexc.com/r/TgGmqxsLAX) een populaire optie met een groot aanbod aan munten.
+
+## De gouden regels van beleggen
+
+**Beleg alleen geld dat je 5+ jaar kunt missen.** Beleggingen kunnen dalen — soms flink. Als je het geld snel nodig hebt, is beleggen niet het juiste moment.
+
+**Spreid je risico.** Zet nooit alles in op een enkel aandeel of een enkele munt. ETFs doen dit automatisch voor je.
+
+**Beleg consistent, niet emotioneel.** Koop elke maand een vast bedrag, ongeacht of de markt hoog of laag staat. Dit heet Dollar Cost Averaging — een strategie die bewezen effectief is voor lange termijn beleggers.
+
+**Begin vandaag.** De beste dag om te beginnen met beleggen was gisteren. De op een na beste dag is vandaag.`
+  },
+
+  {
+    id: 'pre13', cat: 'crypto', source: 'manual', date: '8 mei 2026',
+    title: 'Crypto voor beginners: alles wat je als mama moet weten voordat je start',
+    excerpt: 'Bitcoin, Ethereum, altcoins — de cryptowereld kan overweldigend zijn. Dit is de eerlijke, no-nonsense gids voor moeders die willen weten of crypto iets voor hen is.',
+    body: `## Crypto voor beginners: eerlijk en zonder hype
+
+Laten we beginnen met de eerlijke waarheid: crypto is niet voor iedereen. Het is volatiel, het kan snel stijgen en net zo snel dalen, en het vereist dat je bereid bent risico te nemen.
+
+Maar voor mensen die dat risico begrijpen en accepteren — en die het alleen doen met geld dat ze kunnen missen — kan crypto een interessante toevoeging zijn aan hun financieel plaatje.
+
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:1.25rem 0">
+<div style="background:#e8f2eb;border-radius:10px;padding:.9rem;text-align:center"><div style="font-size:1.3rem">⏱</div><div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#7a9e87;margin:.3rem 0">Leerperiode</div><div style="font-size:.85rem;font-weight:600">2–4 weken basics</div></div>
+<div style="background:#fde8e3;border-radius:10px;padding:.9rem;text-align:center"><div style="font-size:1.3rem">💰</div><div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#e8735a;margin:.3rem 0">Startkapitaal</div><div style="font-size:.85rem;font-weight:600">Vanaf €10</div></div>
+<div style="background:#fdf3e0;border-radius:10px;padding:.9rem;text-align:center"><div style="font-size:1.3rem">📈</div><div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#c8a050;margin:.3rem 0">Risico</div><div style="font-size:.85rem;font-weight:600">Hoog — wees voorzichtig</div></div>
+</div>
+
+## Wat is crypto eigenlijk?
+
+Cryptovaluta is digitaal geld dat werkt via blockchain-technologie — een gedecentraliseerd systeem dat transacties registreert zonder tussenkomst van een bank of overheid.
+
+Bitcoin was de eerste en is nog steeds de bekendste. Ethereum is de tweede grootste en biedt meer toepassingen. Daarna zijn er duizenden "altcoins" — kleinere munten met elk hun eigen doel en community.
+
+## Hoe begin je veilig?
+
+### Stap 1: Gebruik een betrouwbaar Nederlands platform
+Begin bij [Bitvavo](https://bitvavo.com/invite?a=F30E8B41FF). Bitvavo is het grootste Nederlandse crypto-platform en valt onder toezicht van De Nederlandsche Bank. De interface is intuïtief, je kunt in het Nederlands worden geholpen, en de kosten zijn laag.
+
+Maak een account aan, verifieer je identiteit (dit is wettelijk verplicht — het heet KYC), en stort een klein bedrag om mee te beginnen.
+
+### Stap 2: Begin met Bitcoin of Ethereum
+Als beginner: koop alleen Bitcoin (BTC) of Ethereum (ETH). Dit zijn de meest stabiele (relatief gezien) en meest begrepen munten. Ga niet meteen de kleine altcoins in — dat is voor later.
+
+### Stap 3: Gebruik de DCA-strategie
+DCA staat voor Dollar Cost Averaging. Je koopt elke maand een vast bedrag — zeg €50 — ongeacht de prijs. Als de prijs laag is, koop je meer munten. Als de prijs hoog is, koop je minder. Gemiddeld over tijd is dit de meest solide strategie.
+
+### Stap 4: Voor gevorderde handel — MEXC
+Als je meer wilt verkennen — meer altcoins, meer handelsmogelijkheden — dan is [MEXC](https://promote.mexc.com/r/TgGmqxsLAX) een populaire keuze. MEXC heeft een enorm aanbod aan munten en geavanceerde handelstools. Dit is meer geschikt als je al wat ervaring hebt.
+
+## Belasting en crypto in Nederland
+
+In Nederland betaal je belasting over crypto via box 3 (vermogensrendementsheffing). Je geeft de waarde van je crypto op de peildatum (1 januari) op als vermogen. Houd je transacties bij — dat maakt de aangifte een stuk makkelijker.
+
+## De belangrijkste regel
+
+Investeer nooit meer dan je kunt missen. Crypto kan 50% zakken in een week. Als je dat geld nodig hebt voor de boodschappen of de huur — investeer het dan niet.
+
+Maar als je het ziet als een kleine gok met geld dat je over hebt, en je snapt dat het ook nul kan worden — dan is crypto een interessante manier om de markt te leren kennen en mogelijk te profiteren van toekomstige groei.`
+  }
+];
+
+// Merge prefilled with user articles on load
+function initArticles() {
+  const saved = JSON.parse(localStorage.getItem('mv_articles') || '[]');
+  const savedIds = saved.map(a => a.id);
+  // Add prefilled articles that haven't been deleted by user
+  const deletedPre = JSON.parse(localStorage.getItem('mv_deleted_pre') || '[]');
+  const toAdd = PREFILLED_ARTICLES.filter(a => !deletedPre.includes(a.id) && !savedIds.includes(a.id));
+  articles = [...toAdd, ...saved];
+}
+
+// ===== NAV =====
+function showView(v) {
+  document.querySelectorAll('.view').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(el => el.classList.remove('active'));
+  document.getElementById('view-' + v).classList.add('active');
+  const idx = {site:0, budget:1, admin:2}[v];
+  if (idx !== undefined) document.querySelectorAll('.nav-tab')[idx].classList.add('active');
+  if (v === 'site') renderArticles();
+  if (v === 'admin') renderAdmin();
+  if (v === 'budget') { renderAll(); }
+}
+
+// ===== ARTICLES =====
+function saveArticles() { localStorage.setItem('mv_articles', JSON.stringify(articles)); }
+
+function filterCat(cat) {
+  activeCat = cat;
+  document.querySelectorAll('.cat-pill').forEach(p => {
+    p.classList.toggle('active', p.dataset.cat === cat);
+  });
+  renderArticles();
+  renderDB();
+}
+
+function renderArticles() {
+  renderDB();
+  const q = (document.getElementById('search-input')?.value || '').toLowerCase();
+  let filtered = articles.filter(a => {
+    const matchQ = !q || a.title.toLowerCase().includes(q) || a.excerpt.toLowerCase().includes(q);
+    const matchC = !activeCat || a.cat === activeCat;
+    return matchQ && matchC;
+  });
+  document.getElementById('article-count').textContent = filtered.length + ' artikel' + (filtered.length !== 1 ? 'en' : '');
+  const grid = document.getElementById('articles-grid');
+  if (!grid) return;
+  if (!filtered.length) {
+    grid.innerHTML = '';
+    return;
+  }
+  if (grid) grid.innerHTML = '';
+}
+
+function filterArticles() { renderArticles(); }
+
+function openArticle(id) {
+  const a = articles.find(x => x.id === id);
+  if (!a) return;
+  const c = CAT[a.cat] || CAT.online;
+  document.getElementById('art-detail-content').innerHTML = `
+    <div class="art-detail-cat" style="color:${c.color}"><span style="width:8px;height:8px;border-radius:50%;background:${c.color};display:inline-block;margin-right:6px"></span>${c.label}</div>
+    <h1>${a.title}</h1>
+    <div class="art-detail-meta">
+      <span class="art-badge" style="background:${c.bg};color:${c.color}">${a.source === 'ai' ? '✦ AI artikel' : '✎ Handmatig'}</span>
+      <span>${a.date}</span>
+    </div>
+    <div class="art-detail-body">${formatBody(a.body)}</div>`;
+  document.querySelectorAll('.view, .nav-tab').forEach(el => el.classList.remove('active'));
+  document.getElementById('view-article').classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+function formatBody(t) {
+  return t
+    .replace(/^## (.+)$/gm,'<h2>$1</h2>')
+    .replace(/^### (.+)$/gm,'<h3>$1</h3>')
+    .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g,'<a href="$2" target="_blank" class="art-link">$1</a>')
+    .replace(/^- (.+)$/gm,'<li>$1</li>')
+    .replace(/(<li>[\s\S]*?<\/li>\n?)+/g,'<ul>$&</ul>')
+    .split('\n\n').map(p=>p.startsWith('<')?p:`<p>${p}</p>`).join('');
+}
+
+// ===== ADMIN =====
+function renderAdmin() {
+  const ai = articles.filter(a=>a.source==='ai').length;
+  const man = articles.filter(a=>a.source==='manual').length;
+  document.getElementById('stat-total').textContent = articles.length;
+  document.getElementById('stat-ai').textContent = ai;
+  document.getElementById('stat-manual').textContent = man;
+  document.getElementById('list-count').textContent = articles.length + ' artikelen';
+  const list = document.getElementById('art-list');
+  list.innerHTML = articles.length ? [...articles].reverse().map(a => {
+    const c = CAT[a.cat] || CAT.online;
+    return `<div class="art-row">
+      <div class="art-dot" style="background:${c.color}"></div>
+      <div class="art-title">${a.title}</div>
+      <span class="art-src ${a.source==='ai'?'ai':'man'}">${a.source==='ai'?'AI':'Hand'}</span>
+      <div class="art-date">${a.date}</div>
+      <button class="icon-btn" onclick="openArticle('${a.id}')">👁</button>
+      <button class="icon-btn" onclick="deleteArticle('${a.id}')">🗑</button>
+    </div>`;
+  }).join('') : '<div style="text-align:center;padding:1.5rem;color:var(--muted);font-size:.85rem">Nog geen artikelen gepubliceerd.</div>';
+  ['daily','weekly','trending'].forEach(k => {
+    document.getElementById('toggle-'+k).classList.toggle('on', !!autoToggles[k]);
+  });
+  const q = localStorage.getItem('mv_queue') || defaultQueue();
+  document.getElementById('topic-queue').value = q;
+}
+
+function defaultQueue() {
+  return `bijverdienen als mama tijdens de slaapuurtjes
+Etsy shop beginnen als moeder stap voor stap
+freelancen als copywriter vanuit huis
+zelfstandigenaftrek aanvragen als ZZP-moeder
+digitale producten maken en verkopen
+social media manager worden zonder diploma
+thuiswerk combineren met kinderen
+passief inkomen ideeën voor moeders
+online cursus maken en verkopen Nederland
+VA virtual assistant werk vanuit huis`;
+}
+
+function deleteArticle(id) {
+  // Track deleted pre-filled articles
+  if (id.startsWith('pre')) {
+    const deleted = JSON.parse(localStorage.getItem('mv_deleted_pre') || '[]');
+    if (!deleted.includes(id)) deleted.push(id);
+    localStorage.setItem('mv_deleted_pre', JSON.stringify(deleted));
+  }
+  articles = articles.filter(a=>a.id!==id);
+  saveArticles(); renderAdmin(); renderArticles();
+  toast('Artikel verwijderd');
+}
+
+// ===== AI GENERATOR =====
+async function generateArticle() {
+  const topic = document.getElementById('gen-topic').value.trim();
+  const cat = document.getElementById('gen-cat').value;
+  const tone = document.getElementById('gen-tone').value;
+  if (!topic) { toast('Voer eerst een onderwerp in'); return; }
+  const btn = document.getElementById('gen-btn');
+  const btnText = document.getElementById('gen-btn-text');
+  btn.disabled = true; btnText.textContent = '✦ Artikel wordt geschreven...';
+  const preview = document.getElementById('gen-preview');
+  preview.className = 'gen-preview show'; preview.textContent = 'AI is aan het schrijven...';
+  document.getElementById('gen-actions').style.display = 'none';
+  try {
+    const res = await fetch('/.netlify/functions/claude', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({
+        model:'claude-sonnet-4-20250514', max_tokens:1000,
+        system: SYSTEM_WRITER,
+        messages:[{role:'user',content:`Schrijf een artikel voor MamaVerdient.nl over: "${topic}"\nCategorie: ${CAT[cat]?.label}\nToon: ${tone}\n\nGebruik exact:\nTITEL: [titel]\nEXCERPT: [2 zinnen]\nINHOUD:\n[artikel]`}]
+      })
+    });
+    const data = await res.json();
+    const text = data.content?.[0]?.text || '';
+    const tM = text.match(/TITEL:\s*(.+)/);
+    const eM = text.match(/EXCERPT:\s*(.+)/);
+    const bM = text.match(/INHOUD:\s*([\s\S]+)/);
+    generatedArticle = {
+      id: Date.now().toString(),
+      title: tM?.[1]?.trim() || topic,
+      excerpt: eM?.[1]?.trim() || '',
+      body: bM?.[1]?.trim() || text,
+      cat, source:'ai',
+      date: new Date().toLocaleDateString('nl-NL',{day:'numeric',month:'long',year:'numeric'})
+    };
+    preview.innerHTML = `<strong>${generatedArticle.title}</strong><br><br><em>${generatedArticle.excerpt}</em><br><br>${generatedArticle.body.substring(0,220)}...`;
+    document.getElementById('gen-actions').style.display = 'flex';
+  } catch(e) {
+    preview.textContent = 'Er ging iets mis. Probeer opnieuw.';
+  }
+  btn.disabled = false; btnText.textContent = '✦ Genereer artikel';
+}
+
+function publishGenerated() {
+  if (!generatedArticle) return;
+  articles.push(generatedArticle); saveArticles();
+  generatedArticle = null;
+  document.getElementById('gen-preview').className = 'gen-preview';
+  document.getElementById('gen-actions').style.display = 'none';
+  document.getElementById('gen-topic').value = '';
+  renderAdmin(); toast('Artikel gepubliceerd! 🌸');
+}
+
+function discardGenerated() {
+  generatedArticle = null;
+  document.getElementById('gen-preview').className = 'gen-preview';
+  document.getElementById('gen-actions').style.display = 'none';
+}
+
+// ===== MANUAL =====
+function publishManual() {
+  const title = document.getElementById('man-title').value.trim();
+  const cat = document.getElementById('man-cat').value;
+  const excerpt = document.getElementById('man-excerpt').value.trim();
+  const body = document.getElementById('man-body').value.trim();
+  if (!title || !body) { toast('Vul minimaal titel en inhoud in'); return; }
+  articles.push({
+    id: Date.now().toString(), title, cat,
+    excerpt: excerpt || title, body, source:'manual',
+    date: new Date().toLocaleDateString('nl-NL',{day:'numeric',month:'long',year:'numeric'})
+  });
+  saveArticles();
+  ['man-title','man-excerpt','man-body'].forEach(id=>document.getElementById(id).value='');
+  renderAdmin(); toast('Artikel gepubliceerd! ✓');
+}
+
+// ===== AUTOMATION =====
+function toggleAuto(k) {
+  autoToggles[k] = !autoToggles[k];
+  localStorage.setItem('mv_auto', JSON.stringify(autoToggles));
+  renderAdmin();
+}
+
+const AUTO_TOPICS = [
+  ['bijverdienen als moeder met een baby thuis','naptime'],
+  ['Etsy shop starten als creatieve mama','creatief'],
+  ['freelancen als tekstschrijver in deeltijd','freelance'],
+  ['digitale producten verkopen op Gumroad Nederland','online'],
+  ['ZZP starten als mama: wat moet je regelen','zzp'],
+  ['werk-privé balans als zelfstandige moeder','mindset'],
+  ['social media manager worden vanuit huis','online'],
+  ['printables maken en verkopen op Etsy','creatief'],
+];
+
+async function runAutoNow() {
+  toast('Auto-run gestart...');
+  const [topic, cat] = AUTO_TOPICS[Math.floor(Math.random()*AUTO_TOPICS.length)];
+  try {
+    const res = await fetch('/.netlify/functions/claude', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({
+        model:'claude-sonnet-4-20250514', max_tokens:1000,
+        system: SYSTEM_WRITER,
+        messages:[{role:'user',content:`Schrijf een artikel voor MamaVerdient.nl over: "${topic}"\n\nGebruik exact:\nTITEL: [titel]\nEXCERPT: [2 zinnen]\nINHOUD:\n[artikel]`}]
+      })
+    });
+    const data = await res.json();
+    const text = data.content?.[0]?.text||'';
+    const tM=text.match(/TITEL:\s*(.+)/), eM=text.match(/EXCERPT:\s*(.+)/), bM=text.match(/INHOUD:\s*([\s\S]+)/);
+    articles.push({
+      id:Date.now().toString(),
+      title:tM?.[1]?.trim()||topic, excerpt:eM?.[1]?.trim()||'',
+      body:bM?.[1]?.trim()||text, cat, source:'ai',
+      date:new Date().toLocaleDateString('nl-NL',{day:'numeric',month:'long',year:'numeric'})
+    });
+    saveArticles(); renderAdmin(); toast('Auto-artikel gepubliceerd! 🌸');
+  } catch(e) { toast('Auto-run mislukt. Probeer opnieuw.'); }
+}
+
+function saveQueue() {
+  localStorage.setItem('mv_queue', document.getElementById('topic-queue').value.trim());
+  toast('Wachtrij opgeslagen ✓');
+}
+
+// ===== CHAT =====
+function toggleChat() {
+  const p = document.getElementById('chat-panel');
+  p.classList.toggle('open');
+  if (p.classList.contains('open')) document.getElementById('chat-in').focus();
+}
+
+async function chatSend(txt) {
+  const input = document.getElementById('chat-in');
+  const val = (txt || input.value).trim();
+  if (!val) return;
+  input.value = '';
+  document.getElementById('chat-sugs').style.display = 'none';
+  const msgs = document.getElementById('chat-msgs');
+  const u = document.createElement('div');
+  u.className='cmsg user'; u.textContent=val; msgs.appendChild(u);
+  const typing = document.createElement('div');
+  typing.className='chat-typing'; typing.innerHTML='<span></span><span></span><span></span>';
+  msgs.appendChild(typing); msgs.scrollTop=msgs.scrollHeight;
+  chatHistory.push({role:'user',content:val});
+  try {
+    const res = await fetch('/.netlify/functions/claude',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:SYSTEM_CHAT,messages:chatHistory})
+    });
+    const data=await res.json();
+    const reply=data.content?.[0]?.text||'Sorry, er ging iets mis.';
+    typing.remove();
+    const b=document.createElement('div'); b.className='cmsg bot'; b.textContent=reply;
+    msgs.appendChild(b); msgs.scrollTop=msgs.scrollHeight;
+    chatHistory.push({role:'assistant',content:reply});
+  } catch(e) {
+    typing.remove();
+    const b=document.createElement('div'); b.className='cmsg bot'; b.textContent='Verbindingsfout. Probeer opnieuw.';
+    msgs.appendChild(b);
+  }
+}
+
+// ===== TOAST =====
+function toast(msg) {
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2600);
+}
+
+
+// ===== CURSUSSEN DATABASE =====
+const COURSES = {
+  naptime: [
+    { name: 'Faceless Niches: YouTube Cashcow bouwen', url: 'https://www.facelessniches.com/francis', tag: '🔥 Bestseller' },
+    { name: 'ElevenLabs: AI stemmen voor video', url: 'https://try.elevenlabs.io/lvyhk7ftktpq', tag: '🎙 Gratis proberen' },
+    { name: 'Nexlev: vind winstgevende niches', url: 'https://www.nexlev.io/?fpr=francis96', tag: '📊 Data-gedreven' },
+  ],
+  freelance: [
+    { name: 'Viral Academy: word een content creator', url: '#viral-academy', tag: '🚀 Populair' },
+    { name: 'Plug & Pay: start je eigen business', url: 'https://start.plugandpay.nl/r?id=pny1hqxV', tag: '14 dagen gratis' },
+    { name: 'Huddle: maak je eigen cursus', url: 'https://checkout.thehuddle.nl/r?id=DZhWY23O', tag: '14 dagen gratis' },
+  ],
+  creatief: [
+    { name: 'Verkopen op Etsy: stap voor stap', url: '#etsy', tag: '⭐ Aanrader' },
+    { name: 'Verkopen op Vinted', url: '#vinted', tag: 'Gratis starten' },
+    { name: 'Plug & Pay: eigen verkooppagina', url: 'https://start.plugandpay.nl/r?id=pny1hqxV', tag: '14 dagen gratis' },
+  ],
+  online: [
+    { name: 'Plug & Pay: eigen website in 1 uur', url: 'https://start.plugandpay.nl/r?id=pny1hqxV', tag: '🔥 Aanbevolen' },
+    { name: 'Huddle: eigen cursus in 1 uur', url: 'https://checkout.thehuddle.nl/r?id=DZhWY23O', tag: '🚀 Populair' },
+    { name: 'Faceless Niches: YouTube cashcow', url: 'https://www.facelessniches.com/francis', tag: '💰 Passief inkomen' },
+  ],
+  zzp: [
+    { name: 'ZZP starten: de complete gids', url: '#zzp', tag: '⭐ Aanrader' },
+    { name: 'Plug & Pay: automatische facturatie', url: 'https://start.plugandpay.nl/r?id=pny1hqxV', tag: '14 dagen gratis' },
+    { name: 'Huddle: verkoop je kennis als cursus', url: 'https://checkout.thehuddle.nl/r?id=DZhWY23O', tag: '14 dagen gratis' },
+  ],
+  mindset: [
+    { name: 'Plug & Pay: automatiseer je business', url: 'https://start.plugandpay.nl/r?id=pny1hqxV', tag: '14 dagen gratis' },
+    { name: 'Huddle: community voor ondernemende moeders', url: 'https://checkout.thehuddle.nl/r?id=DZhWY23O', tag: '14 dagen gratis' },
+  ],
+  crypto: [
+    { name: 'Bitvavo: veilig crypto kopen in Nederland', url: 'https://bitvavo.com/invite?a=F30E8B41FF', tag: '🇳🇱 Nederlands platform' },
+    { name: 'MEXC: voor gevorderde crypto handel', url: 'https://promote.mexc.com/r/TgGmqxsLAX', tag: '📈 Meer mogelijkheden' },
+  ]
+};
+
+function renderDB() {
+  const grid = document.getElementById('db-grid');
+  const countEl = document.getElementById('db-count');
+  if (!grid) return;
+  const q = (document.getElementById('db-search')?.value || '').toLowerCase();
+  const cat = activeCat;
+
+  // Build DB items from articles + course cards per category
+  let items = [];
+  const catsToShow = cat ? [cat] : Object.keys(COURSES);
+
+  catsToShow.forEach(c => {
+    const catArticles = articles.filter(a => {
+      const matchQ = !q || a.title.toLowerCase().includes(q) || a.excerpt.toLowerCase().includes(q);
+      return a.cat === c && matchQ;
+    });
+    if (catArticles.length) {
+      catArticles.forEach(a => items.push({
+        type: 'article', id: a.id, cat: a.cat,
+        title: a.title, excerpt: a.excerpt,
+        date: a.date, source: a.source,
+        courses: COURSES[a.cat] || []
+      }));
+    } else if (!q) {
+      items.push({
+        type: 'courses-only', cat: c,
+        title: CAT[c]?.label || c,
+        excerpt: 'Nog geen artikelen in deze categorie — bekijk alvast de aanbevolen cursussen.',
+        courses: COURSES[c] || []
+      });
+    }
+  });
+
+  if (!items.length) {
+    grid.innerHTML = '<div class="db-empty">Geen resultaten gevonden voor <strong>' + q + '</strong></div>';
+    countEl.textContent = '';
+    return;
+  }
+
+  countEl.textContent = '— ' + items.length + ' resultaat' + (items.length !== 1 ? 'en' : '');
+
+  grid.innerHTML = items.map(item => {
+    const c = CAT[item.cat] || CAT.online;
+    const coursesHTML = item.courses.length ? `
+      <div class="db-courses">
+        ${item.courses.map(course => `
+          <div class="db-course-item">
+            <div class="db-course-dot"></div>
+            <a href="${course.url}" target="_blank" class="db-course-link">${course.name}</a>
+            ${course.tag ? `<span class="db-course-tag">${course.tag}</span>` : ''}
+          </div>
+        `).join('')}
+      </div>` : '';
+
+    return `<div class="db-card">
+      <div class="db-card-top">
+        <div class="db-cat-row">
+          <div class="db-cat-dot" style="background:${c.color}"></div>
+          <div class="db-cat-lbl" style="color:${c.color}">${c.label}</div>
+          ${item.source ? `<span style="margin-left:auto;font-size:.65rem;color:var(--muted)">${item.source === 'ai' ? '✦ AI' : '✎ Handmatig'}</span>` : ''}
+        </div>
+        <div class="db-title" onclick="${item.id ? `openArticle('${item.id}')` : ''}">${item.title}</div>
+        <div class="db-excerpt">${formatBody(item.excerpt)}</div>
+      </div>
+      ${coursesHTML}
+    </div>`;
+  }).join('');
+}
+
+
+// ===== GITHUB PUBLISH =====
+function showGithubSettings() {
+  const modal = document.getElementById('github-modal');
+  modal.style.display = 'flex';
+  document.getElementById('gh-user').value = localStorage.getItem('gh_user') || '';
+  document.getElementById('gh-repo').value = localStorage.getItem('gh_repo') || '';
+  document.getElementById('gh-file').value = localStorage.getItem('gh_file') || 'index.html';
+  document.getElementById('gh-token').value = localStorage.getItem('gh_token') || '';
+}
+
+function saveGithubSettings() {
+  localStorage.setItem('gh_user', document.getElementById('gh-user').value.trim());
+  localStorage.setItem('gh_repo', document.getElementById('gh-repo').value.trim());
+  localStorage.setItem('gh_file', document.getElementById('gh-file').value.trim() || 'index.html');
+  localStorage.setItem('gh_token', document.getElementById('gh-token').value.trim());
+  document.getElementById('github-modal').style.display = 'none';
+  toast('GitHub instellingen opgeslagen ✓');
+}
+
+async function uploadAndPublish(input) {
+  const file = input.files[0];
+  if (!file) return;
+
+  const label = document.getElementById('upload-label');
+  label.textContent = '⏳ Bezig met uploaden...';
+
+  try {
+    // Read file as base64
+    const base64 = await new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result.split(',')[1]);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+
+    // Get current SHA via Netlify function
+    const shaRes = await fetch('/.netlify/functions/publish', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ getSha: true })
+    });
+    const shaData = await shaRes.json();
+    const sha = shaData.sha;
+
+    // Push via Netlify function
+    const pushRes = await fetch('/.netlify/functions/publish', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ content: base64, sha: sha })
+    });
+
+    const result = await pushRes.json();
+    if (pushRes.ok && result.success) {
+      toast('🚀 Gepubliceerd! Live in ~30 seconden.');
+    } else {
+      toast('Fout: ' + (result.error || 'onbekend'));
+    }
+  } catch(e) {
+    toast('Verbindingsfout. Probeer opnieuw.');
+  }
+
+  label.innerHTML = '📂 Bestand uploaden & publiceren<input type="file" id="html-upload" accept=".html" style="display:none" onchange="uploadAndPublish(this)">';
+}
+
+async function publishToGithub() {
+  const user  = localStorage.getItem('gh_user');
+  const repo  = localStorage.getItem('gh_repo');
+  const file  = localStorage.getItem('gh_file') || 'index.html';
+  const token = localStorage.getItem('gh_token');
+
+  if (!user || !repo || !token) {
+    toast('Stel eerst je GitHub gegevens in ⚙️');
+    showGithubSettings();
+    return;
+  }
+
+  const btn = document.getElementById('publish-btn');
+  btn.textContent = '⏳ Bezig...';
+  btn.disabled = true;
+
+  try {
+    // Get current file SHA (needed for update)
+    const getRes = await fetch(`https://api.github.com/repos/${user}/${repo}/contents/${file}`, {
+      headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json' }
+    });
+    const getJson = await getRes.json();
+    const sha = getJson.sha;
+
+    // Get full HTML of current page
+    const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+    const encoded = btoa(unescape(encodeURIComponent(html)));
+
+    // Push to GitHub
+    const pushRes = await fetch(`https://api.github.com/repos/${user}/${repo}/contents/${file}`, {
+      method: 'PUT',
+      headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        message: 'MamaVerdient update — ' + new Date().toLocaleString('nl-NL'),
+        content: encoded,
+        sha: sha
+      })
+    });
+
+    if (pushRes.ok) {
+      toast('🚀 Gepubliceerd! Live in ~30 seconden.');
+    } else {
+      const err = await pushRes.json();
+      toast('Fout: ' + (err.message || 'onbekend'));
+    }
+  } catch(e) {
+    toast('Verbindingsfout. Controleer je token.');
+  }
+
+  btn.textContent = '🚀 Publiceer naar site';
+  btn.disabled = false;
+}
+
+// ===== INIT =====
+initArticles();
+renderArticles();
+renderDB();
+</script>
+</body>
+</html>
