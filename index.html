@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="nl">
-<head>
+<html lang="nl"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MamaVerdient — Bijverdienen jouw business bestie</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
 <style>
 :root {
   --bg: #fdf8f3;
@@ -200,14 +199,14 @@ nav{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px 
     <span class="sub">jouw business bestie</span>
   </div>
   <div class="nav-tabs">
-    <button class="nav-tab active" onclick="showView('site')">Website</button>
+    <button class="nav-tab" onclick="showView('site')">Website</button>
     <button class="nav-tab" onclick="showView('budget')">💶 Budget Tool</button>
-    <button class="nav-tab" onclick="showView('admin')">Beheer / CMS</button>
+    <button class="nav-tab active" onclick="showView('admin')">Beheer / CMS</button>
   </div>
 </nav>
 
 <!-- WEBSITE -->
-<div id="view-site" class="view active">
+<div id="view-site" class="view">
   <div class="site-hero">
     <div class="hero-blob"></div>
     <div class="hero-blob2"></div>
@@ -236,9 +235,9 @@ nav{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px 
       <span class="cat-pill" onclick="filterCat('freelance')" data-cat="freelance">💻 Freelancen</span>
       <span class="cat-pill" onclick="filterCat('creatief')" data-cat="creatief">🎨 Creatief verkopen</span>
       <span class="cat-pill" onclick="filterCat('online')" data-cat="online">📱 Online business</span>
-      <span class="cat-pill" onclick="filterCat('zzp')" data-cat="zzp">📋 ZZP & belasting</span>
-      <span class="cat-pill" onclick="filterCat('mindset')" data-cat="mindset">✨ Mindset & balans</span>
-      <span class="cat-pill" onclick="filterCat('crypto')" data-cat="crypto">₿ Investeren & crypto</span>
+      <span class="cat-pill" onclick="filterCat('zzp')" data-cat="zzp">📋 ZZP &amp; belasting</span>
+      <span class="cat-pill" onclick="filterCat('mindset')" data-cat="mindset">✨ Mindset &amp; balans</span>
+      <span class="cat-pill" onclick="filterCat('crypto')" data-cat="crypto">₿ Investeren &amp; crypto</span>
     </div>
 
 <!-- DATABASE SECTION -->
@@ -257,7 +256,7 @@ nav{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px 
 .db-title{font-family:'Playfair Display',serif;font-size:.97rem;font-weight:700;line-height:1.3;margin-bottom:.3rem;cursor:pointer;transition:color .15s}
 .db-title:hover{color:var(--rose)}
 .db-excerpt{font-size:.78rem;color:var(--muted);line-height:1.5}
-.db-courses{padding:.75rem 1.1rem;background:var(--white);border-top:1px solid var(--border)}
+.db-courses{padding:.75rem 1.1rem;background:var(--bg)}
 .db-courses-lbl{font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem}
 .db-course-item{display:flex;align-items:center;gap:7px;margin-bottom:.4rem;font-size:.78rem}
 .db-course-dot{width:5px;height:5px;border-radius:50%;background:var(--rose);flex-shrink:0}
@@ -271,13 +270,24 @@ nav{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px 
 
 <div class="db-wrap">
   <div class="db-header">
-    <div class="section-label" style="margin-bottom:0;flex:1">Artikelen & Aanbevolen cursussen <span id="db-count" class="db-count"></span></div>
-    <input type="text" class="db-search" id="db-search" placeholder="🔍 Zoek in artikelen..." oninput="renderDB()" autocomplete="off">
+    <div class="section-label" style="margin-bottom:0;flex:1">Artikelen &amp; Cursussen <span id="db-count" class="db-count"></span></div>
+    <input type="text" class="db-search" id="db-search" placeholder="🔍 Zoek in artikelen..." oninput="renderDB()">
   </div>
-  <span id="article-count" style="display:none"></span>
-  <div class="db-grid" id="db-grid"></div>
+  <div class="db-grid" id="db-grid"><div class="db-empty">Geen resultaten gevonden voor <strong>francisneslo91-dev</strong></div></div>
 </div>
 
+<div class="section-label">Alle artikelen <span id="article-count" style="font-size:.75rem;font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)">1 artikel</span></div>
+    <div class="articles-grid" id="articles-grid"><div class="article-card" onclick="openArticle('1775328197593')">
+      <div class="card-top">
+        <div class="card-cat"><span class="card-cat-dot" style="background:#e8735a"></span>Naptime business</div>
+        <div class="card-title">Bijverdienen tijdens de slaapuurtjes: zo pak je die gouden momentjes slim aan</div>
+      </div>
+      <div style="padding:.75rem 1.25rem;font-size:.82rem;color:var(--muted);line-height:1.55;border-bottom:1px solid var(--border)">Die kostbare uren waarin je kindje slaapt zijn goud waard – en je kunt er letterlijk geld mee verdienen. Ontdek hoe je tijdens naptime een leuke bijverdienste opbouwt zonder stress.</div>
+      <div class="card-footer">
+        <span>✦ AI · 4 april 2026</span>
+        <span class="card-read">Lees meer →</span>
+      </div>
+    </div></div>
   </div>
 </div>
 
@@ -363,15 +373,15 @@ nav{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px 
 <div class="budget-summary">
   <div class="sum-card">
     <div class="sum-lbl">Totaal inkomen</div>
-    <div class="sum-val green" id="sum-income">€0</div>
+    <div class="sum-val green" id="sum-income">€2.500</div>
   </div>
   <div class="sum-card">
     <div class="sum-lbl">Totaal uitgaven</div>
-    <div class="sum-val red" id="sum-expenses">€0</div>
+    <div class="sum-val red" id="sum-expenses">€2.060</div>
   </div>
   <div class="sum-card">
     <div class="sum-lbl">Over / tekort</div>
-    <div class="sum-val neutral" id="sum-balance">€0</div>
+    <div class="sum-val green" id="sum-balance">€440</div>
   </div>
 </div>
 
@@ -380,9 +390,27 @@ nav{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px 
   <div class="budget-section">
     <div class="bs-header" style="background:var(--sage-light)">
       <div class="bs-title" style="color:var(--sage)">💚 Inkomen</div>
-      <div class="bs-total" id="income-total" style="color:var(--sage)">€0</div>
+      <div class="bs-total" id="income-total" style="color:var(--sage)">€2.500</div>
     </div>
-    <div class="bs-rows" id="income-rows"></div>
+    <div class="bs-rows" id="income-rows">
+    <div class="bs-row" id="row-i1">
+      <input class="bs-row-label" type="text" value="Salaris / uitkering" placeholder="Omschrijving..." oninput="updateLabel('income','i1',this.value)">
+      <input class="bs-row-amount" type="number" value="2500" placeholder="0" min="0" oninput="updateAmount('income','i1',this.value)" onchange="calcBudget()">
+      <button class="bs-row-del" onclick="deleteRow('income','i1')" title="Verwijderen">×</button>
+    </div>
+  
+    <div class="bs-row" id="row-i2">
+      <input class="bs-row-label" type="text" value="Partner inkomen" placeholder="Omschrijving..." oninput="updateLabel('income','i2',this.value)">
+      <input class="bs-row-amount" type="number" value="" placeholder="0" min="0" oninput="updateAmount('income','i2',this.value)" onchange="calcBudget()">
+      <button class="bs-row-del" onclick="deleteRow('income','i2')" title="Verwijderen">×</button>
+    </div>
+  
+    <div class="bs-row" id="row-i3">
+      <input class="bs-row-label" type="text" value="Bijverdiensten" placeholder="Omschrijving..." oninput="updateLabel('income','i3',this.value)">
+      <input class="bs-row-amount" type="number" value="" placeholder="0" min="0" oninput="updateAmount('income','i3',this.value)" onchange="calcBudget()">
+      <button class="bs-row-del" onclick="deleteRow('income','i3')" title="Verwijderen">×</button>
+    </div>
+  </div>
     <div style="padding:.4rem .6rem .8rem">
       <button class="bs-add" onclick="addRow('income')">+ Inkomstenbron toevoegen</button>
     </div>
@@ -392,9 +420,33 @@ nav{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px 
   <div class="budget-section">
     <div class="bs-header" style="background:#fde8e3">
       <div class="bs-title" style="color:var(--rose)">🏠 Vaste lasten</div>
-      <div class="bs-total" id="fixed-total" style="color:var(--rose)">€0</div>
+      <div class="bs-total" id="fixed-total" style="color:var(--rose)">€1.290</div>
     </div>
-    <div class="bs-rows" id="fixed-rows"></div>
+    <div class="bs-rows" id="fixed-rows">
+    <div class="bs-row" id="row-f1">
+      <input class="bs-row-label" type="text" value="Huur / hypotheek" placeholder="Omschrijving..." oninput="updateLabel('fixed','f1',this.value)">
+      <input class="bs-row-amount" type="number" value="900" placeholder="0" min="0" oninput="updateAmount('fixed','f1',this.value)" onchange="calcBudget()">
+      <button class="bs-row-del" onclick="deleteRow('fixed','f1')" title="Verwijderen">×</button>
+    </div>
+  
+    <div class="bs-row" id="row-f2">
+      <input class="bs-row-label" type="text" value="Energie &amp; water" placeholder="Omschrijving..." oninput="updateLabel('fixed','f2',this.value)">
+      <input class="bs-row-amount" type="number" value="180" placeholder="0" min="0" oninput="updateAmount('fixed','f2',this.value)" onchange="calcBudget()">
+      <button class="bs-row-del" onclick="deleteRow('fixed','f2')" title="Verwijderen">×</button>
+    </div>
+  
+    <div class="bs-row" id="row-f3">
+      <input class="bs-row-label" type="text" value="Verzekeringen" placeholder="Omschrijving..." oninput="updateLabel('fixed','f3',this.value)">
+      <input class="bs-row-amount" type="number" value="150" placeholder="0" min="0" oninput="updateAmount('fixed','f3',this.value)" onchange="calcBudget()">
+      <button class="bs-row-del" onclick="deleteRow('fixed','f3')" title="Verwijderen">×</button>
+    </div>
+  
+    <div class="bs-row" id="row-f4">
+      <input class="bs-row-label" type="text" value="Abonnementen" placeholder="Omschrijving..." oninput="updateLabel('fixed','f4',this.value)">
+      <input class="bs-row-amount" type="number" value="60" placeholder="0" min="0" oninput="updateAmount('fixed','f4',this.value)" onchange="calcBudget()">
+      <button class="bs-row-del" onclick="deleteRow('fixed','f4')" title="Verwijderen">×</button>
+    </div>
+  </div>
     <div style="padding:.4rem .6rem .8rem">
       <button class="bs-add" onclick="addRow('fixed')">+ Vaste last toevoegen</button>
     </div>
@@ -404,9 +456,33 @@ nav{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px 
   <div class="budget-section">
     <div class="bs-header" style="background:var(--warm-light)">
       <div class="bs-title" style="color:#c8a050">🛒 Variabele uitgaven</div>
-      <div class="bs-total" id="variable-total" style="color:#c8a050">€0</div>
+      <div class="bs-total" id="variable-total" style="color:#c8a050">€620</div>
     </div>
-    <div class="bs-rows" id="variable-rows"></div>
+    <div class="bs-rows" id="variable-rows">
+    <div class="bs-row" id="row-v1">
+      <input class="bs-row-label" type="text" value="Boodschappen" placeholder="Omschrijving..." oninput="updateLabel('variable','v1',this.value)">
+      <input class="bs-row-amount" type="number" value="400" placeholder="0" min="0" oninput="updateAmount('variable','v1',this.value)" onchange="calcBudget()">
+      <button class="bs-row-del" onclick="deleteRow('variable','v1')" title="Verwijderen">×</button>
+    </div>
+  
+    <div class="bs-row" id="row-v2">
+      <input class="bs-row-label" type="text" value="Transport" placeholder="Omschrijving..." oninput="updateLabel('variable','v2',this.value)">
+      <input class="bs-row-amount" type="number" value="120" placeholder="0" min="0" oninput="updateAmount('variable','v2',this.value)" onchange="calcBudget()">
+      <button class="bs-row-del" onclick="deleteRow('variable','v2')" title="Verwijderen">×</button>
+    </div>
+  
+    <div class="bs-row" id="row-v3">
+      <input class="bs-row-label" type="text" value="Kinderopvang" placeholder="Omschrijving..." oninput="updateLabel('variable','v3',this.value)">
+      <input class="bs-row-amount" type="number" value="" placeholder="0" min="0" oninput="updateAmount('variable','v3',this.value)" onchange="calcBudget()">
+      <button class="bs-row-del" onclick="deleteRow('variable','v3')" title="Verwijderen">×</button>
+    </div>
+  
+    <div class="bs-row" id="row-v4">
+      <input class="bs-row-label" type="text" value="Uit eten / hobby" placeholder="Omschrijving..." oninput="updateLabel('variable','v4',this.value)">
+      <input class="bs-row-amount" type="number" value="100" placeholder="0" min="0" oninput="updateAmount('variable','v4',this.value)" onchange="calcBudget()">
+      <button class="bs-row-del" onclick="deleteRow('variable','v4')" title="Verwijderen">×</button>
+    </div>
+  </div>
     <div style="padding:.4rem .6rem .8rem">
       <button class="bs-add" onclick="addRow('variable')">+ Uitgave toevoegen</button>
     </div>
@@ -415,10 +491,22 @@ nav{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px 
   <!-- SPAARDOELEN -->
   <div class="budget-section">
     <div class="bs-header" style="background:var(--plum-light)">
-      <div class="bs-title" style="color:var(--plum)">🎯 Sparen & doelen</div>
-      <div class="bs-total" id="savings-total" style="color:var(--plum)">€0</div>
+      <div class="bs-title" style="color:var(--plum)">🎯 Sparen &amp; doelen</div>
+      <div class="bs-total" id="savings-total" style="color:var(--plum)">€150</div>
     </div>
-    <div class="bs-rows" id="savings-rows"></div>
+    <div class="bs-rows" id="savings-rows">
+    <div class="bs-row" id="row-s1">
+      <input class="bs-row-label" type="text" value="Noodfonds" placeholder="Omschrijving..." oninput="updateLabel('savings','s1',this.value)">
+      <input class="bs-row-amount" type="number" value="100" placeholder="0" min="0" oninput="updateAmount('savings','s1',this.value)" onchange="calcBudget()">
+      <button class="bs-row-del" onclick="deleteRow('savings','s1')" title="Verwijderen">×</button>
+    </div>
+  
+    <div class="bs-row" id="row-s2">
+      <input class="bs-row-label" type="text" value="Vakantie" placeholder="Omschrijving..." oninput="updateLabel('savings','s2',this.value)">
+      <input class="bs-row-amount" type="number" value="50" placeholder="0" min="0" oninput="updateAmount('savings','s2',this.value)" onchange="calcBudget()">
+      <button class="bs-row-del" onclick="deleteRow('savings','s2')" title="Verwijderen">×</button>
+    </div>
+  </div>
     <div style="padding:.4rem .6rem .8rem">
       <button class="bs-add" onclick="addRow('savings')">+ Spaardoel toevoegen</button>
     </div>
@@ -428,22 +516,34 @@ nav{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px 
 <!-- UITGAVEN BREAKDOWN BAR -->
 <div class="budget-bar-wrap">
   <div class="budget-bar-title">📊 Verdeling uitgaven</div>
-  <div id="budget-bars"></div>
+  <div id="budget-bars"><div class="bar-item">
+        <div class="bar-label">Vaste lasten</div>
+        <div class="bar-track"><div class="bar-fill" style="width:63%;background:#e8735a"></div></div>
+        <div class="bar-pct" style="color:#e8735a">63%</div>
+      </div><div class="bar-item">
+        <div class="bar-label">Variabele</div>
+        <div class="bar-track"><div class="bar-fill" style="width:30%;background:#c8a050"></div></div>
+        <div class="bar-pct" style="color:#c8a050">30%</div>
+      </div><div class="bar-item">
+        <div class="bar-label">Sparen</div>
+        <div class="bar-track"><div class="bar-fill" style="width:7%;background:#7a5c7a"></div></div>
+        <div class="bar-pct" style="color:#7a5c7a">7%</div>
+      </div></div>
 </div>
 
 <!-- RESULTAAT -->
-<div class="budget-result" id="budget-result" style="display:none">
-  <div class="result-icon" id="result-icon"></div>
+<div class="budget-result pos" id="budget-result" style="display: flex;">
+  <div class="result-icon" id="result-icon">🎉</div>
   <div class="result-text">
-    <h3 id="result-title"></h3>
-    <p id="result-msg"></p>
+    <h3 id="result-title">Je hebt €440 over per maand!</h3>
+    <p id="result-msg">Goed bezig! Je kunt dit investeren, extra sparen, of inzetten als startkapitaal voor een side hustle.</p>
   </div>
 </div>
 
 <!-- SIDE HUSTLE TIP -->
-<div class="sidehustle-tip" id="sidehustle-tip">
+<div class="sidehustle-tip" id="sidehustle-tip" style="display: block;">
   <h3>💡 Bijverdienen tip voor jou</h3>
-  <p id="sidehustle-tip-text"></p>
+  <p id="sidehustle-tip-text">Met €440 per maand over kun je prima starten! 💡 Onze tip: zet het in als startkapitaal voor een online business. Begin met je boekhouding op orde via <a href="https://jouwaffiliatlink.nl/moneybird" target="_blank" style="color:#fff;font-weight:600;text-decoration:underline">Moneybird</a> — de eerste 3 maanden gratis voor ZZP'ers. Of start een Etsy shop met <a href="https://jouwaffiliatlink.nl/canva" target="_blank" style="color:#fff;font-weight:600;text-decoration:underline">Canva Pro</a> (30 dagen gratis proberen).</p>
 </div>
 
 <script>
@@ -590,7 +690,7 @@ function calcBudget() {
     document.getElementById('result-title').textContent = `Je hebt ${fmt(balance)} over per maand!`;
     document.getElementById('result-msg').textContent = 'Goed bezig! Je kunt dit investeren, extra sparen, of inzetten als startkapitaal voor een side hustle.';
     tipEl.style.display = 'block';
-    tipText.innerHTML = `Met ${fmt(balance)} per maand over kun je prima starten! 💡 Onze tip: zet het in als startkapitaal voor een online business. Begin met je boekhouding op orde via <a href="https://jouwaffiliatlink.nl/moneybird" target="_blank" style="color:#fff;font-weight:600;text-decoration:underline">Moneybird</a> — de eerste 3 maanden gratis voor ZZP-ers. Of start een Etsy shop met <a href="https://jouwaffiliatlink.nl/canva" target="_blank" style="color:#fff;font-weight:600;text-decoration:underline">Canva Pro</a> (30 dagen gratis proberen).`;
+    tipText.innerHTML = `Met ${fmt(balance)} per maand over kun je prima starten! 💡 Onze tip: zet het in als startkapitaal voor een online business. Begin met je boekhouding op orde via <a href="https://jouwaffiliatlink.nl/moneybird" target="_blank" style="color:#fff;font-weight:600;text-decoration:underline">Moneybird</a> — de eerste 3 maanden gratis voor ZZP'ers. Of start een Etsy shop met <a href="https://jouwaffiliatlink.nl/canva" target="_blank" style="color:#fff;font-weight:600;text-decoration:underline">Canva Pro</a> (30 dagen gratis proberen).`;
   } else if (balance >= 0) {
     resultEl.className = 'budget-result zero';
     document.getElementById('result-icon').textContent = '⚖️';
@@ -646,20 +746,17 @@ renderAll();
 </div>
 
 <!-- ADMIN -->
-<div id="view-admin" class="view">
+<div id="view-admin" class="view active">
   <div class="admin-top">
     <div>
-      <h2>Beheer & CMS</h2>
+      <h2>Beheer &amp; CMS</h2>
       <p>Genereer AI-artikelen, publiceer handmatig en beheer automatisering.</p>
     </div>
     <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
       <span class="art-src ai" style="font-size:.75rem;padding:4px 10px">AI artikel</span>
       <span class="art-src man" style="font-size:.75rem;padding:4px 10px">Handmatig</span>
       <button onclick="showGithubSettings()" style="background:var(--black);color:var(--white);border:none;border-radius:8px;padding:7px 14px;font-size:.78rem;font-weight:600;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;display:flex;align-items:center;gap:6px">⚙️ GitHub instellen</button>
-      <label id="upload-label" style="background:var(--rose);color:var(--white);border:none;border-radius:8px;padding:7px 14px;font-size:.78rem;font-weight:600;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;display:flex;align-items:center;gap:6px">
-        📂 Bestand uploaden & publiceren
-        <input type="file" id="html-upload" accept=".html" style="display:none" onchange="uploadAndPublish(this)">
-      </label>
+      <button onclick="publishToGithub()" id="publish-btn" style="background:var(--rose);color:var(--white);border:none;border-radius:8px;padding:7px 14px;font-size:.78rem;font-weight:600;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;display:flex;align-items:center;gap:6px" disabled="">⏳ Bezig...</button>
     </div>
   </div>
 
@@ -681,7 +778,7 @@ renderAll();
         <input type="text" id="gh-file" placeholder="bijv. index.html" value="index.html">
       </div>
       <div class="field">
-        <label>GitHub Personal Access Token <a href="https://github.com/settings/tokens/new?scopes=repo&description=MamaVerdient" target="_blank" style="color:var(--rose);font-size:.75rem;font-weight:600">→ Aanmaken</a></label>
+        <label>GitHub Personal Access Token <a href="https://github.com/settings/tokens/new?scopes=repo&amp;description=MamaVerdient" target="_blank" style="color:var(--rose);font-size:.75rem;font-weight:600">→ Aanmaken</a></label>
         <input type="password" id="gh-token" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
         <p style="font-size:.72rem;color:var(--muted);margin-top:.3rem">Zet bij aanmaken ✅ repo aan. Token wordt alleen lokaal opgeslagen.</p>
       </div>
@@ -693,8 +790,8 @@ renderAll();
   </div>
 
   <div class="admin-stats">
-    <div class="stat-card"><div class="stat-lbl">Totaal artikelen</div><div class="stat-val" id="stat-total">0</div></div>
-    <div class="stat-card"><div class="stat-lbl">AI gegenereerd</div><div class="stat-val rose" id="stat-ai">0</div></div>
+    <div class="stat-card"><div class="stat-lbl">Totaal artikelen</div><div class="stat-val" id="stat-total">1</div></div>
+    <div class="stat-card"><div class="stat-lbl">AI gegenereerd</div><div class="stat-val rose" id="stat-ai">1</div></div>
     <div class="stat-card"><div class="stat-lbl">Handmatig</div><div class="stat-val sage" id="stat-manual">0</div></div>
     <div class="stat-card"><div class="stat-lbl">Auto-run status</div><div class="stat-val" id="stat-auto" style="font-size:1rem;padding-top:.4rem">Weekelijks aan</div></div>
   </div>
@@ -717,17 +814,17 @@ renderAll();
           <option value="freelance">💻 Freelancen</option>
           <option value="creatief">🎨 Creatief verkopen</option>
           <option value="online">📱 Online business</option>
-          <option value="zzp">📋 ZZP & belasting</option>
-          <option value="mindset">✨ Mindset & balans</option>
-          <option value="crypto">₿ Investeren & crypto</option>
+          <option value="zzp">📋 ZZP &amp; belasting</option>
+          <option value="mindset">✨ Mindset &amp; balans</option>
+          <option value="crypto">₿ Investeren &amp; crypto</option>
         </select>
       </div>
       <div class="field">
         <label>Toon</label>
         <select id="gen-tone">
-          <option value="warm, persoonlijk en aanmoedigend">Warm & aanmoedigend</option>
-          <option value="praktisch en no-nonsense">Praktisch & to-the-point</option>
-          <option value="inspirerend en energiek">Inspirerend & energiek</option>
+          <option value="warm, persoonlijk en aanmoedigend">Warm &amp; aanmoedigend</option>
+          <option value="praktisch en no-nonsense">Praktisch &amp; to-the-point</option>
+          <option value="inspirerend en energiek">Inspirerend &amp; energiek</option>
         </select>
       </div>
       <button class="btn-full btn-rose-full" id="gen-btn" onclick="generateArticle()">
@@ -758,8 +855,8 @@ renderAll();
           <option value="freelance">💻 Freelancen</option>
           <option value="creatief">🎨 Creatief verkopen</option>
           <option value="online">📱 Online business</option>
-          <option value="zzp">📋 ZZP & belasting</option>
-          <option value="mindset">✨ Mindset & balans</option>
+          <option value="zzp">📋 ZZP &amp; belasting</option>
+          <option value="mindset">✨ Mindset &amp; balans</option>
         </select>
       </div>
       <div class="field">
@@ -778,11 +875,16 @@ renderAll();
       <div class="panel-hd">
         <div class="panel-icon" style="background:var(--warm-light)">≡</div>
         <div><h3>Alle artikelen</h3></div>
-        <span id="list-count" style="margin-left:auto;font-size:.75rem;color:var(--muted)"></span>
+        <span id="list-count" style="margin-left:auto;font-size:.75rem;color:var(--muted)">1 artikelen</span>
       </div>
-      <div class="art-list" id="art-list">
-        <div style="text-align:center;padding:1.5rem;color:var(--muted);font-size:.85rem">Nog geen artikelen gepubliceerd.</div>
-      </div>
+      <div class="art-list" id="art-list"><div class="art-row">
+      <div class="art-dot" style="background:#e8735a"></div>
+      <div class="art-title">Bijverdienen tijdens de slaapuurtjes: zo pak je die gouden momentjes slim aan</div>
+      <span class="art-src ai">AI</span>
+      <div class="art-date">4 april 2026</div>
+      <button class="icon-btn" onclick="openArticle('1775328197593')">👁</button>
+      <button class="icon-btn" onclick="deleteArticle('1775328197593')">🗑</button>
+    </div></div>
     </div>
 
     <!-- AUTOMATION -->
@@ -793,15 +895,15 @@ renderAll();
       </div>
       <div class="sched-row">
         <div><div class="sched-lbl">Dagelijks 1 artikel</div><div class="sched-sub">Elke ochtend om 08:00</div></div>
-        <button class="toggle" id="toggle-daily" onclick="toggleAuto('daily')"></button>
+        <button class="toggle on" id="toggle-daily" onclick="toggleAuto('daily')"></button>
       </div>
       <div class="sched-row">
         <div><div class="sched-lbl">Wekelijkse bulk (5x)</div><div class="sched-sub">Elke maandag, uit de wachtrij</div></div>
-        <button class="toggle on" id="toggle-weekly" onclick="toggleAuto('weekly')"></button>
+        <button class="toggle" id="toggle-weekly" onclick="toggleAuto('weekly')"></button>
       </div>
       <div class="sched-row">
         <div><div class="sched-lbl">Trending onderwerpen</div><div class="sched-sub">Actuele topics automatisch</div></div>
-        <button class="toggle" id="toggle-trending" onclick="toggleAuto('trending')"></button>
+        <button class="toggle on" id="toggle-trending" onclick="toggleAuto('trending')"></button>
       </div>
       <button class="btn-full btn-rose-full" style="margin-top:.75rem" onclick="runAutoNow()">⟳ Nu handmatig draaien</button>
     </div>
@@ -897,387 +999,6 @@ EXCERPT: [2 zinnen die vrouwen aanspreken]
 INHOUD:
 [Volledig artikel, minimaal 400 woorden, met ## koppen]`;
 
-
-// ===== PRE-FILLED ARTICLES =====
-const PREFILLED_ARTICLES = [
-  // NAPTIME BUSINESS
-  {
-    id: 'pre1', cat: 'naptime', source: 'manual',
-    date: '8 mei 2026',
-    title: 'Bijverdienen tijdens de slaapuurtjes: zo begin je',
-    excerpt: 'Je kindje slaapt en jij wilt die tijd slim gebruiken. Ontdek welke side hustles perfect passen in een uurtje naptime.',
-    body: `## Waarom naptime perfect is om te starten
-
-Als mama weet je hoe waardevol die kleine momentjes stilte zijn. Maar wist je dat je in 1 uurtje per dag al een serieuze bijverdienste kunt opbouwen?
-
-## De beste naptime businesses
-
-- **Digitale producten maken** — maak één keer een template of e-book en verkoop het oneindig via [Gumroad](https://jouwaffiliatlink.nl/gumroad)
-- **Freelance schrijven** — schrijf blogs voor bedrijven via [Fiverr](https://jouwaffiliatlink.nl/fiverr), gemiddeld €30–€75 per artikel
-- **Canva templates** — ontwerp templates en verkoop ze op Etsy via [Canva Pro](https://jouwaffiliatlink.nl/canva)
-
-## Hoeveel kun je verdienen?
-
-Met 5 uur per week is €200–€500 per maand realistisch binnen 3 maanden. Kleine stappen, grote impact!
-
-## Tip
-
-Start met iets wat je al kunt. Schrijf je goed? Begin met blogartikelen. Ben je creatief? Begin met Canva templates.`
-  },
-  {
-    id: 'pre2', cat: 'naptime', source: 'manual',
-    date: '8 mei 2026',
-    title: '5 online jobs die je kunt doen terwijl je baby slaapt',
-    excerpt: 'Van virtual assistant tot online tutor — deze 5 jobs passen perfect in de slaapuurtjes van je kindje.',
-    body: `## 1. Virtual Assistant (VA)
-
-Bedrijven zoeken VA medewerkers voor e-mail beheer, agenda planning en social media. Verdien €15–€25 per uur via [Upwork](https://jouwaffiliatlink.nl/upwork).
-
-## 2. Online tutor
-
-Geef les in vakken die je beheerst via platforms als Superprof. Ideaal in blokken van 45 minuten.
-
-## 3. Tekstschrijver
-
-Bedrijven hebben constant content nodig. Via [Fiverr](https://jouwaffiliatlink.nl/fiverr) kun je direct klanten vinden.
-
-## 4. Social media beheer
-
-Beheer Instagram of Facebook voor lokale bedrijven. Verdien €150–€300 per klant per maand.
-
-## 5. Digitale producten verkopen
-
-Maak printables, planners of templates en verkoop ze via [Gumroad](https://jouwaffiliatlink.nl/gumroad) of Etsy.`
-  },
-
-  // FREELANCEN
-  {
-    id: 'pre3', cat: 'freelance', source: 'manual',
-    date: '8 mei 2026',
-    title: 'Freelancen als mama: zo vind je je eerste klant',
-    excerpt: 'Je eerste freelance klant vinden is het moeilijkst. Met deze stappen zet je de eerste stap — ook als je weinig tijd hebt.',
-    body: `## Waar begin je?
-
-Veel moeders denken dat freelancen veel tijd kost, maar je kunt starten met slechts 5 uur per week.
-
-## Stap 1: Kies je dienst
-
-Waar ben je goed in? Schrijven, ontwerpen, administratie, social media? Kies één ding en doe dat goed.
-
-## Stap 2: Maak een profiel aan
-
-Registreer je op [Fiverr](https://jouwaffiliatlink.nl/fiverr) of [Upwork](https://jouwaffiliatlink.nl/upwork). Schrijf een duidelijk profiel met jouw expertise.
-
-## Stap 3: Je eerste klant
-
-Vertel je netwerk wat je doet. Stuur een berichtje naar 5 bekenden. Eerste klanten komen vaak uit je eigen kring.
-
-## Stap 4: Regel je administratie
-
-Start direct met [Moneybird](https://jouwaffiliatlink.nl/moneybird) voor facturen — 3 maanden gratis voor nieuwe gebruikers.
-
-## Wat kun je verdienen?
-
-Als beginnend freelancer €15–€25 per uur. Na 6 maanden ervaring €35–€75 per uur.`
-  },
-  {
-    id: 'pre4', cat: 'freelance', source: 'manual',
-    date: '8 mei 2026',
-    title: 'Hoeveel kun je verdienen als freelance mama?',
-    excerpt: 'Realistische cijfers over freelance inkomsten voor moeders die parttime werken — zonder mooier te maken dan het is.',
-    body: `## De eerlijke cijfers
-
-Freelancen is geen snelle weg naar rijkdom, maar wel een slimme manier om flexibel inkomen te verdienen.
-
-## Wat je kunt verwachten
-
-- **Maand 1-3:** €0–€300 (opbouwfase, eerste klanten vinden)
-- **Maand 4-6:** €300–€800 (mond-tot-mond reclame begint)
-- **Na 6 maanden:** €800–€2.000+ afhankelijk van je niche
-
-## De slimste niches voor moeders
-
-- **Copywriting** — altijd gevraagd, werk thuis
-- **Boekhouding** — regelmatig terugkerende klanten
-- **Social media** — flexibele werktijden
-- **VA-werk** — lage drempel om te starten via [Upwork](https://jouwaffiliatlink.nl/upwork)
-
-## Tip: verhoog je tarief stap voor stap
-
-Begin laag om ervaring op te doen, verhoog je tarief elke 3 maanden met €5 per uur.`
-  },
-
-  // CREATIEF VERKOPEN
-  {
-    id: 'pre5', cat: 'creatief', source: 'manual',
-    date: '8 mei 2026',
-    title: 'Etsy shop beginnen als mama: alles wat je moet weten',
-    excerpt: 'Een Etsy shop starten kost €0 en kan je maandelijks honderden euros opleveren. Zo begin je slim.',
-    body: `## Waarom Etsy?
-
-Etsy heeft miljoenen kopers die actief zoeken naar unieke producten. Jij hoeft alleen maar te maken — Etsy regelt de rest.
-
-## Wat verkoop je?
-
-- **Printables** — planners, dagboeken, lijstjes (maken via [Canva Pro](https://jouwaffiliatlink.nl/canva))
-- **Digital downloads** — recepten, gidsen, templates
-- **Handgemaakte items** — sieraden, kaarten, decoratie
-
-## Stap voor stap starten
-
-1. Maak een Etsy account aan
-2. Kies je niche — begin smal (bijv. alleen planners voor moeders)
-3. Maak 5–10 producten via [Canva Pro](https://jouwaffiliatlink.nl/canva)
-4. Schrijf goede producttitels met zoekwoorden
-5. Deel je shop op Pinterest voor gratis verkeer
-
-## Hoeveel verdien je?
-
-Printables verkopen voor €3–€15 per stuk. Met 50 verkopen per maand verdien je al €150–€750 passief.`
-  },
-  {
-    id: 'pre6', cat: 'creatief', source: 'manual',
-    date: '8 mei 2026',
-    title: 'Canva templates verkopen: passief inkomen voor creatieve moeders',
-    excerpt: "Maak één keer een Canva template en verkoop hem honderden keren. De perfecte naptime business voor creatieve moeders.",
-    body: `## Wat zijn Canva templates?
-
-Canva templates zijn kant-en-klare ontwerpen die anderen kunnen aanpassen. Denk aan Instagram posts, planners, CV's of uitnodigingen.
-
-## Waarom dit werkt
-
-- Eenmalig maken, oneindig verkopen
-- Geen voorraad, geen verzendkosten
-- Werk wanneer het jou uitkomt
-
-## Aan de slag met [Canva Pro](https://jouwaffiliatlink.nl/canva)
-
-Met Canva Pro maak je professionele templates die je mag verkopen. Probeer 30 dagen gratis.
-
-## Waar verkoop je ze?
-
-- **Etsy** — grootste marktplaats voor Canva templates
-- **Gumroad** — via [Gumroad](https://jouwaffiliatlink.nl/gumroad) verkoop je direct zonder commissie
-- **Creative Market** — hogere prijzen, meer design-gerichte kopers
-
-## Verdiensten
-
-Populaire template-packs verkopen voor €9–€29. Met 30 verkopen per maand verdien je €270–€870 passief.`
-  },
-
-  // ONLINE BUSINESS
-  {
-    id: 'pre7', cat: 'online', source: 'manual',
-    date: '8 mei 2026',
-    title: 'Affiliate marketing voor moeders: zo verdien je commissie',
-    excerpt: 'Schrijf over producten die je zelf gebruikt en verdien commissie als anderen ze kopen. Zo werkt affiliate marketing.',
-    body: `## Wat is affiliate marketing?
-
-Je promoot producten van andere bedrijven en verdient een commissie bij elke verkoop. Zonder eigen product, zonder voorraad.
-
-## Hoe begin je?
-
-1. Kies een niche die je kent (moederschap, gezondheid, thuiswerken)
-2. Start een blog of Instagram account
-3. Meld je aan bij affiliate programma's
-
-## Beste affiliate programma's voor moeders
-
-- **Bol.com** — 5-8% commissie op bijna alles
-- **[Moneybird](https://jouwaffiliatlink.nl/moneybird)** — €30 per nieuwe klant
-- **[Canva Pro](https://jouwaffiliatlink.nl/canva)** — 80% van de eerste betaling
-- **[Fiverr](https://jouwaffiliatlink.nl/fiverr)** — €15–€150 per doorverwezen klant
-
-## Hoeveel kun je verdienen?
-
-Met een kleine blog van 1.000 bezoekers per maand is €100–€500 per maand realistisch.`
-  },
-  {
-    id: 'pre8', cat: 'online', source: 'manual',
-    date: '8 mei 2026',
-    title: 'Digitale producten verkopen: de ultieme gids voor moeders',
-    excerpt: 'Maak één keer iets waardevols en verkoop het oneindig. Digitale producten zijn de beste manier voor passief inkomen.',
-    body: `## Waarom digitale producten?
-
-- Geen voorraad of verzendkosten
-- Automatisch geleverd na aankoop
-- Schaalbaar zonder extra werk
-
-## Wat kun je maken?
-
-- **E-books** — schrijf over iets waar jij expert in bent
-- **Online cursussen** — deel je kennis in video's
-- **Templates** — Canva, Excel, Notion
-- **Printables** — planners, trackers, gidsen
-
-## Waar verkoop je?
-
-Start met [Gumroad](https://jouwaffiliatlink.nl/gumroad) — gratis te gebruiken, directe uitbetaling.
-
-## Stap voor stap
-
-1. Kies je product (begin met een e-book of printable)
-2. Maak het in [Canva Pro](https://jouwaffiliatlink.nl/canva)
-3. Upload op Gumroad of Etsy
-4. Deel op social media
-
-## Verdiensten
-
-E-books verkopen voor €7–€29. Met 20 verkopen per maand verdien je €140–€580 passief.`
-  },
-
-  // ZZP & BELASTING
-  {
-    id: 'pre9', cat: 'zzp', source: 'manual',
-    date: '8 mei 2026',
-    title: 'ZZP starten als mama: alles wat je moet regelen',
-    excerpt: 'KvK, BTW, zelfstandigenaftrek — als je als mama gaat freelancen zijn er een paar dingen die je moet regelen. Hier is de checklist.',
-    body: `## Stap 1: KvK registratie
-
-Registreer je bedrijf bij de Kamer van Koophandel voor €75. Dit doe je online in 15 minuten via kvk.nl.
-
-## Stap 2: Bankrekening
-
-Open een zakelijke bankrekening. Houd privé en zakelijk altijd gescheiden.
-
-## Stap 3: Boekhouding
-
-Start direct met [Moneybird](https://jouwaffiliatlink.nl/moneybird) — speciaal voor ZZP-ers, 3 maanden gratis. Stuur je eerste factuur binnen 5 minuten.
-
-## Stap 4: Belasting
-
-- **BTW** — ben je BTW-plichtig? Vraag de kleineondernemersregeling (KOR) aan als je onder €20.000 per jaar verdient
-- **Zelfstandigenaftrek** — €3.750 aftrek als je minimaal 1.225 uur per jaar werkt
-- **Belastingvrije bijverdienste** — particulieren mogen tot €8.700 per jaar verdienen zonder dit als winst op te geven
-
-## Tip
-
-Maak gebruik van de startersaftrek in de eerste 3 jaar — extra €2.123 aftrek bovenop de zelfstandigenaftrek.`
-  },
-  {
-    id: 'pre10', cat: 'zzp', source: 'manual',
-    date: '8 mei 2026',
-    title: 'Hoeveel mag je bijverdienen zonder belasting te betalen?',
-    excerpt: 'Veel moeders denken dat bijverdienen ingewikkeld is qua belasting. De regels zijn simpeler dan je denkt.',
-    body: `## De belastingvrije grens
-
-Als particulier (geen ZZP) mag je tot **€8.700 per jaar** bijverdienen zonder dit als winst op te geven. Dit heet de resultaat overige werkzaamheden regeling.
-
-## Als je meer verdient
-
-Verdien je meer dan €8.700 per jaar? Dan is het slim om je als ZZP-er in te schrijven en gebruik te maken van:
-
-- **Zelfstandigenaftrek** — €3.750
-- **MKB winstvrijstelling** — 14% van je winst
-- **Startersaftrek** — €2.123 extra in de eerste 3 jaar
-
-## Boekhouding bijhouden
-
-Gebruik [Moneybird](https://jouwaffiliatlink.nl/moneybird) om alles bij te houden. Zo sta je nooit voor verrassingen bij de belastingaangifte.
-
-## Tip
-
-Leg altijd 20-30% van je inkomsten apart voor de belasting. Zo kom je nooit tekort.`
-  },
-
-  // MINDSET
-  {
-    id: 'pre11', cat: 'mindset', source: 'manual',
-    date: '8 mei 2026',
-    title: 'Werk-privé balans als ondernemer mama: zo doe je dat',
-    excerpt: 'Ondernemen met kinderen is een uitdaging. Maar met de juiste mindset en planning is het absoluut mogelijk.',
-    body: `## De grootste uitdaging
-
-Schuldgevoel. Veel moeders voelen zich schuldig als ze werken terwijl de kinderen er zijn — en schuldig als ze niet werken terwijl er deadlines zijn.
-
-## De mindset shift
-
-Jij bent een betere moeder als jij je gelukkig en vervuld voelt. Ondernemen geeft je dat gevoel van onafhankelijkheid en trots.
-
-## Praktische tips
-
-- **Blok vaste werktijden** — communiceer dit naar je gezin
-- **Zeg nee** — niet elke kans is de juiste kans
-- **Batching** — doe gelijksoortige taken achter elkaar
-- **Automatiseer** — gebruik tools die je tijd besparen
-
-## Zorg goed voor jezelf
-
-Je kunt niet geven wat je niet hebt. Plan ook tijd voor jezelf in je agenda — en behandel het als een afspraak.
-
-## Inspiratie nodig?
-
-Volg andere ondernemende moeders op Instagram. Community maakt het verschil.`
-  },
-
-  // INVESTEREN & CRYPTO
-  {
-    id: 'pre12', cat: 'crypto', source: 'manual',
-    date: '8 mei 2026',
-    title: 'Beleggen als mama: zo begin je veilig met €50 per maand',
-    excerpt: 'Je hoeft geen tonnen te hebben om te beginnen met beleggen. Met €50 per maand bouw je al aan je financiële toekomst.',
-    body: `## Waarom beginnen met beleggen?
-
-Spaarrente is historisch laag. Je geld op de bank verliest langzaam waarde door inflatie. Beleggen is de manier om je geld voor je te laten werken.
-
-## Begin klein en gespreid
-
-- **ETF's** — een mandje aandelen dat automatisch gespreids is. Laag risico, stabiel rendement op lange termijn
-- **Index fondsen** — volgen de markt, geen actieve kennis nodig
-- **Maandelijks inleggen** — spreid je risico over de tijd
-
-## Waar begin je?
-
-Platforms als DEGIRO of Brand New Day zijn laagdrempelig voor beginners.
-
-## Crypto: wel of niet?
-
-Crypto is volatiel — grote winsten maar ook grote verliezen mogelijk. Investeer nooit meer dan je kunt missen. Begin met maximaal 5-10% van je beleggingsbudget in crypto.
-
-## Gouden regel
-
-Beleg alleen geld dat je de komende 5 jaar niet nodig hebt.`
-  },
-  {
-    id: 'pre13', cat: 'crypto', source: 'manual',
-    date: '8 mei 2026',
-    title: 'Crypto voor beginners: wat je als mama moet weten',
-    excerpt: 'Bitcoin, Ethereum, altcoins — de cryptowereld kan overweldigend zijn. Dit is wat je echt moet weten voor je begint.',
-    body: `## Wat is crypto?
-
-Cryptovaluta is digitaal geld dat niet wordt beheerd door een bank of overheid. Bitcoin is de bekendste, maar er zijn duizenden andere munten.
-
-## De risico's
-
-Crypto is extreem volatiel. Prijzen kunnen 50% zakken in een week. Investeer alleen geld dat je kunt missen.
-
-## Hoe begin je veilig?
-
-1. Start met een kleine investering (€50–€100)
-2. Koop alleen Bitcoin of Ethereum als beginner
-3. Gebruik een betrouwbaar platform
-4. Bewaar je crypto veilig (hardware wallet voor grotere bedragen)
-
-## De DCA strategie
-
-DCA = Dollar Cost Averaging. Koop elke maand een vast bedrag, ongeacht de prijs. Dit spreidt je risico over de tijd.
-
-## Belasting
-
-In Nederland betaal je belasting over je crypto als vermogen in box 3. Houd je transacties bij voor de belastingaangifte.`
-  }
-];
-
-// Merge prefilled with user articles on load
-function initArticles() {
-  const saved = JSON.parse(localStorage.getItem('mv_articles') || '[]');
-  const savedIds = saved.map(a => a.id);
-  // Add prefilled articles that haven't been deleted by user
-  const deletedPre = JSON.parse(localStorage.getItem('mv_deleted_pre') || '[]');
-  const toAdd = PREFILLED_ARTICLES.filter(a => !deletedPre.includes(a.id) && !savedIds.includes(a.id));
-  articles = [...toAdd, ...saved];
-}
-
 // ===== NAV =====
 function showView(v) {
   document.querySelectorAll('.view').forEach(el => el.classList.remove('active'));
@@ -1303,7 +1024,7 @@ function filterCat(cat) {
 }
 
 function renderArticles() {
-  renderDB();
+  const grid = document.getElementById('articles-grid');
   const q = (document.getElementById('search-input')?.value || '').toLowerCase();
   let filtered = articles.filter(a => {
     const matchQ = !q || a.title.toLowerCase().includes(q) || a.excerpt.toLowerCase().includes(q);
@@ -1311,13 +1032,24 @@ function renderArticles() {
     return matchQ && matchC;
   });
   document.getElementById('article-count').textContent = filtered.length + ' artikel' + (filtered.length !== 1 ? 'en' : '');
-  const grid = document.getElementById('articles-grid');
-  if (!grid) return;
   if (!filtered.length) {
-    grid.innerHTML = '';
+    grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--muted);font-size:.9rem">${q || activeCat ? 'Geen artikelen gevonden voor deze selectie.' : 'Nog geen artikelen. Ga naar <strong>Beheer</strong> om te starten.'}</div>`;
     return;
   }
-  if (grid) grid.innerHTML = '';
+  grid.innerHTML = [...filtered].reverse().map(a => {
+    const c = CAT[a.cat] || CAT.online;
+    return `<div class="article-card" onclick="openArticle('${a.id}')">
+      <div class="card-top">
+        <div class="card-cat"><span class="card-cat-dot" style="background:${c.color}"></span>${c.label}</div>
+        <div class="card-title">${a.title}</div>
+      </div>
+      <div style="padding:.75rem 1.25rem;font-size:.82rem;color:var(--muted);line-height:1.55;border-bottom:1px solid var(--border)">${a.excerpt}</div>
+      <div class="card-footer">
+        <span>${a.source === 'ai' ? '✦ AI' : '✎ Handmatig'} · ${a.date}</span>
+        <span class="card-read">Lees meer →</span>
+      </div>
+    </div>`;
+  }).join('');
 }
 
 function filterArticles() { renderArticles(); }
@@ -1390,12 +1122,6 @@ VA virtual assistant werk vanuit huis`;
 }
 
 function deleteArticle(id) {
-  // Track deleted pre-filled articles
-  if (id.startsWith('pre')) {
-    const deleted = JSON.parse(localStorage.getItem('mv_deleted_pre') || '[]');
-    if (!deleted.includes(id)) deleted.push(id);
-    localStorage.setItem('mv_deleted_pre', JSON.stringify(deleted));
-  }
   articles = articles.filter(a=>a.id!==id);
   saveArticles(); renderAdmin(); renderArticles();
   toast('Artikel verwijderd');
@@ -1614,31 +1340,38 @@ function renderDB() {
   const q = (document.getElementById('db-search')?.value || '').toLowerCase();
   const cat = activeCat;
 
-  // Build DB items from articles + course cards per category
+  // Build DB items from articles + static course entries per category
   let items = [];
-  const catsToShow = cat ? [cat] : Object.keys(COURSES);
 
-  catsToShow.forEach(c => {
-    const catArticles = articles.filter(a => {
-      const matchQ = !q || a.title.toLowerCase().includes(q) || a.excerpt.toLowerCase().includes(q);
-      return a.cat === c && matchQ;
-    });
-    if (catArticles.length) {
-      catArticles.forEach(a => items.push({
-        type: 'article', id: a.id, cat: a.cat,
-        title: a.title, excerpt: a.excerpt,
-        date: a.date, source: a.source,
-        courses: COURSES[a.cat] || []
-      }));
-    } else if (!q) {
-      items.push({
-        type: 'courses-only', cat: c,
-        title: CAT[c]?.label || c,
-        excerpt: 'Nog geen artikelen in deze categorie — bekijk alvast de aanbevolen cursussen.',
-        courses: COURSES[c] || []
-      });
-    }
+  // Add published articles that match filter
+  const filtered = articles.filter(a => {
+    const matchQ = !q || a.title.toLowerCase().includes(q) || a.excerpt.toLowerCase().includes(q);
+    const matchC = !cat || a.cat === cat;
+    return matchQ && matchC;
   });
+
+  // If no articles yet, show category course cards
+  if (!filtered.length && !q) {
+    const cats = cat ? [cat] : Object.keys(COURSES);
+    items = cats.map(c => ({
+      type: 'courses-only',
+      cat: c,
+      title: CAT[c]?.label || c,
+      excerpt: 'Nog geen artikelen in deze categorie — bekijk de aanbevolen cursussen.',
+      courses: COURSES[c] || []
+    }));
+  } else {
+    items = filtered.map(a => ({
+      type: 'article',
+      id: a.id,
+      cat: a.cat,
+      title: a.title,
+      excerpt: a.excerpt,
+      date: a.date,
+      source: a.source,
+      courses: COURSES[a.cat] || []
+    }));
+  }
 
   if (!items.length) {
     grid.innerHTML = '<div class="db-empty">Geen resultaten gevonden voor <strong>' + q + '</strong></div>';
@@ -1652,6 +1385,7 @@ function renderDB() {
     const c = CAT[item.cat] || CAT.online;
     const coursesHTML = item.courses.length ? `
       <div class="db-courses">
+        <div class="db-courses-lbl">📚 Aanbevolen cursussen</div>
         ${item.courses.map(course => `
           <div class="db-course-item">
             <div class="db-course-dot"></div>
@@ -1694,51 +1428,6 @@ function saveGithubSettings() {
   localStorage.setItem('gh_token', document.getElementById('gh-token').value.trim());
   document.getElementById('github-modal').style.display = 'none';
   toast('GitHub instellingen opgeslagen ✓');
-}
-
-async function uploadAndPublish(input) {
-  const file = input.files[0];
-  if (!file) return;
-
-  const label = document.getElementById('upload-label');
-  label.textContent = '⏳ Bezig met uploaden...';
-
-  try {
-    // Read file as base64
-    const base64 = await new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => resolve(reader.result.split(',')[1]);
-      reader.onerror = reject;
-      reader.readAsDataURL(file);
-    });
-
-    // Get current SHA via Netlify function
-    const shaRes = await fetch('/.netlify/functions/publish', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ getSha: true })
-    });
-    const shaData = await shaRes.json();
-    const sha = shaData.sha;
-
-    // Push via Netlify function
-    const pushRes = await fetch('/.netlify/functions/publish', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ content: base64, sha: sha })
-    });
-
-    const result = await pushRes.json();
-    if (pushRes.ok && result.success) {
-      toast('🚀 Gepubliceerd! Live in ~30 seconden.');
-    } else {
-      toast('Fout: ' + (result.error || 'onbekend'));
-    }
-  } catch(e) {
-    toast('Verbindingsfout. Probeer opnieuw.');
-  }
-
-  label.innerHTML = '📂 Bestand uploaden & publiceren<input type="file" id="html-upload" accept=".html" style="display:none" onchange="uploadAndPublish(this)">';
 }
 
 async function publishToGithub() {
@@ -1795,9 +1484,9 @@ async function publishToGithub() {
 }
 
 // ===== INIT =====
-initArticles();
 renderArticles();
 renderDB();
 </script>
-</body>
-</html>
+
+
+</body></html>
