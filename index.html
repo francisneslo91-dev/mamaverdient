@@ -230,9 +230,9 @@ nav{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px 
   <div class="site-content">
     <input type="text" id="search-input" style="display:none" oninput="filterArticles()">
     <div class="cat-pills" id="cat-pills">
-      <span class="cat-pill" onclick="filterCat('')" data-cat="">Alles</span>
+      <span class="cat-pill active" onclick="filterCat('')" data-cat="">Alles</span>
       <span class="cat-pill" onclick="filterCat('naptime')" data-cat="naptime">☕ Naptime business</span>
-      <span class="cat-pill active" onclick="filterCat('freelance')" data-cat="freelance">💻 Freelancen</span>
+      <span class="cat-pill" onclick="filterCat('freelance')" data-cat="freelance">💻 Freelancen</span>
       <span class="cat-pill" onclick="filterCat('creatief')" data-cat="creatief">🎨 Creatief verkopen</span>
       <span class="cat-pill" onclick="filterCat('online')" data-cat="online">📱 Online business</span>
       <span class="cat-pill" onclick="filterCat('zzp')" data-cat="zzp">📋 ZZP &amp; belasting</span>
@@ -270,47 +270,24 @@ nav{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px 
 
 <div class="db-wrap">
   <div class="db-header">
-    <div class="section-label" style="margin-bottom:0;flex:1">Artikelen &amp; Cursussen <span id="db-count" class="db-count">— 1 resultaat</span></div>
+    <div class="section-label" style="margin-bottom:0;flex:1">Artikelen &amp; Cursussen <span id="db-count" class="db-count"></span></div>
     <input type="text" class="db-search" id="db-search" placeholder="🔍 Zoek in artikelen..." oninput="renderDB()">
   </div>
-  <div class="db-grid" id="db-grid"><div class="db-card">
-      <div class="db-card-top">
-        <div class="db-cat-row">
-          <div class="db-cat-dot" style="background:#7a9e87"></div>
-          <div class="db-cat-lbl" style="color:#7a9e87">Freelancen</div>
-          
-        </div>
-        <div class="db-title" onclick="">Freelancen</div>
-        <div class="db-excerpt">Nog geen artikelen in deze categorie — bekijk de aanbevolen cursussen.</div>
-      </div>
-      
-      <div class="db-courses">
-        <div class="db-courses-lbl">📚 Aanbevolen cursussen</div>
-        
-          <div class="db-course-item">
-            <div class="db-course-dot"></div>
-            <a href="https://jouwaffiliatlink.nl/freelance" target="_blank" class="db-course-link">Freelance Kickstart Cursus</a>
-            <span class="db-course-tag">🚀 Populair</span>
-          </div>
-        
-          <div class="db-course-item">
-            <div class="db-course-dot"></div>
-            <a href="https://jouwaffiliatlink.nl/copy" target="_blank" class="db-course-link">Copywriting voor beginners</a>
-            
-          </div>
-        
-          <div class="db-course-item">
-            <div class="db-course-dot"></div>
-            <a href="https://jouwaffiliatlink.nl/va" target="_blank" class="db-course-link">VA training: virtual assistant worden</a>
-            <span class="db-course-tag">⭐ Aanrader</span>
-          </div>
-        
-      </div>
-    </div></div>
+  <div class="db-grid" id="db-grid"><div class="db-empty">Geen resultaten gevonden voor <strong>francisneslo91-dev</strong></div></div>
 </div>
 
-<div class="section-label">Alle artikelen <span id="article-count" style="font-size:.75rem;font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)">0 artikelen</span></div>
-    <div class="articles-grid" id="articles-grid"><div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--muted);font-size:.9rem">Geen artikelen gevonden voor deze selectie.</div></div>
+<div class="section-label">Alle artikelen <span id="article-count" style="font-size:.75rem;font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)">1 artikel</span></div>
+    <div class="articles-grid" id="articles-grid"><div class="article-card" onclick="openArticle('1775328197593')">
+      <div class="card-top">
+        <div class="card-cat"><span class="card-cat-dot" style="background:#e8735a"></span>Naptime business</div>
+        <div class="card-title">Bijverdienen tijdens de slaapuurtjes: zo pak je die gouden momentjes slim aan</div>
+      </div>
+      <div style="padding:.75rem 1.25rem;font-size:.82rem;color:var(--muted);line-height:1.55;border-bottom:1px solid var(--border)">Die kostbare uren waarin je kindje slaapt zijn goud waard – en je kunt er letterlijk geld mee verdienen. Ontdek hoe je tijdens naptime een leuke bijverdienste opbouwt zonder stress.</div>
+      <div class="card-footer">
+        <span>✦ AI · 4 april 2026</span>
+        <span class="card-read">Lees meer →</span>
+      </div>
+    </div></div>
   </div>
 </div>
 
@@ -784,7 +761,7 @@ renderAll();
   </div>
 
   <!-- GITHUB SETTINGS MODAL -->
-  <div id="github-modal" style="display: none; position: fixed; inset: 0px; background: rgba(0, 0, 0, 0.5); z-index: 1000; align-items: center; justify-content: center;">
+  <div id="github-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:1000;align-items:center;justify-content:center">
     <div style="background:var(--white);border-radius:var(--radius);padding:1.75rem;max-width:460px;width:90%;margin:1rem">
       <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:.3rem">⚙️ GitHub Instellingen</h3>
       <p style="font-size:.82rem;color:var(--muted);margin-bottom:1.25rem;line-height:1.55">Vul eenmalig je GitHub gegevens in. Deze worden veilig opgeslagen in je browser.</p>
@@ -972,7 +949,7 @@ renderAll();
   </div>
 </div>
 
-<div class="toast" id="toast">GitHub instellingen opgeslagen ✓</div>
+<div class="toast" id="toast"></div>
 
 <script>
 // ===== DATA =====
