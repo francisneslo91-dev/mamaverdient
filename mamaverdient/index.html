@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MamaVerdient — Bijverdienen jouw business bestie</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #fdf8f3;
+  --white: #ffffff;
+  --black: #1a1714;
+  --rose: #e8735a;
+  --rose-light: #fde8e3;
+  --sage: #7a9e87;
+  --sage-light: #e8f2eb;
+  --warm: #f0c987;
+  --warm-light: #fdf3e0;
+  --plum: #7a5c7a;
+  --plum-light: #efe8ef;
+  --muted: #8a8178;
+  --border: rgba(26,23,20,0.09);
+  --radius: 16px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--black);min-height:100vh}
+h1,h2,h3,.serif{font-family:'Playfair Display',serif}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px solid var(--border);padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:58px}
+.nav-logo{font-family:'Playfair Display',serif;font-weight:800;font-size:1.15rem;color:var(--black);display:flex;align-items:center;gap:8px}
+.nav-logo .dot{width:8px;height:8px;border-radius:50%;background:var(--rose)}
+.nav-logo .sub{font-family:'Plus Jakarta Sans',sans-serif;font-size:.7rem;font-weight:400;color:var(--muted);margin-left:2px;letter-spacing:.02em}
+.nav-tabs{display:flex;gap:4px}
+.nav-tab{padding:7px 16px;border-radius:8px;cursor:pointer;font-size:.82rem;font-weight:500;color:var(--muted);border:none;background:transparent;font-family:'Plus Jakarta Sans',sans-serif;transition:all .15s}
+.nav-tab:hover{color:var(--black);background:var(--bg)}
+.nav-tab.active{color:var(--white);background:var(--rose)}
+
+/* VIEWS */
+.view{display:none;animation:fadeUp .22s ease}
+.view.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* ===== WEBSITE ===== */
+.site-hero{background:var(--white);padding:4rem 2rem 3.5rem;text-align:center;position:relative;overflow:hidden;border-bottom:1px solid var(--border)}
+.hero-blob{position:absolute;width:500px;height:500px;border-radius:50%;background:var(--rose-light);top:-200px;right:-150px;opacity:.5}
+.hero-blob2{position:absolute;width:300px;height:300px;border-radius:50%;background:var(--sage-light);bottom:-120px;left:-80px;opacity:.6}
+.site-hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;line-height:1.1;letter-spacing:-.02em;margin-bottom:.9rem;position:relative;z-index:1}
+.site-hero h1 em{font-style:italic;color:var(--rose)}
+.site-hero p{color:var(--muted);font-size:1rem;max-width:500px;margin:0 auto 1.75rem;line-height:1.65;position:relative;z-index:1}
+.hero-tags{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:2rem;position:relative;z-index:1}
+.hero-tag{padding:6px 14px;border-radius:99px;font-size:.78rem;font-weight:500;border:1.5px solid var(--border);background:var(--white);color:var(--muted)}
+.hero-search{display:flex;gap:8px;max-width:440px;margin:0 auto;position:relative;z-index:1}
+.hero-search input{flex:1;padding:13px 18px;border-radius:12px;border:1.5px solid var(--border);background:var(--bg);color:var(--black);font-size:.9rem;font-family:'Plus Jakarta Sans',sans-serif;outline:none;transition:border .15s}
+.hero-search input:focus{border-color:var(--rose)}
+.hero-search input::placeholder{color:var(--muted)}
+.btn-rose{background:var(--rose);color:var(--white);border:none;padding:13px 20px;border-radius:12px;font-weight:600;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-size:.88rem;transition:opacity .15s;white-space:nowrap}
+.btn-rose:hover{opacity:.88}
+
+.site-content{max-width:1100px;margin:0 auto;padding:2.5rem 1.5rem}
+
+/* CATEGORIES */
+.cat-pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:2rem}
+.cat-pill{padding:7px 16px;border-radius:99px;font-size:.78rem;font-weight:500;border:1.5px solid var(--border);background:var(--white);color:var(--muted);cursor:pointer;transition:all .15s}
+.cat-pill:hover,.cat-pill.active{border-color:var(--rose);color:var(--rose);background:var(--rose-light)}
+
+.section-label{font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
+.section-label::after{content:'';flex:1;height:1px;background:var(--border)}
+
+.articles-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-bottom:3rem}
+.article-card{background:var(--white);border-radius:var(--radius);border:1px solid var(--border);overflow:hidden;cursor:pointer;transition:transform .18s,box-shadow .18s}
+.article-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,0.07)}
+.card-top{padding:1.1rem 1.25rem .75rem;border-bottom:1px solid var(--border)}
+.card-cat-dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:6px}
+.card-cat{font-size:.72rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem;display:flex;align-items:center}
+.card-title{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;line-height:1.3;margin-bottom:.4rem}
+.card-excerpt{font-size:.82rem;color:var(--muted);line-height:1.55}
+.card-footer{padding:.75rem 1.25rem;display:flex;align-items:center;justify-content:space-between;font-size:.72rem;color:var(--muted)}
+.card-read{font-size:.72rem;font-weight:600;color:var(--rose)}
+
+/* INSPIRE STRIP */
+.inspire-strip{background:var(--rose);color:var(--white);padding:2.5rem;border-radius:var(--radius);margin-bottom:2.5rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap}
+.inspire-strip h2{font-size:1.5rem;font-weight:800;line-height:1.2}
+.inspire-strip p{font-size:.88rem;opacity:.85;margin-top:.4rem;line-height:1.5}
+.btn-white{background:var(--white);color:var(--rose);border:none;padding:11px 22px;border-radius:10px;font-weight:600;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-size:.85rem;white-space:nowrap}
+
+/* CHAT FAB */
+.chat-fab{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--rose);color:var(--white);border:none;border-radius:50px;padding:12px 18px;cursor:pointer;display:flex;align-items:center;gap:8px;font-size:.85rem;font-weight:600;font-family:'Plus Jakarta Sans',sans-serif;z-index:200;box-shadow:0 4px 20px rgba(232,115,90,0.35);transition:transform .15s}
+.chat-fab:hover{transform:translateY(-2px)}
+.chat-panel{position:fixed;bottom:5.5rem;right:1.5rem;width:340px;background:var(--white);border-radius:20px;border:1px solid var(--border);display:none;flex-direction:column;z-index:200;box-shadow:0 16px 56px rgba(0,0,0,0.12);overflow:hidden}
+.chat-panel.open{display:flex}
+.chat-ph{padding:14px 16px;background:var(--rose);color:var(--white);display:flex;align-items:center;gap:10px}
+.chat-ph .av{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.25);display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0}
+.chat-ph-info{flex:1}
+.chat-ph-name{font-family:'Playfair Display',serif;font-weight:700;font-size:.95rem}
+.chat-ph-sub{font-size:.72rem;opacity:.8}
+.chat-close{background:none;border:none;color:rgba(255,255,255,.7);cursor:pointer;font-size:1.1rem;padding:2px}
+.chat-msgs{flex:1;overflow-y:auto;padding:14px 12px;display:flex;flex-direction:column;gap:8px;min-height:220px;max-height:300px}
+.cmsg{padding:9px 13px;border-radius:14px;font-size:.82rem;line-height:1.55;max-width:88%}
+.cmsg.bot{background:var(--bg);color:var(--black);align-self:flex-start;border-radius:4px 14px 14px 14px}
+.cmsg.user{background:var(--rose);color:var(--white);align-self:flex-end;border-radius:14px 4px 14px 14px}
+.chat-suggestions{padding:8px 10px;display:flex;gap:6px;flex-wrap:wrap;border-top:1px solid var(--border)}
+.chat-sug{font-size:.72rem;background:var(--rose-light);color:var(--rose);border:1px solid rgba(232,115,90,0.2);border-radius:99px;padding:4px 10px;cursor:pointer;white-space:nowrap;transition:all .12s}
+.chat-sug:hover{background:var(--rose);color:var(--white)}
+.chat-typing{display:flex;gap:4px;padding:9px 13px;background:var(--bg);border-radius:4px 14px 14px 14px;align-self:flex-start}
+.chat-typing span{width:5px;height:5px;border-radius:50%;background:var(--muted);animation:blink .9s infinite}
+.chat-typing span:nth-child(2){animation-delay:.15s}
+.chat-typing span:nth-child(3){animation-delay:.3s}
+@keyframes blink{0%,60%,100%{opacity:.25}30%{opacity:1}}
+.chat-input-row{padding:10px;border-top:1px solid var(--border);display:flex;gap:6px}
+.chat-input-row input{flex:1;border:1.5px solid var(--border);border-radius:10px;padding:9px 12px;font-size:.82rem;font-family:'Plus Jakarta Sans',sans-serif;outline:none;background:var(--bg);transition:border .15s}
+.chat-input-row input:focus{border-color:var(--rose)}
+.chat-send{background:var(--rose);color:var(--white);border:none;border-radius:10px;width:34px;height:34px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.9rem}
+
+/* ===== ARTICLE DETAIL ===== */
+#view-article{max-width:700px;margin:0 auto;padding:2.5rem 1.5rem}
+.art-back{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;color:var(--muted);cursor:pointer;margin-bottom:1.75rem;border:none;background:none;font-family:'Plus Jakarta Sans',sans-serif;transition:color .15s;padding:0}
+.art-back:hover{color:var(--rose)}
+.art-detail-cat{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:.6rem;display:flex;align-items:center;gap:6px}
+.art-detail h1{font-size:clamp(1.7rem,4vw,2.4rem);font-weight:800;line-height:1.15;margin-bottom:.8rem;letter-spacing:-.02em}
+.art-detail-meta{color:var(--muted);font-size:.82rem;margin-bottom:2rem;display:flex;gap:.75rem;flex-wrap:wrap;align-items:center}
+.art-badge{padding:3px 10px;border-radius:99px;font-size:.7rem;font-weight:600}
+.art-detail-body{font-size:.97rem;line-height:1.8;color:#2d2a27}
+.art-detail-body p{margin-bottom:1.1rem}
+.art-detail-body h2{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;margin:2rem 0 .65rem;color:var(--black)}
+.art-detail-body ul{padding-left:1.25rem;margin-bottom:1.1rem}
+.art-detail-body li{margin-bottom:.45rem}
+.art-detail-body strong{font-weight:600}
+
+/* ===== ADMIN ===== */
+#view-admin{max-width:1100px;margin:0 auto;padding:2rem 1.5rem}
+.admin-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1.75rem;flex-wrap:wrap;gap:1rem}
+.admin-top h2{font-size:1.4rem;font-weight:800;letter-spacing:-.02em}
+.admin-top p{font-size:.83rem;color:var(--muted);margin-top:.25rem}
+.admin-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:1.75rem}
+.stat-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:1rem 1.25rem}
+.stat-lbl{font-size:.72rem;color:var(--muted);font-weight:500;margin-bottom:.3rem}
+.stat-val{font-size:1.75rem;font-weight:800;font-family:'Playfair Display',serif;letter-spacing:-.03em}
+.stat-val.rose{color:var(--rose)}
+.stat-val.sage{color:var(--sage)}
+.admin-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.admin-panel{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1.35rem}
+.panel-hd{display:flex;align-items:center;gap:10px;margin-bottom:1.1rem}
+.panel-icon{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0}
+.panel-hd h3{font-size:.95rem;font-weight:700}
+.field{margin-bottom:.8rem}
+.field label{font-size:.75rem;font-weight:600;color:var(--muted);display:block;margin-bottom:.3rem;letter-spacing:.02em}
+.field input,.field select,.field textarea{width:100%;border:1.5px solid var(--border);border-radius:10px;padding:9px 13px;font-size:.85rem;font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);outline:none;transition:border .15s;color:var(--black)}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--rose)}
+.field textarea{resize:vertical;min-height:72px}
+.btn-full{width:100%;padding:11px;border-radius:10px;border:none;font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:.88rem;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:opacity .15s}
+.btn-full:hover{opacity:.85}
+.btn-full:disabled{opacity:.35;cursor:default}
+.btn-rose-full{background:var(--rose);color:var(--white)}
+.btn-plum-full{background:var(--plum);color:var(--white)}
+.btn-sage-full{background:var(--sage);color:var(--white)}
+.btn-warm-full{background:var(--warm);color:var(--black)}
+.gen-preview{border:1.5px dashed var(--border);border-radius:10px;padding:.9rem;background:var(--bg);font-size:.82rem;line-height:1.6;color:var(--muted);display:none;margin-top:.75rem}
+.gen-preview.show{display:block}
+.gen-actions{display:flex;gap:8px;margin-top:.75rem}
+.btn-sm{padding:7px 14px;border-radius:8px;border:1.5px solid var(--border);background:transparent;font-size:.78rem;font-family:'Plus Jakarta Sans',sans-serif;font-weight:500;cursor:pointer;transition:all .15s}
+.btn-sm:hover{background:var(--black);color:var(--white);border-color:var(--black)}
+.btn-sm.primary{background:var(--rose);color:var(--white);border-color:var(--rose)}
+.btn-sm.primary:hover{opacity:.85}
+.art-list{display:flex;flex-direction:column;gap:6px;max-height:280px;overflow-y:auto}
+.art-row{display:flex;align-items:center;gap:10px;padding:9px 12px;background:var(--bg);border-radius:10px;font-size:.82rem;transition:background .12s}
+.art-row:hover{background:var(--rose-light)}
+.art-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.art-title{flex:1;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.art-date{color:var(--muted);font-size:.72rem;white-space:nowrap}
+.art-src{font-size:.68rem;font-weight:600;padding:2px 7px;border-radius:99px}
+.art-src.ai{background:var(--rose-light);color:var(--rose)}
+.art-src.man{background:var(--sage-light);color:var(--sage)}
+.icon-btn{width:24px;height:24px;border-radius:6px;border:none;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.8rem;transition:background .12s;flex-shrink:0}
+.icon-btn:hover{background:rgba(0,0,0,0.07)}
+.sched-row{display:flex;align-items:center;justify-content:space-between;padding:10px 13px;background:var(--bg);border-radius:10px;margin-bottom:7px}
+.sched-lbl{font-size:.83rem;font-weight:500}
+.sched-sub{font-size:.72rem;color:var(--muted);margin-top:1px}
+.toggle{width:38px;height:21px;background:var(--border);border-radius:99px;position:relative;cursor:pointer;transition:background .2s;border:none;flex-shrink:0}
+.toggle.on{background:var(--rose)}
+.toggle::after{content:'';position:absolute;width:15px;height:15px;background:var(--white);border-radius:50%;top:3px;left:3px;transition:transform .2s;box-shadow:0 1px 3px rgba(0,0,0,.15)}
+.toggle.on::after{transform:translateX(17px)}
+.toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(80px);background:var(--black);color:var(--white);padding:10px 22px;border-radius:10px;font-size:.85rem;z-index:9999;transition:transform .25s;pointer-events:none;white-space:nowrap}
+.toast.show{transform:translateX(-50%) translateY(0)}
+@media(max-width:680px){
+  .admin-grid{grid-template-columns:1fr}
+  .admin-stats{grid-template-columns:repeat(2,1fr)}
+  .chat-panel{width:calc(100vw - 2rem);right:1rem}
+  .inspire-strip{flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    <span class="dot"></span>
+    MamaVerdient
+    <span class="sub">jouw business bestie</span>
+  </div>
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="showView('site')">Website</button>
+    <button class="nav-tab" onclick="showView('budget')">💶 Budget Tool</button>
+    <button class="nav-tab" onclick="showView('admin')">Beheer / CMS</button>
+  </div>
+</nav>
+
+<!-- WEBSITE -->
+<div id="view-site" class="view active">
+  <div class="site-hero">
+    <div class="hero-blob"></div>
+    <div class="hero-blob2"></div>
+    <h1>Verdienen op <em>jouw</em> moment.</h1>
+    <p>Jouw praktische gids speciaal voor drukke moeders met kinderen die slim willen bijverdienen - thuis, online, in de gaatjes van de dag.</p>
+    <div class="hero-tags">
+      <span class="hero-tag">💻 Vanuit huis</span>
+      <span class="hero-tag">🕐 In je eigen tijd</span>
+      <span class="hero-tag">✅ 100% zelf getest en betrouwbaar</span>
+      <span class="hero-tag">👶 Combineerbaar met kinderen</span>
+    </div>
+    <div style="position:relative;z-index:1;max-width:600px;margin:0 auto;background:var(--rose);border-radius:16px;padding:1.75rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;text-align:left">
+      <div>
+        <h2 style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:800;color:#fff;line-height:1.2">Welke side hustle past bij jou?</h2>
+        <p style="font-size:.85rem;color:rgba(255,255,255,0.85);margin-top:.35rem;line-height:1.5">Vertel je situatie en ontvang persoonlijk advies van onze AI-coach.</p>
+      </div>
+      <button class="btn-white" onclick="toggleChat()">Chat met de adviseur →</button>
+    </div>
+  </div>
+
+  <div class="site-content">
+    <input type="text" id="search-input" style="display:none" oninput="filterArticles()">
+    <div class="cat-pills" id="cat-pills">
+      <span class="cat-pill active" onclick="filterCat('')" data-cat="">Alles</span>
+      <span class="cat-pill" onclick="filterCat('naptime')" data-cat="naptime">☕ Naptime business</span>
+      <span class="cat-pill" onclick="filterCat('freelance')" data-cat="freelance">💻 Freelancen</span>
+      <span class="cat-pill" onclick="filterCat('creatief')" data-cat="creatief">🎨 Creatief verkopen</span>
+      <span class="cat-pill" onclick="filterCat('online')" data-cat="online">📱 Online business</span>
+      <span class="cat-pill" onclick="filterCat('zzp')" data-cat="zzp">📋 ZZP & belasting</span>
+      <span class="cat-pill" onclick="filterCat('mindset')" data-cat="mindset">✨ Mindset & balans</span>
+      <span class="cat-pill" onclick="filterCat('crypto')" data-cat="crypto">₿ Investeren & crypto</span>
+    </div>
+
+<!-- DATABASE SECTION -->
+<style>
+.db-wrap{margin-bottom:2.5rem}
+.db-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;flex-wrap:wrap;gap:.5rem}
+.db-search{border:1.5px solid var(--border);border-radius:10px;padding:8px 14px;font-size:.83rem;font-family:'Plus Jakarta Sans',sans-serif;outline:none;background:var(--white);width:220px;transition:border .15s;color:var(--black)}
+.db-search:focus{border-color:var(--rose)}
+.db-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.db-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:transform .18s,box-shadow .18s}
+.db-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.07)}
+.db-card-top{padding:.9rem 1.1rem;border-bottom:1px solid var(--border)}
+.db-cat-row{display:flex;align-items:center;gap:6px;margin-bottom:.4rem}
+.db-cat-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.db-cat-lbl{font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.db-title{font-family:'Playfair Display',serif;font-size:.97rem;font-weight:700;line-height:1.3;margin-bottom:.3rem;cursor:pointer;transition:color .15s}
+.db-title:hover{color:var(--rose)}
+.db-excerpt{font-size:.78rem;color:var(--muted);line-height:1.5}
+.db-courses{padding:.75rem 1.1rem;background:var(--bg)}
+.db-courses-lbl{font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem}
+.db-course-item{display:flex;align-items:center;gap:7px;margin-bottom:.4rem;font-size:.78rem}
+.db-course-dot{width:5px;height:5px;border-radius:50%;background:var(--rose);flex-shrink:0}
+.db-course-link{color:var(--rose);text-decoration:none;font-weight:500;transition:opacity .15s}
+.db-course-link:hover{opacity:.75;text-decoration:underline}
+.db-course-tag{font-size:.65rem;background:var(--rose-light);color:var(--rose);padding:2px 7px;border-radius:99px;font-weight:600;white-space:nowrap}
+.db-empty{grid-column:1/-1;text-align:center;padding:2.5rem;color:var(--muted);font-size:.88rem;background:var(--white);border-radius:var(--radius);border:1px solid var(--border)}
+.db-count{font-size:.75rem;color:var(--muted)}
+@media(max-width:500px){.db-search{width:100%}.db-header{flex-direction:column;align-items:flex-start}}
+</style>
+
+<div class="db-wrap">
+  <div class="db-header">
+    <div class="section-label" style="margin-bottom:0;flex:1">Artikelen & Cursussen <span id="db-count" class="db-count"></span></div>
+    <input type="text" class="db-search" id="db-search" placeholder="🔍 Zoek in artikelen..." oninput="renderDB()">
+  </div>
+  <div class="db-grid" id="db-grid"></div>
+</div>
+
+<div class="section-label">Alle artikelen <span id="article-count" style="font-size:.75rem;font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)"></span></div>
+    <div class="articles-grid" id="articles-grid">
+      <div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--muted);font-size:.9rem">
+        Nog geen artikelen. Ga naar <strong>Beheer</strong> om je eerste artikel te genereren.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE DETAIL -->
+<div id="view-article" class="view">
+  <button class="art-back" onclick="showView('site')">← Terug naar overzicht</button>
+  <div class="art-detail" id="art-detail-content"></div>
+</div>
+
+
+<!-- BUDGET VIEW -->
+<div id="view-budget" class="view">
+<style>
+#view-budget{max-width:900px;margin:0 auto;padding:2rem 1.5rem}
+.budget-hero{background:var(--white);border-radius:var(--radius);border:1px solid var(--border);padding:1.75rem 2rem;margin-bottom:1.5rem;display:flex;align-items:flex-start;justify-content:space-between;gap:1.5rem;flex-wrap:wrap}
+.budget-hero h2{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:800;margin-bottom:.3rem}
+.budget-hero p{font-size:.85rem;color:var(--muted);line-height:1.55;max-width:420px}
+.budget-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1.5rem}
+.sum-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:1rem 1.25rem;text-align:center}
+.sum-lbl{font-size:.72rem;color:var(--muted);font-weight:500;text-transform:uppercase;letter-spacing:.04em;margin-bottom:.3rem}
+.sum-val{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700}
+.sum-val.green{color:#2a7a3a}
+.sum-val.red{color:#c0392b}
+.sum-val.neutral{color:var(--rose)}
+.budget-sections{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:1.5rem}
+.budget-section{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+.bs-header{padding:.9rem 1.1rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border)}
+.bs-title{font-size:.9rem;font-weight:700;display:flex;align-items:center;gap:7px}
+.bs-total{font-size:.85rem;font-weight:600}
+.bs-rows{padding:.6rem}
+.bs-row{display:flex;align-items:center;gap:8px;padding:.45rem .5rem;border-radius:8px;margin-bottom:3px;transition:background .1s}
+.bs-row:hover{background:var(--bg)}
+.bs-row-label{flex:1;font-size:.82rem;border:none;background:transparent;outline:none;font-family:'Plus Jakarta Sans',sans-serif;color:var(--black)}
+.bs-row-label::placeholder{color:var(--muted)}
+.bs-row-amount{width:90px;border:1.5px solid var(--border);border-radius:8px;padding:5px 8px;font-size:.82rem;font-family:'Plus Jakarta Sans',sans-serif;text-align:right;outline:none;background:var(--bg);transition:border .15s;color:var(--black)}
+.bs-row-amount:focus{border-color:var(--rose)}
+.bs-row-del{width:22px;height:22px;border:none;background:transparent;cursor:pointer;color:var(--muted);font-size:.9rem;display:flex;align-items:center;justify-content:center;border-radius:5px;flex-shrink:0;transition:all .12s}
+.bs-row-del:hover{background:var(--rose-light);color:var(--rose)}
+.bs-add{width:100%;padding:7px;border:1.5px dashed var(--border);background:transparent;border-radius:8px;font-size:.78rem;color:var(--muted);cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:all .15s;margin-top:4px}
+.bs-add:hover{border-color:var(--rose);color:var(--rose);background:var(--rose-light)}
+.budget-bar-wrap{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;margin-bottom:1.5rem}
+.budget-bar-title{font-size:.85rem;font-weight:600;margin-bottom:.9rem;display:flex;align-items:center;gap:6px}
+.bar-item{display:flex;align-items:center;gap:10px;margin-bottom:.6rem}
+.bar-label{font-size:.78rem;width:130px;flex-shrink:0;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-track{flex:1;height:8px;background:var(--bg);border-radius:99px;overflow:hidden;border:1px solid var(--border)}
+.bar-fill{height:100%;border-radius:99px;transition:width .4s ease}
+.bar-pct{font-size:.75rem;font-weight:600;width:38px;text-align:right;flex-shrink:0}
+.budget-result{border-radius:var(--radius);padding:1.25rem 1.5rem;margin-bottom:1.5rem;display:flex;align-items:center;gap:12px}
+.budget-result.pos{background:#eaf3de;border:1px solid #c5e0a8}
+.budget-result.neg{background:#fde8e3;border:1px solid #f0b8a8}
+.budget-result.zero{background:var(--warm-light);border:1px solid var(--warm)}
+.result-icon{font-size:1.5rem;flex-shrink:0}
+.result-text h3{font-size:1rem;font-weight:700;margin-bottom:.2rem}
+.result-text p{font-size:.82rem;color:var(--muted);line-height:1.5}
+.budget-actions{display:flex;gap:10px;flex-wrap:wrap}
+.btn-budget{padding:10px 20px;border-radius:10px;border:none;font-size:.83rem;font-weight:600;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:all .15s}
+.btn-budget.primary{background:var(--rose);color:var(--white)}
+.btn-budget.primary:hover{opacity:.88}
+.btn-budget.secondary{background:var(--white);color:var(--black);border:1.5px solid var(--border)}
+.btn-budget.secondary:hover{border-color:var(--rose);color:var(--rose)}
+.sidehustle-tip{background:var(--rose);color:var(--white);border-radius:var(--radius);padding:1.25rem 1.5rem;margin-top:1.5rem;display:none}
+.sidehustle-tip h3{font-size:1rem;font-weight:700;margin-bottom:.4rem}
+.sidehustle-tip p{font-size:.83rem;opacity:.9;line-height:1.55}
+@media(max-width:640px){
+  .budget-sections{grid-template-columns:1fr}
+  .budget-summary{grid-template-columns:repeat(3,1fr)}
+  .sum-val{font-size:1.2rem}
+  .budget-hero{flex-direction:column}
+}
+</style>
+
+<div class="budget-hero">
+  <div>
+    <h2>💶 Mijn Budget Overzicht</h2>
+    <p>Vul je inkomsten en uitgaven in om te zien hoeveel ruimte je hebt om bij te verdienen. Alles wordt automatisch berekend en lokaal opgeslagen.</p>
+  </div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap">
+    <button class="btn-budget secondary" onclick="resetBudget()">↺ Reset</button>
+    <button class="btn-budget primary" onclick="saveBudget()">💾 Opslaan</button>
+  </div>
+</div>
+
+<div class="budget-summary">
+  <div class="sum-card">
+    <div class="sum-lbl">Totaal inkomen</div>
+    <div class="sum-val green" id="sum-income">€0</div>
+  </div>
+  <div class="sum-card">
+    <div class="sum-lbl">Totaal uitgaven</div>
+    <div class="sum-val red" id="sum-expenses">€0</div>
+  </div>
+  <div class="sum-card">
+    <div class="sum-lbl">Over / tekort</div>
+    <div class="sum-val neutral" id="sum-balance">€0</div>
+  </div>
+</div>
+
+<div class="budget-sections">
+  <!-- INKOMEN -->
+  <div class="budget-section">
+    <div class="bs-header" style="background:var(--sage-light)">
+      <div class="bs-title" style="color:var(--sage)">💚 Inkomen</div>
+      <div class="bs-total" id="income-total" style="color:var(--sage)">€0</div>
+    </div>
+    <div class="bs-rows" id="income-rows"></div>
+    <div style="padding:.4rem .6rem .8rem">
+      <button class="bs-add" onclick="addRow('income')">+ Inkomstenbron toevoegen</button>
+    </div>
+  </div>
+
+  <!-- VASTE LASTEN -->
+  <div class="budget-section">
+    <div class="bs-header" style="background:#fde8e3">
+      <div class="bs-title" style="color:var(--rose)">🏠 Vaste lasten</div>
+      <div class="bs-total" id="fixed-total" style="color:var(--rose)">€0</div>
+    </div>
+    <div class="bs-rows" id="fixed-rows"></div>
+    <div style="padding:.4rem .6rem .8rem">
+      <button class="bs-add" onclick="addRow('fixed')">+ Vaste last toevoegen</button>
+    </div>
+  </div>
+
+  <!-- VARIABELE UITGAVEN -->
+  <div class="budget-section">
+    <div class="bs-header" style="background:var(--warm-light)">
+      <div class="bs-title" style="color:#c8a050">🛒 Variabele uitgaven</div>
+      <div class="bs-total" id="variable-total" style="color:#c8a050">€0</div>
+    </div>
+    <div class="bs-rows" id="variable-rows"></div>
+    <div style="padding:.4rem .6rem .8rem">
+      <button class="bs-add" onclick="addRow('variable')">+ Uitgave toevoegen</button>
+    </div>
+  </div>
+
+  <!-- SPAARDOELEN -->
+  <div class="budget-section">
+    <div class="bs-header" style="background:var(--plum-light)">
+      <div class="bs-title" style="color:var(--plum)">🎯 Sparen & doelen</div>
+      <div class="bs-total" id="savings-total" style="color:var(--plum)">€0</div>
+    </div>
+    <div class="bs-rows" id="savings-rows"></div>
+    <div style="padding:.4rem .6rem .8rem">
+      <button class="bs-add" onclick="addRow('savings')">+ Spaardoel toevoegen</button>
+    </div>
+  </div>
+</div>
+
+<!-- UITGAVEN BREAKDOWN BAR -->
+<div class="budget-bar-wrap">
+  <div class="budget-bar-title">📊 Verdeling uitgaven</div>
+  <div id="budget-bars"></div>
+</div>
+
+<!-- RESULTAAT -->
+<div class="budget-result" id="budget-result" style="display:none">
+  <div class="result-icon" id="result-icon"></div>
+  <div class="result-text">
+    <h3 id="result-title"></h3>
+    <p id="result-msg"></p>
+  </div>
+</div>
+
+<!-- SIDE HUSTLE TIP -->
+<div class="sidehustle-tip" id="sidehustle-tip">
+  <h3>💡 Bijverdienen tip voor jou</h3>
+  <p id="sidehustle-tip-text"></p>
+</div>
+
+<script>
+// ===== BUDGET DATA =====
+const BUDGET_DEFAULTS = {
+  income: [
+    {id:'i1', label:'Salaris / uitkering', amount:2500},
+    {id:'i2', label:'Partner inkomen', amount:0},
+    {id:'i3', label:'Bijverdiensten', amount:0},
+  ],
+  fixed: [
+    {id:'f1', label:'Huur / hypotheek', amount:900},
+    {id:'f2', label:'Energie & water', amount:180},
+    {id:'f3', label:'Verzekeringen', amount:150},
+    {id:'f4', label:'Abonnementen', amount:60},
+  ],
+  variable: [
+    {id:'v1', label:'Boodschappen', amount:400},
+    {id:'v2', label:'Transport', amount:120},
+    {id:'v3', label:'Kinderopvang', amount:0},
+    {id:'v4', label:'Uit eten / hobby', amount:100},
+  ],
+  savings: [
+    {id:'s1', label:'Noodfonds', amount:100},
+    {id:'s2', label:'Vakantie', amount:50},
+  ]
+};
+
+let budgetData = JSON.parse(localStorage.getItem('mv_budget') || 'null') || JSON.parse(JSON.stringify(BUDGET_DEFAULTS));
+let rowCounter = 100;
+
+const CAT_COLORS = {
+  income: '#7a9e87',
+  fixed: '#e8735a',
+  variable: '#c8a050',
+  savings: '#7a5c7a'
+};
+
+function fmt(n) {
+  return '€' + Math.round(n).toLocaleString('nl-NL');
+}
+
+function getTotal(cat) {
+  return budgetData[cat].reduce((s,r) => s + (parseFloat(r.amount)||0), 0);
+}
+
+function renderSection(cat) {
+  const container = document.getElementById(cat + '-rows');
+  if (!container) return;
+  container.innerHTML = budgetData[cat].map(row => `
+    <div class="bs-row" id="row-${row.id}">
+      <input class="bs-row-label" type="text" value="${row.label}" placeholder="Omschrijving..."
+        oninput="updateLabel('${cat}','${row.id}',this.value)">
+      <input class="bs-row-amount" type="number" value="${row.amount||''}" placeholder="0" min="0"
+        oninput="updateAmount('${cat}','${row.id}',this.value)" onchange="calcBudget()">
+      <button class="bs-row-del" onclick="deleteRow('${cat}','${row.id}')" title="Verwijderen">×</button>
+    </div>
+  `).join('');
+  const total = getTotal(cat);
+  const totalEl = document.getElementById(cat + '-total');
+  if (totalEl) totalEl.textContent = fmt(total);
+}
+
+function renderAll() {
+  ['income','fixed','variable','savings'].forEach(renderSection);
+  calcBudget();
+}
+
+function updateLabel(cat, id, val) {
+  const row = budgetData[cat].find(r => r.id === id);
+  if (row) row.label = val;
+}
+
+function updateAmount(cat, id, val) {
+  const row = budgetData[cat].find(r => r.id === id);
+  if (row) { row.amount = parseFloat(val)||0; calcBudget(); }
+}
+
+function addRow(cat) {
+  const id = cat[0] + (++rowCounter);
+  budgetData[cat].push({id, label:'', amount:0});
+  renderSection(cat);
+  // focus new label
+  setTimeout(() => {
+    const rows = document.querySelectorAll('#'+cat+'-rows .bs-row');
+    if (rows.length) rows[rows.length-1].querySelector('.bs-row-label')?.focus();
+  }, 50);
+}
+
+function deleteRow(cat, id) {
+  budgetData[cat] = budgetData[cat].filter(r => r.id !== id);
+  renderSection(cat);
+  calcBudget();
+}
+
+function calcBudget() {
+  // Update section totals
+  ['income','fixed','variable','savings'].forEach(cat => {
+    const total = getTotal(cat);
+    const el = document.getElementById(cat+'-total');
+    if (el) el.textContent = fmt(total);
+  });
+
+  const income = getTotal('income');
+  const expenses = getTotal('fixed') + getTotal('variable') + getTotal('savings');
+  const balance = income - expenses;
+
+  document.getElementById('sum-income').textContent = fmt(income);
+  document.getElementById('sum-expenses').textContent = fmt(expenses);
+  const balEl = document.getElementById('sum-balance');
+  balEl.textContent = fmt(balance);
+  balEl.className = 'sum-val ' + (balance > 0 ? 'green' : balance < 0 ? 'red' : 'neutral');
+
+  // BARS
+  const barsEl = document.getElementById('budget-bars');
+  const cats = [
+    {key:'fixed', label:'Vaste lasten', color:'#e8735a'},
+    {key:'variable', label:'Variabele', color:'#c8a050'},
+    {key:'savings', label:'Sparen', color:'#7a5c7a'},
+  ];
+  if (expenses > 0) {
+    barsEl.innerHTML = cats.map(c => {
+      const amt = getTotal(c.key);
+      const pct = Math.round((amt/expenses)*100);
+      return `<div class="bar-item">
+        <div class="bar-label">${c.label}</div>
+        <div class="bar-track"><div class="bar-fill" style="width:${pct}%;background:${c.color}"></div></div>
+        <div class="bar-pct" style="color:${c.color}">${pct}%</div>
+      </div>`;
+    }).join('');
+  } else {
+    barsEl.innerHTML = '<p style="font-size:.8rem;color:var(--muted);text-align:center;padding:.5rem">Voeg uitgaven toe om de verdeling te zien.</p>';
+  }
+
+  // RESULT
+  const resultEl = document.getElementById('budget-result');
+  const tipEl = document.getElementById('sidehustle-tip');
+  const tipText = document.getElementById('sidehustle-tip-text');
+  resultEl.style.display = 'flex';
+
+  if (balance > 200) {
+    resultEl.className = 'budget-result pos';
+    document.getElementById('result-icon').textContent = '🎉';
+    document.getElementById('result-title').textContent = `Je hebt ${fmt(balance)} over per maand!`;
+    document.getElementById('result-msg').textContent = 'Goed bezig! Je kunt dit investeren, extra sparen, of inzetten als startkapitaal voor een side hustle.';
+    tipEl.style.display = 'block';
+    tipText.innerHTML = `Met ${fmt(balance)} per maand over kun je prima starten! 💡 Onze tip: zet het in als startkapitaal voor een online business. Begin met je boekhouding op orde via <a href="https://jouwaffiliatlink.nl/moneybird" target="_blank" style="color:#fff;font-weight:600;text-decoration:underline">Moneybird</a> — de eerste 3 maanden gratis voor ZZP'ers. Of start een Etsy shop met <a href="https://jouwaffiliatlink.nl/canva" target="_blank" style="color:#fff;font-weight:600;text-decoration:underline">Canva Pro</a> (30 dagen gratis proberen).`;
+  } else if (balance >= 0) {
+    resultEl.className = 'budget-result zero';
+    document.getElementById('result-icon').textContent = '⚖️';
+    document.getElementById('result-title').textContent = `Je zit precies op nul (${fmt(balance)} over).`;
+    document.getElementById('result-msg').textContent = 'Je maakt de eindjes aan elkaar, maar er is weinig ruimte. Een side hustle van €200–€300/maand zou een groot verschil maken.';
+    tipEl.style.display = 'block';
+    tipText.innerHTML = `Een naptime business is perfect voor jou! Start met het verkopen van digitale producten via <a href="https://jouwaffiliatlink.nl/gumroad" target="_blank" style="color:#fff;font-weight:600;text-decoration:underline">Gumroad</a> (gratis te beginnen) of bied je diensten aan via <a href="https://jouwaffiliatlink.nl/fiverr" target="_blank" style="color:#fff;font-weight:600;text-decoration:underline">Fiverr</a>. Beide platforms kosten niks om mee te starten.`;
+  } else {
+    resultEl.className = 'budget-result neg';
+    document.getElementById('result-icon').textContent = '⚠️';
+    document.getElementById('result-title').textContent = `Je hebt ${fmt(Math.abs(balance))} per maand tekort.`;
+    document.getElementById('result-msg').textContent = 'Je geeft meer uit dan er binnenkomt. Kijk welke vaste lasten je kunt verlagen én overweeg een side hustle om het gat te dichten.';
+    tipEl.style.display = 'block';
+    tipText.innerHTML = `Je hebt ${fmt(Math.abs(balance))} extra nodig per maand. Start snel met freelancen via <a href="https://jouwaffiliatlink.nl/fiverr" target="_blank" style="color:#fff;font-weight:600;text-decoration:underline">Fiverr</a> of <a href="https://jouwaffiliatlink.nl/upwork" target="_blank" style="color:#fff;font-weight:600;text-decoration:underline">Upwork</a> — tekstschrijven of social media beheer levert snel €300–€500/maand op. Regel je ZZP-administratie direct via <a href="https://jouwaffiliatlink.nl/moneybird" target="_blank" style="color:#fff;font-weight:600;text-decoration:underline">Moneybird</a>.`;
+  }
+}
+
+function saveBudget() {
+  // Collect current input values before saving
+  document.querySelectorAll('.bs-row-label').forEach(el => {
+    const row = el.closest('.bs-row');
+    if (!row) return;
+    const id = row.id.replace('row-','');
+    ['income','fixed','variable','savings'].forEach(cat => {
+      const r = budgetData[cat].find(x => x.id === id);
+      if (r) r.label = el.value;
+    });
+  });
+  document.querySelectorAll('.bs-row-amount').forEach(el => {
+    const row = el.closest('.bs-row');
+    if (!row) return;
+    const id = row.id.replace('row-','');
+    ['income','fixed','variable','savings'].forEach(cat => {
+      const r = budgetData[cat].find(x => x.id === id);
+      if (r) r.amount = parseFloat(el.value)||0;
+    });
+  });
+  localStorage.setItem('mv_budget', JSON.stringify(budgetData));
+  toast('Budget opgeslagen! 💾');
+}
+
+function resetBudget() {
+  if (!confirm('Wil je het budget resetten naar de standaardwaarden?')) return;
+  budgetData = JSON.parse(JSON.stringify(BUDGET_DEFAULTS));
+  localStorage.removeItem('mv_budget');
+  renderAll();
+  toast('Budget gereset ↺');
+}
+
+// Init budget on load
+renderAll();
+</script>
+</div>
+
+<!-- ADMIN -->
+<div id="view-admin" class="view">
+  <div class="admin-top">
+    <div>
+      <h2>Beheer & CMS</h2>
+      <p>Genereer AI-artikelen, publiceer handmatig en beheer automatisering.</p>
+    </div>
+    <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
+      <span class="art-src ai" style="font-size:.75rem;padding:4px 10px">AI artikel</span>
+      <span class="art-src man" style="font-size:.75rem;padding:4px 10px">Handmatig</span>
+      <button onclick="showGithubSettings()" style="background:var(--black);color:var(--white);border:none;border-radius:8px;padding:7px 14px;font-size:.78rem;font-weight:600;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;display:flex;align-items:center;gap:6px">⚙️ GitHub instellen</button>
+      <button onclick="publishToGithub()" id="publish-btn" style="background:var(--rose);color:var(--white);border:none;border-radius:8px;padding:7px 14px;font-size:.78rem;font-weight:600;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;display:flex;align-items:center;gap:6px">🚀 Publiceer naar site</button>
+    </div>
+  </div>
+
+  <!-- GITHUB SETTINGS MODAL -->
+  <div id="github-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:1000;align-items:center;justify-content:center">
+    <div style="background:var(--white);border-radius:var(--radius);padding:1.75rem;max-width:460px;width:90%;margin:1rem">
+      <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:.3rem">⚙️ GitHub Instellingen</h3>
+      <p style="font-size:.82rem;color:var(--muted);margin-bottom:1.25rem;line-height:1.55">Vul eenmalig je GitHub gegevens in. Deze worden veilig opgeslagen in je browser.</p>
+      <div class="field">
+        <label>GitHub gebruikersnaam</label>
+        <input type="text" id="gh-user" placeholder="bijv. francisneslo91-dev">
+      </div>
+      <div class="field">
+        <label>Repository naam</label>
+        <input type="text" id="gh-repo" placeholder="bijv. mamaverdient">
+      </div>
+      <div class="field">
+        <label>Bestandsnaam op GitHub</label>
+        <input type="text" id="gh-file" placeholder="bijv. index.html" value="index.html">
+      </div>
+      <div class="field">
+        <label>GitHub Personal Access Token <a href="https://github.com/settings/tokens/new?scopes=repo&description=MamaVerdient" target="_blank" style="color:var(--rose);font-size:.75rem;font-weight:600">→ Aanmaken</a></label>
+        <input type="password" id="gh-token" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+        <p style="font-size:.72rem;color:var(--muted);margin-top:.3rem">Zet bij aanmaken ✅ repo aan. Token wordt alleen lokaal opgeslagen.</p>
+      </div>
+      <div style="display:flex;gap:8px;margin-top:1rem">
+        <button onclick="saveGithubSettings()" class="btn-full btn-rose-full" style="flex:1">Opslaan</button>
+        <button onclick="document.getElementById('github-modal').style.display='none'" class="btn-full" style="flex:1;background:var(--bg);color:var(--black);border:1.5px solid var(--border)">Annuleren</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="admin-stats">
+    <div class="stat-card"><div class="stat-lbl">Totaal artikelen</div><div class="stat-val" id="stat-total">0</div></div>
+    <div class="stat-card"><div class="stat-lbl">AI gegenereerd</div><div class="stat-val rose" id="stat-ai">0</div></div>
+    <div class="stat-card"><div class="stat-lbl">Handmatig</div><div class="stat-val sage" id="stat-manual">0</div></div>
+    <div class="stat-card"><div class="stat-lbl">Auto-run status</div><div class="stat-val" id="stat-auto" style="font-size:1rem;padding-top:.4rem">Weekelijks aan</div></div>
+  </div>
+
+  <div class="admin-grid">
+    <!-- AI GENERATOR -->
+    <div class="admin-panel">
+      <div class="panel-hd">
+        <div class="panel-icon" style="background:var(--rose-light)">✦</div>
+        <div><h3>AI Artikel Generator</h3></div>
+      </div>
+      <div class="field">
+        <label>Onderwerp / keyword</label>
+        <input type="text" id="gen-topic" placeholder="bijv. bijverdienen thuis met baby">
+      </div>
+      <div class="field">
+        <label>Categorie</label>
+        <select id="gen-cat">
+          <option value="naptime">☕ Naptime business</option>
+          <option value="freelance">💻 Freelancen</option>
+          <option value="creatief">🎨 Creatief verkopen</option>
+          <option value="online">📱 Online business</option>
+          <option value="zzp">📋 ZZP & belasting</option>
+          <option value="mindset">✨ Mindset & balans</option>
+          <option value="crypto">₿ Investeren & crypto</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Toon</label>
+        <select id="gen-tone">
+          <option value="warm, persoonlijk en aanmoedigend">Warm & aanmoedigend</option>
+          <option value="praktisch en no-nonsense">Praktisch & to-the-point</option>
+          <option value="inspirerend en energiek">Inspirerend & energiek</option>
+        </select>
+      </div>
+      <button class="btn-full btn-rose-full" id="gen-btn" onclick="generateArticle()">
+        <span id="gen-btn-text">✦ Genereer artikel</span>
+      </button>
+      <div class="gen-preview" id="gen-preview"></div>
+      <div class="gen-actions" id="gen-actions" style="display:none">
+        <button class="btn-sm primary" onclick="publishGenerated()">Publiceren ✓</button>
+        <button class="btn-sm" onclick="generateArticle()">Opnieuw</button>
+        <button class="btn-sm" onclick="discardGenerated()">Weggooien</button>
+      </div>
+    </div>
+
+    <!-- MANUAL -->
+    <div class="admin-panel">
+      <div class="panel-hd">
+        <div class="panel-icon" style="background:var(--sage-light)">✎</div>
+        <div><h3>Handmatig artikel toevoegen</h3></div>
+      </div>
+      <div class="field">
+        <label>Titel</label>
+        <input type="text" id="man-title" placeholder="Schrijf een pakkende titel...">
+      </div>
+      <div class="field">
+        <label>Categorie</label>
+        <select id="man-cat">
+          <option value="naptime">☕ Naptime business</option>
+          <option value="freelance">💻 Freelancen</option>
+          <option value="creatief">🎨 Creatief verkopen</option>
+          <option value="online">📱 Online business</option>
+          <option value="zzp">📋 ZZP & belasting</option>
+          <option value="mindset">✨ Mindset & balans</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Samenvatting</label>
+        <textarea id="man-excerpt" placeholder="Korte beschrijving voor de artikelkaart..."></textarea>
+      </div>
+      <div class="field">
+        <label>Artikel inhoud</label>
+        <textarea id="man-body" style="min-height:110px" placeholder="Schrijf je volledige artikel hier... (markdown ondersteund: ## Kop, **vet**, - lijst)"></textarea>
+      </div>
+      <button class="btn-full btn-sage-full" onclick="publishManual()">✎ Publiceer artikel</button>
+    </div>
+
+    <!-- ARTICLE LIST -->
+    <div class="admin-panel" style="grid-column:1/-1">
+      <div class="panel-hd">
+        <div class="panel-icon" style="background:var(--warm-light)">≡</div>
+        <div><h3>Alle artikelen</h3></div>
+        <span id="list-count" style="margin-left:auto;font-size:.75rem;color:var(--muted)"></span>
+      </div>
+      <div class="art-list" id="art-list">
+        <div style="text-align:center;padding:1.5rem;color:var(--muted);font-size:.85rem">Nog geen artikelen gepubliceerd.</div>
+      </div>
+    </div>
+
+    <!-- AUTOMATION -->
+    <div class="admin-panel">
+      <div class="panel-hd">
+        <div class="panel-icon" style="background:var(--sage-light)">⟳</div>
+        <div><h3>Automatisering</h3></div>
+      </div>
+      <div class="sched-row">
+        <div><div class="sched-lbl">Dagelijks 1 artikel</div><div class="sched-sub">Elke ochtend om 08:00</div></div>
+        <button class="toggle" id="toggle-daily" onclick="toggleAuto('daily')"></button>
+      </div>
+      <div class="sched-row">
+        <div><div class="sched-lbl">Wekelijkse bulk (5x)</div><div class="sched-sub">Elke maandag, uit de wachtrij</div></div>
+        <button class="toggle on" id="toggle-weekly" onclick="toggleAuto('weekly')"></button>
+      </div>
+      <div class="sched-row">
+        <div><div class="sched-lbl">Trending onderwerpen</div><div class="sched-sub">Actuele topics automatisch</div></div>
+        <button class="toggle" id="toggle-trending" onclick="toggleAuto('trending')"></button>
+      </div>
+      <button class="btn-full btn-rose-full" style="margin-top:.75rem" onclick="runAutoNow()">⟳ Nu handmatig draaien</button>
+    </div>
+
+    <!-- TOPIC QUEUE -->
+    <div class="admin-panel">
+      <div class="panel-hd">
+        <div class="panel-icon" style="background:var(--plum-light)">☰</div>
+        <div><h3>Topic wachtrij</h3></div>
+      </div>
+      <div class="field">
+        <label>Onderwerpen (één per regel)</label>
+        <textarea id="topic-queue" style="min-height:130px"></textarea>
+      </div>
+      <button class="btn-full btn-plum-full" onclick="saveQueue()">Wachtrij opslaan</button>
+      <p style="font-size:.72rem;color:var(--muted);margin-top:.6rem">Topics worden bij de volgende geplande run automatisch verwerkt.</p>
+    </div>
+  </div>
+</div>
+
+<!-- CHAT -->
+<button class="chat-fab" onclick="toggleChat()">💬 Vraag de adviseur</button>
+<div class="chat-panel" id="chat-panel">
+  <div class="chat-ph">
+    <div class="av">🌸</div>
+    <div class="chat-ph-info">
+      <div class="chat-ph-name">MamaVerdient Coach</div>
+      <div class="chat-ph-sub">Persoonlijk advies voor jou</div>
+    </div>
+    <button class="chat-close" onclick="toggleChat()">✕</button>
+  </div>
+  <div class="chat-msgs" id="chat-msgs">
+    <div class="cmsg bot">Hoi! 🌸 Ik ben jouw persoonlijke coach voor bijverdienen als vrouw of mama. Vertel me over jouw situatie — hoeveel tijd heb je? Wat kun je goed? — en ik geef je concreet advies op maat.</div>
+  </div>
+  <div class="chat-suggestions" id="chat-sugs">
+    <span class="chat-sug" onclick="chatSend(this.textContent)">Ik heb 1 uur per dag</span>
+    <span class="chat-sug" onclick="chatSend(this.textContent)">Ik ben net gestopt met werken</span>
+    <span class="chat-sug" onclick="chatSend(this.textContent)">Wat kan ik doen met een baby?</span>
+  </div>
+  <div class="chat-input-row">
+    <input type="text" id="chat-in" placeholder="Jouw vraag..." onkeydown="if(event.key==='Enter')chatSend()">
+    <button class="chat-send" onclick="chatSend()">→</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ===== DATA =====
+let articles = JSON.parse(localStorage.getItem('mv_articles') || '[]');
+let generatedArticle = null;
+let chatHistory = [];
+let autoToggles = JSON.parse(localStorage.getItem('mv_auto') || '{"daily":false,"weekly":true,"trending":false}');
+let activeCat = '';
+
+const CAT = {
+  naptime:  { label: 'Naptime business',   color: '#e8735a', bg: '#fde8e3' },
+  freelance:{ label: 'Freelancen',          color: '#7a9e87', bg: '#e8f2eb' },
+  creatief: { label: 'Creatief verkopen',   color: '#c8a050', bg: '#fdf3e0' },
+  online:   { label: 'Online business',     color: '#7a5c7a', bg: '#efe8ef' },
+  zzp:      { label: 'ZZP & belasting',     color: '#5a7ab0', bg: '#e3eaf8' },
+  mindset:  { label: 'Mindset & balans',    color: '#a07a5a', bg: '#f2ece5' }
+};
+
+const SYSTEM_CHAT = `Je bent "MamaVerdient Coach", een warme, praktische coach voor MamaVerdient.nl — een Nederlandse website speciaal voor vrouwen en moeders die willen bijverdienen. 
+
+Jouw toon: empathisch, aanmoedigend, realistisch. Geen loze beloften, maar echte tips.
+Schrijf altijd in het Nederlands, informeel ("je/jij").
+Max 130 woorden per antwoord. Stel 1 gerichte vervolgvraag.
+
+Je kent:
+- Side hustles die combineerbaar zijn met moederschap: Etsy, freelance schrijven, VA-werk, online cursussen, social media management, boekhouden, tutoring, fotografie
+- Nederlandse context: KvK, zelfstandigenaftrek, belastingvrije bijverdienste, Bol.com partner
+- De realiteit van moeders: weinig tijd, vermoeidheid, naptime-werk, schooltijden
+- Digitale producten: templates, e-books, Canva designs, printables
+- Platforms: Fiverr, Upwork, Etsy, Gumroad, Teachable
+
+Begin met empathie als iemand iets moeilijks deelt.`;
+
+const SYSTEM_WRITER = `Je schrijft voor MamaVerdient.nl — een Nederlandse website voor vrouwen en moeders die willen bijverdienen. 
+
+Schrijfstijl: warm, praktisch, eerlijk, aanmoedigend. Gebruik "je/jij". Schrijf vanuit begrip voor de realiteit van moeders (weinig tijd, kinderen, balans werk-gezin).
+
+Verwerk altijd:
+- Nederlandse context (KvK, BTW, belastingvrije bijverdienste €8.700)
+- Realistische tijdsinschattingen ("kun je doen tijdens de slaapuurtjes")
+- Concrete bedragen in euro's
+- Minimaal 1 persoonlijk voorbeeld of scenario
+
+Structuur:
+TITEL: [pakkende, SEO-vriendelijke titel]
+EXCERPT: [2 zinnen die vrouwen aanspreken]
+INHOUD:
+[Volledig artikel, minimaal 400 woorden, met ## koppen]`;
+
+// ===== NAV =====
+function showView(v) {
+  document.querySelectorAll('.view').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(el => el.classList.remove('active'));
+  document.getElementById('view-' + v).classList.add('active');
+  const idx = {site:0, budget:1, admin:2}[v];
+  if (idx !== undefined) document.querySelectorAll('.nav-tab')[idx].classList.add('active');
+  if (v === 'site') renderArticles();
+  if (v === 'admin') renderAdmin();
+  if (v === 'budget') { renderAll(); }
+}
+
+// ===== ARTICLES =====
+function saveArticles() { localStorage.setItem('mv_articles', JSON.stringify(articles)); }
+
+function filterCat(cat) {
+  activeCat = cat;
+  document.querySelectorAll('.cat-pill').forEach(p => {
+    p.classList.toggle('active', p.dataset.cat === cat);
+  });
+  renderArticles();
+  renderDB();
+}
+
+function renderArticles() {
+  const grid = document.getElementById('articles-grid');
+  const q = (document.getElementById('search-input')?.value || '').toLowerCase();
+  let filtered = articles.filter(a => {
+    const matchQ = !q || a.title.toLowerCase().includes(q) || a.excerpt.toLowerCase().includes(q);
+    const matchC = !activeCat || a.cat === activeCat;
+    return matchQ && matchC;
+  });
+  document.getElementById('article-count').textContent = filtered.length + ' artikel' + (filtered.length !== 1 ? 'en' : '');
+  if (!filtered.length) {
+    grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--muted);font-size:.9rem">${q || activeCat ? 'Geen artikelen gevonden voor deze selectie.' : 'Nog geen artikelen. Ga naar <strong>Beheer</strong> om te starten.'}</div>`;
+    return;
+  }
+  grid.innerHTML = [...filtered].reverse().map(a => {
+    const c = CAT[a.cat] || CAT.online;
+    return `<div class="article-card" onclick="openArticle('${a.id}')">
+      <div class="card-top">
+        <div class="card-cat"><span class="card-cat-dot" style="background:${c.color}"></span>${c.label}</div>
+        <div class="card-title">${a.title}</div>
+      </div>
+      <div style="padding:.75rem 1.25rem;font-size:.82rem;color:var(--muted);line-height:1.55;border-bottom:1px solid var(--border)">${a.excerpt}</div>
+      <div class="card-footer">
+        <span>${a.source === 'ai' ? '✦ AI' : '✎ Handmatig'} · ${a.date}</span>
+        <span class="card-read">Lees meer →</span>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function filterArticles() { renderArticles(); }
+
+function openArticle(id) {
+  const a = articles.find(x => x.id === id);
+  if (!a) return;
+  const c = CAT[a.cat] || CAT.online;
+  document.getElementById('art-detail-content').innerHTML = `
+    <div class="art-detail-cat" style="color:${c.color}"><span style="width:8px;height:8px;border-radius:50%;background:${c.color};display:inline-block;margin-right:6px"></span>${c.label}</div>
+    <h1>${a.title}</h1>
+    <div class="art-detail-meta">
+      <span class="art-badge" style="background:${c.bg};color:${c.color}">${a.source === 'ai' ? '✦ AI artikel' : '✎ Handmatig'}</span>
+      <span>${a.date}</span>
+    </div>
+    <div class="art-detail-body">${formatBody(a.body)}</div>`;
+  document.querySelectorAll('.view, .nav-tab').forEach(el => el.classList.remove('active'));
+  document.getElementById('view-article').classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+function formatBody(t) {
+  return t
+    .replace(/^## (.+)$/gm,'<h2>$1</h2>')
+    .replace(/^### (.+)$/gm,'<h3>$1</h3>')
+    .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
+    .replace(/^- (.+)$/gm,'<li>$1</li>')
+    .replace(/(<li>[\s\S]*?<\/li>\n?)+/g,'<ul>$&</ul>')
+    .split('\n\n').map(p=>p.startsWith('<')?p:`<p>${p}</p>`).join('');
+}
+
+// ===== ADMIN =====
+function renderAdmin() {
+  const ai = articles.filter(a=>a.source==='ai').length;
+  const man = articles.filter(a=>a.source==='manual').length;
+  document.getElementById('stat-total').textContent = articles.length;
+  document.getElementById('stat-ai').textContent = ai;
+  document.getElementById('stat-manual').textContent = man;
+  document.getElementById('list-count').textContent = articles.length + ' artikelen';
+  const list = document.getElementById('art-list');
+  list.innerHTML = articles.length ? [...articles].reverse().map(a => {
+    const c = CAT[a.cat] || CAT.online;
+    return `<div class="art-row">
+      <div class="art-dot" style="background:${c.color}"></div>
+      <div class="art-title">${a.title}</div>
+      <span class="art-src ${a.source==='ai'?'ai':'man'}">${a.source==='ai'?'AI':'Hand'}</span>
+      <div class="art-date">${a.date}</div>
+      <button class="icon-btn" onclick="openArticle('${a.id}')">👁</button>
+      <button class="icon-btn" onclick="deleteArticle('${a.id}')">🗑</button>
+    </div>`;
+  }).join('') : '<div style="text-align:center;padding:1.5rem;color:var(--muted);font-size:.85rem">Nog geen artikelen gepubliceerd.</div>';
+  ['daily','weekly','trending'].forEach(k => {
+    document.getElementById('toggle-'+k).classList.toggle('on', !!autoToggles[k]);
+  });
+  const q = localStorage.getItem('mv_queue') || defaultQueue();
+  document.getElementById('topic-queue').value = q;
+}
+
+function defaultQueue() {
+  return `bijverdienen als mama tijdens de slaapuurtjes
+Etsy shop beginnen als moeder stap voor stap
+freelancen als copywriter vanuit huis
+zelfstandigenaftrek aanvragen als ZZP-moeder
+digitale producten maken en verkopen
+social media manager worden zonder diploma
+thuiswerk combineren met kinderen
+passief inkomen ideeën voor moeders
+online cursus maken en verkopen Nederland
+VA virtual assistant werk vanuit huis`;
+}
+
+function deleteArticle(id) {
+  articles = articles.filter(a=>a.id!==id);
+  saveArticles(); renderAdmin(); renderArticles();
+  toast('Artikel verwijderd');
+}
+
+// ===== AI GENERATOR =====
+async function generateArticle() {
+  const topic = document.getElementById('gen-topic').value.trim();
+  const cat = document.getElementById('gen-cat').value;
+  const tone = document.getElementById('gen-tone').value;
+  if (!topic) { toast('Voer eerst een onderwerp in'); return; }
+  const btn = document.getElementById('gen-btn');
+  const btnText = document.getElementById('gen-btn-text');
+  btn.disabled = true; btnText.textContent = '✦ Artikel wordt geschreven...';
+  const preview = document.getElementById('gen-preview');
+  preview.className = 'gen-preview show'; preview.textContent = 'AI is aan het schrijven...';
+  document.getElementById('gen-actions').style.display = 'none';
+  try {
+    const res = await fetch('/.netlify/functions/claude', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({
+        model:'claude-sonnet-4-20250514', max_tokens:1000,
+        system: SYSTEM_WRITER,
+        messages:[{role:'user',content:`Schrijf een artikel voor MamaVerdient.nl over: "${topic}"\nCategorie: ${CAT[cat]?.label}\nToon: ${tone}\n\nGebruik exact:\nTITEL: [titel]\nEXCERPT: [2 zinnen]\nINHOUD:\n[artikel]`}]
+      })
+    });
+    const data = await res.json();
+    const text = data.content?.[0]?.text || '';
+    const tM = text.match(/TITEL:\s*(.+)/);
+    const eM = text.match(/EXCERPT:\s*(.+)/);
+    const bM = text.match(/INHOUD:\s*([\s\S]+)/);
+    generatedArticle = {
+      id: Date.now().toString(),
+      title: tM?.[1]?.trim() || topic,
+      excerpt: eM?.[1]?.trim() || '',
+      body: bM?.[1]?.trim() || text,
+      cat, source:'ai',
+      date: new Date().toLocaleDateString('nl-NL',{day:'numeric',month:'long',year:'numeric'})
+    };
+    preview.innerHTML = `<strong>${generatedArticle.title}</strong><br><br><em>${generatedArticle.excerpt}</em><br><br>${generatedArticle.body.substring(0,220)}...`;
+    document.getElementById('gen-actions').style.display = 'flex';
+  } catch(e) {
+    preview.textContent = 'Er ging iets mis. Probeer opnieuw.';
+  }
+  btn.disabled = false; btnText.textContent = '✦ Genereer artikel';
+}
+
+function publishGenerated() {
+  if (!generatedArticle) return;
+  articles.push(generatedArticle); saveArticles();
+  generatedArticle = null;
+  document.getElementById('gen-preview').className = 'gen-preview';
+  document.getElementById('gen-actions').style.display = 'none';
+  document.getElementById('gen-topic').value = '';
+  renderAdmin(); toast('Artikel gepubliceerd! 🌸');
+}
+
+function discardGenerated() {
+  generatedArticle = null;
+  document.getElementById('gen-preview').className = 'gen-preview';
+  document.getElementById('gen-actions').style.display = 'none';
+}
+
+// ===== MANUAL =====
+function publishManual() {
+  const title = document.getElementById('man-title').value.trim();
+  const cat = document.getElementById('man-cat').value;
+  const excerpt = document.getElementById('man-excerpt').value.trim();
+  const body = document.getElementById('man-body').value.trim();
+  if (!title || !body) { toast('Vul minimaal titel en inhoud in'); return; }
+  articles.push({
+    id: Date.now().toString(), title, cat,
+    excerpt: excerpt || title, body, source:'manual',
+    date: new Date().toLocaleDateString('nl-NL',{day:'numeric',month:'long',year:'numeric'})
+  });
+  saveArticles();
+  ['man-title','man-excerpt','man-body'].forEach(id=>document.getElementById(id).value='');
+  renderAdmin(); toast('Artikel gepubliceerd! ✓');
+}
+
+// ===== AUTOMATION =====
+function toggleAuto(k) {
+  autoToggles[k] = !autoToggles[k];
+  localStorage.setItem('mv_auto', JSON.stringify(autoToggles));
+  renderAdmin();
+}
+
+const AUTO_TOPICS = [
+  ['bijverdienen als moeder met een baby thuis','naptime'],
+  ['Etsy shop starten als creatieve mama','creatief'],
+  ['freelancen als tekstschrijver in deeltijd','freelance'],
+  ['digitale producten verkopen op Gumroad Nederland','online'],
+  ['ZZP starten als mama: wat moet je regelen','zzp'],
+  ['werk-privé balans als zelfstandige moeder','mindset'],
+  ['social media manager worden vanuit huis','online'],
+  ['printables maken en verkopen op Etsy','creatief'],
+];
+
+async function runAutoNow() {
+  toast('Auto-run gestart...');
+  const [topic, cat] = AUTO_TOPICS[Math.floor(Math.random()*AUTO_TOPICS.length)];
+  try {
+    const res = await fetch('/.netlify/functions/claude', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({
+        model:'claude-sonnet-4-20250514', max_tokens:1000,
+        system: SYSTEM_WRITER,
+        messages:[{role:'user',content:`Schrijf een artikel voor MamaVerdient.nl over: "${topic}"\n\nGebruik exact:\nTITEL: [titel]\nEXCERPT: [2 zinnen]\nINHOUD:\n[artikel]`}]
+      })
+    });
+    const data = await res.json();
+    const text = data.content?.[0]?.text||'';
+    const tM=text.match(/TITEL:\s*(.+)/), eM=text.match(/EXCERPT:\s*(.+)/), bM=text.match(/INHOUD:\s*([\s\S]+)/);
+    articles.push({
+      id:Date.now().toString(),
+      title:tM?.[1]?.trim()||topic, excerpt:eM?.[1]?.trim()||'',
+      body:bM?.[1]?.trim()||text, cat, source:'ai',
+      date:new Date().toLocaleDateString('nl-NL',{day:'numeric',month:'long',year:'numeric'})
+    });
+    saveArticles(); renderAdmin(); toast('Auto-artikel gepubliceerd! 🌸');
+  } catch(e) { toast('Auto-run mislukt. Probeer opnieuw.'); }
+}
+
+function saveQueue() {
+  localStorage.setItem('mv_queue', document.getElementById('topic-queue').value.trim());
+  toast('Wachtrij opgeslagen ✓');
+}
+
+// ===== CHAT =====
+function toggleChat() {
+  const p = document.getElementById('chat-panel');
+  p.classList.toggle('open');
+  if (p.classList.contains('open')) document.getElementById('chat-in').focus();
+}
+
+async function chatSend(txt) {
+  const input = document.getElementById('chat-in');
+  const val = (txt || input.value).trim();
+  if (!val) return;
+  input.value = '';
+  document.getElementById('chat-sugs').style.display = 'none';
+  const msgs = document.getElementById('chat-msgs');
+  const u = document.createElement('div');
+  u.className='cmsg user'; u.textContent=val; msgs.appendChild(u);
+  const typing = document.createElement('div');
+  typing.className='chat-typing'; typing.innerHTML='<span></span><span></span><span></span>';
+  msgs.appendChild(typing); msgs.scrollTop=msgs.scrollHeight;
+  chatHistory.push({role:'user',content:val});
+  try {
+    const res = await fetch('/.netlify/functions/claude',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:SYSTEM_CHAT,messages:chatHistory})
+    });
+    const data=await res.json();
+    const reply=data.content?.[0]?.text||'Sorry, er ging iets mis.';
+    typing.remove();
+    const b=document.createElement('div'); b.className='cmsg bot'; b.textContent=reply;
+    msgs.appendChild(b); msgs.scrollTop=msgs.scrollHeight;
+    chatHistory.push({role:'assistant',content:reply});
+  } catch(e) {
+    typing.remove();
+    const b=document.createElement('div'); b.className='cmsg bot'; b.textContent='Verbindingsfout. Probeer opnieuw.';
+    msgs.appendChild(b);
+  }
+}
+
+// ===== TOAST =====
+function toast(msg) {
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2600);
+}
+
+
+// ===== CURSUSSEN DATABASE =====
+const COURSES = {
+  naptime: [
+    { name: 'Naptime Business Masterclass', url: 'https://jouwaffiliatlink.nl/naptime', tag: '🔥 Bestseller' },
+    { name: 'Passief inkomen met digitale producten', url: 'https://jouwaffiliatlink.nl/digitaal', tag: '⭐ Aanrader' },
+  ],
+  freelance: [
+    { name: 'Freelance Kickstart Cursus', url: 'https://jouwaffiliatlink.nl/freelance', tag: '🚀 Populair' },
+    { name: 'Copywriting voor beginners', url: 'https://jouwaffiliatlink.nl/copy', tag: '' },
+    { name: 'VA training: virtual assistant worden', url: 'https://jouwaffiliatlink.nl/va', tag: '⭐ Aanrader' },
+  ],
+  creatief: [
+    { name: 'Etsy shop starten & groeien', url: 'https://jouwaffiliatlink.nl/etsy', tag: '🔥 Bestseller' },
+    { name: 'Canva Pro voor creatieven', url: 'https://jouwaffiliatlink.nl/canva', tag: '30 dagen gratis' },
+    { name: 'Printables maken & verkopen', url: 'https://jouwaffiliatlink.nl/printables', tag: '' },
+  ],
+  online: [
+    { name: 'Online business bouwen van nul', url: 'https://jouwaffiliatlink.nl/online', tag: '🚀 Populair' },
+    { name: 'Affiliate marketing voor beginners', url: 'https://jouwaffiliatlink.nl/affiliate', tag: '' },
+    { name: 'Gumroad: digitale producten verkopen', url: 'https://jouwaffiliatlink.nl/gumroad', tag: 'Gratis starten' },
+  ],
+  zzp: [
+    { name: 'ZZP starten stap voor stap', url: 'https://jouwaffiliatlink.nl/zzp', tag: '⭐ Aanrader' },
+    { name: 'Moneybird boekhouding (3 mnd gratis)', url: 'https://jouwaffiliatlink.nl/moneybird', tag: 'Gratis proberen' },
+    { name: 'Belastingaangifte voor ZZP-ers', url: 'https://jouwaffiliatlink.nl/belasting', tag: '' },
+  ],
+  mindset: [
+    { name: 'Mindset voor ondernemende moeders', url: 'https://jouwaffiliatlink.nl/mindset', tag: '🔥 Bestseller' },
+    { name: 'Werk-privé balans als zelfstandige', url: 'https://jouwaffiliatlink.nl/balans', tag: '' },
+  ],
+  crypto: [
+    { name: 'Beleggen voor beginners', url: 'https://jouwaffiliatlink.nl/beleggen', tag: '⭐ Aanrader' },
+    { name: 'Crypto basics: veilig starten', url: 'https://jouwaffiliatlink.nl/crypto', tag: '🔥 Populair' },
+    { name: 'ETF investeren voor moeders', url: 'https://jouwaffiliatlink.nl/etf', tag: '' },
+  ]
+};
+
+function renderDB() {
+  const grid = document.getElementById('db-grid');
+  const countEl = document.getElementById('db-count');
+  if (!grid) return;
+  const q = (document.getElementById('db-search')?.value || '').toLowerCase();
+  const cat = activeCat;
+
+  // Build DB items from articles + static course entries per category
+  let items = [];
+
+  // Add published articles that match filter
+  const filtered = articles.filter(a => {
+    const matchQ = !q || a.title.toLowerCase().includes(q) || a.excerpt.toLowerCase().includes(q);
+    const matchC = !cat || a.cat === cat;
+    return matchQ && matchC;
+  });
+
+  // If no articles yet, show category course cards
+  if (!filtered.length && !q) {
+    const cats = cat ? [cat] : Object.keys(COURSES);
+    items = cats.map(c => ({
+      type: 'courses-only',
+      cat: c,
+      title: CAT[c]?.label || c,
+      excerpt: 'Nog geen artikelen in deze categorie — bekijk de aanbevolen cursussen.',
+      courses: COURSES[c] || []
+    }));
+  } else {
+    items = filtered.map(a => ({
+      type: 'article',
+      id: a.id,
+      cat: a.cat,
+      title: a.title,
+      excerpt: a.excerpt,
+      date: a.date,
+      source: a.source,
+      courses: COURSES[a.cat] || []
+    }));
+  }
+
+  if (!items.length) {
+    grid.innerHTML = '<div class="db-empty">Geen resultaten gevonden voor <strong>' + q + '</strong></div>';
+    countEl.textContent = '';
+    return;
+  }
+
+  countEl.textContent = '— ' + items.length + ' resultaat' + (items.length !== 1 ? 'en' : '');
+
+  grid.innerHTML = items.map(item => {
+    const c = CAT[item.cat] || CAT.online;
+    const coursesHTML = item.courses.length ? `
+      <div class="db-courses">
+        <div class="db-courses-lbl">📚 Aanbevolen cursussen</div>
+        ${item.courses.map(course => `
+          <div class="db-course-item">
+            <div class="db-course-dot"></div>
+            <a href="${course.url}" target="_blank" class="db-course-link">${course.name}</a>
+            ${course.tag ? `<span class="db-course-tag">${course.tag}</span>` : ''}
+          </div>
+        `).join('')}
+      </div>` : '';
+
+    return `<div class="db-card">
+      <div class="db-card-top">
+        <div class="db-cat-row">
+          <div class="db-cat-dot" style="background:${c.color}"></div>
+          <div class="db-cat-lbl" style="color:${c.color}">${c.label}</div>
+          ${item.source ? `<span style="margin-left:auto;font-size:.65rem;color:var(--muted)">${item.source === 'ai' ? '✦ AI' : '✎ Handmatig'}</span>` : ''}
+        </div>
+        <div class="db-title" onclick="${item.id ? `openArticle('${item.id}')` : ''}">${item.title}</div>
+        <div class="db-excerpt">${item.excerpt}</div>
+      </div>
+      ${coursesHTML}
+    </div>`;
+  }).join('');
+}
+
+
+// ===== GITHUB PUBLISH =====
+function showGithubSettings() {
+  const modal = document.getElementById('github-modal');
+  modal.style.display = 'flex';
+  document.getElementById('gh-user').value = localStorage.getItem('gh_user') || '';
+  document.getElementById('gh-repo').value = localStorage.getItem('gh_repo') || '';
+  document.getElementById('gh-file').value = localStorage.getItem('gh_file') || 'index.html';
+  document.getElementById('gh-token').value = localStorage.getItem('gh_token') || '';
+}
+
+function saveGithubSettings() {
+  localStorage.setItem('gh_user', document.getElementById('gh-user').value.trim());
+  localStorage.setItem('gh_repo', document.getElementById('gh-repo').value.trim());
+  localStorage.setItem('gh_file', document.getElementById('gh-file').value.trim() || 'index.html');
+  localStorage.setItem('gh_token', document.getElementById('gh-token').value.trim());
+  document.getElementById('github-modal').style.display = 'none';
+  toast('GitHub instellingen opgeslagen ✓');
+}
+
+async function publishToGithub() {
+  const user  = localStorage.getItem('gh_user');
+  const repo  = localStorage.getItem('gh_repo');
+  const file  = localStorage.getItem('gh_file') || 'index.html';
+  const token = localStorage.getItem('gh_token');
+
+  if (!user || !repo || !token) {
+    toast('Stel eerst je GitHub gegevens in ⚙️');
+    showGithubSettings();
+    return;
+  }
+
+  const btn = document.getElementById('publish-btn');
+  btn.textContent = '⏳ Bezig...';
+  btn.disabled = true;
+
+  try {
+    // Get current file SHA (needed for update)
+    const getRes = await fetch(`https://api.github.com/repos/${user}/${repo}/contents/${file}`, {
+      headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json' }
+    });
+    const getJson = await getRes.json();
+    const sha = getJson.sha;
+
+    // Get full HTML of current page
+    const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+    const encoded = btoa(unescape(encodeURIComponent(html)));
+
+    // Push to GitHub
+    const pushRes = await fetch(`https://api.github.com/repos/${user}/${repo}/contents/${file}`, {
+      method: 'PUT',
+      headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        message: 'MamaVerdient update — ' + new Date().toLocaleString('nl-NL'),
+        content: encoded,
+        sha: sha
+      })
+    });
+
+    if (pushRes.ok) {
+      toast('🚀 Gepubliceerd! Live in ~30 seconden.');
+    } else {
+      const err = await pushRes.json();
+      toast('Fout: ' + (err.message || 'onbekend'));
+    }
+  } catch(e) {
+    toast('Verbindingsfout. Controleer je token.');
+  }
+
+  btn.textContent = '🚀 Publiceer naar site';
+  btn.disabled = false;
+}
+
+// ===== INIT =====
+renderArticles();
+renderDB();
+</script>
+</body>
+</html>
