@@ -270,37 +270,10 @@ nav{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px 
 
 <div class="db-wrap">
   <div class="db-header">
-    <div class="section-label" style="margin-bottom:0;flex:1">Artikelen &amp; Cursussen <span id="db-count" class="db-count">— 1 resultaat</span></div>
+    <div class="section-label" style="margin-bottom:0;flex:1">Artikelen &amp; Cursussen <span id="db-count" class="db-count"></span></div>
     <input type="text" class="db-search" id="db-search" placeholder="🔍 Zoek in artikelen..." oninput="renderDB()">
   </div>
-  <div class="db-grid" id="db-grid"><div class="db-card">
-      <div class="db-card-top">
-        <div class="db-cat-row">
-          <div class="db-cat-dot" style="background:#e8735a"></div>
-          <div class="db-cat-lbl" style="color:#e8735a">Naptime business</div>
-          <span style="margin-left:auto;font-size:.65rem;color:var(--muted)">✦ AI</span>
-        </div>
-        <div class="db-title" onclick="openArticle('1775328197593')">Bijverdienen tijdens de slaapuurtjes: zo pak je die gouden momentjes slim aan</div>
-        <div class="db-excerpt">Die kostbare uren waarin je kindje slaapt zijn goud waard – en je kunt er letterlijk geld mee verdienen. Ontdek hoe je tijdens naptime een leuke bijverdienste opbouwt zonder stress.</div>
-      </div>
-      
-      <div class="db-courses">
-        <div class="db-courses-lbl">📚 Aanbevolen cursussen</div>
-        
-          <div class="db-course-item">
-            <div class="db-course-dot"></div>
-            <a href="https://jouwaffiliatlink.nl/naptime" target="_blank" class="db-course-link">Naptime Business Masterclass</a>
-            <span class="db-course-tag">🔥 Bestseller</span>
-          </div>
-        
-          <div class="db-course-item">
-            <div class="db-course-dot"></div>
-            <a href="https://jouwaffiliatlink.nl/digitaal" target="_blank" class="db-course-link">Passief inkomen met digitale producten</a>
-            <span class="db-course-tag">⭐ Aanrader</span>
-          </div>
-        
-      </div>
-    </div></div>
+  <div class="db-grid" id="db-grid"><div class="db-empty">Geen resultaten gevonden voor <strong>francisneslo91-dev</strong></div></div>
 </div>
 
 <div class="section-label">Alle artikelen <span id="article-count" style="font-size:.75rem;font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)">1 artikel</span></div>
@@ -788,7 +761,7 @@ renderAll();
   </div>
 
   <!-- GITHUB SETTINGS MODAL -->
-  <div id="github-modal" style="display: none; position: fixed; inset: 0px; background: rgba(0, 0, 0, 0.5); z-index: 1000; align-items: center; justify-content: center;">
+  <div id="github-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:1000;align-items:center;justify-content:center">
     <div style="background:var(--white);border-radius:var(--radius);padding:1.75rem;max-width:460px;width:90%;margin:1rem">
       <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:.3rem">⚙️ GitHub Instellingen</h3>
       <p style="font-size:.82rem;color:var(--muted);margin-bottom:1.25rem;line-height:1.55">Vul eenmalig je GitHub gegevens in. Deze worden veilig opgeslagen in je browser.</p>
@@ -976,7 +949,7 @@ renderAll();
   </div>
 </div>
 
-<div class="toast show" id="toast">GitHub instellingen opgeslagen ✓</div>
+<div class="toast" id="toast"></div>
 
 <script>
 // ===== DATA =====
